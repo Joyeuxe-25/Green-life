@@ -1,0 +1,177 @@
+/* impact.css — Impact page specific styles */
+
+/* Highlights Grid */
+.highlights {
+    background-color: var(--off-white);
+}
+
+.highlights-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.impact-card {
+    background-color: var(--white);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    border-top: 4px solid var(--accent-green);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.impact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-medium);
+}
+
+.impact-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--deep-green);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+}
+
+.impact-label {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--accent-green);
+    margin-bottom: var(--space-xs);
+}
+
+.impact-detail {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* Community Impact */
+.community-impact {
+    background-color: var(--white);
+}
+
+/* Youth Engagement */
+.youth-engagement {
+    background-color: var(--off-white);
+}
+
+/* Field Action Grid */
+.field-action {
+    background-color: var(--white);
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.action-card {
+    background-color: var(--off-white);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    text-align: center;
+    box-shadow: var(--shadow-light);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.action-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-medium);
+}
+
+.action-card .icon-placeholder {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.action-card h3 {
+    margin-bottom: var(--space-xs);
+    font-size: 1.1rem;
+}
+
+.action-card p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* Transparency Note */
+.transparency-note {
+    background-color: var(--off-white);
+}
+
+.note-box {
+    background-color: var(--light-green);
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    text-align: center;
+    border-left: 6px solid var(--accent-green);
+}
+
+.note-box h3 {
+    color: var(--deep-green);
+    margin-bottom: var(--space-xs);
+}
+
+.note-box p {
+    max-width: 800px;
+    margin: 0 auto;
+    color: var(--text-light);
+}
+
+/* Call to Action */
+.cta-section {
+    background: linear-gradient(135deg, var(--deep-green), var(--accent-green));
+    color: var(--white);
+}
+
+.cta-section .cta-box h2,
+.cta-section .cta-box p {
+    color: var(--white);
+}
+
+.cta-section .cta-box p {
+    color: var(--light-green);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .highlights-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .action-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .highlights-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .action-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}

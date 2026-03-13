@@ -1,0 +1,226 @@
+/* contact.css — Contact page specific styles */
+
+/* Contact Overview Cards */
+.contact-overview {
+    background-color: var(--white);
+}
+
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.contact-card {
+    background-color: var(--off-white);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-light);
+    text-align: center;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-medium);
+}
+
+.contact-card .icon-placeholder {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.contact-card h3 {
+    margin-bottom: var(--space-xs);
+    font-size: 1.2rem;
+}
+
+.contact-card p,
+.contact-card .note {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+
+.contact-card a {
+    color: var(--accent-green);
+    word-break: break-word;
+}
+
+.contact-card a:hover {
+    text-decoration: underline;
+}
+
+.contact-card .social-list {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-xs);
+    flex-wrap: wrap;
+}
+
+.contact-card .social-list a {
+    color: var(--accent-green);
+    font-weight: 500;
+}
+
+/* Contact Form Section */
+.contact-form-section {
+    background-color: var(--off-white);
+}
+
+.form-col h2,
+.details-col h2 {
+    margin-bottom: var(--space-md);
+    color: var(--deep-green);
+}
+
+.contact-form .form-group {
+    margin-bottom: var(--space-sm);
+}
+
+.contact-form label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--text-dark);
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--gray-light);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color var(--transition-fast);
+}
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--accent-green);
+    box-shadow: 0 0 0 3px rgba(46, 125, 94, 0.1);
+}
+
+.contact-form button[type="submit"] {
+    margin-top: var(--space-sm);
+    width: 100%;
+}
+
+.form-note {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: var(--space-xs);
+    text-align: center;
+}
+
+/* Details Column */
+.details-col .detail-block {
+    background-color: var(--white);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-light);
+    margin-bottom: var(--space-sm);
+}
+
+.details-col h3 {
+    margin-bottom: var(--space-xs);
+    color: var(--deep-green);
+    font-size: 1.1rem;
+}
+
+.details-col p {
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+
+.details-col a {
+    color: var(--accent-green);
+    font-weight: 500;
+}
+
+.details-col a:hover {
+    text-decoration: underline;
+}
+
+.details-col .note {
+    font-style: italic;
+    font-size: 0.85rem;
+    margin-top: var(--space-sm);
+    color: var(--text-light);
+}
+
+/* Location Placeholder */
+.location-section {
+    background-color: var(--white);
+}
+
+.map-placeholder {
+    background-color: var(--light-green);
+    border-radius: var(--radius-md);
+    padding: 4rem 2rem;
+    text-align: center;
+    border: 2px dashed var(--accent-green);
+    color: var(--deep-green);
+    position: relative;
+}
+
+.map-overlay p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.map-overlay .note {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* Call to Action */
+.cta-section {
+    background: linear-gradient(135deg, var(--deep-green), var(--accent-green));
+    color: var(--white);
+}
+
+.cta-section .cta-box h2,
+.cta-section .cta-box p {
+    color: var(--white);
+}
+
+.cta-section .cta-box p {
+    color: var(--light-green);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .contact-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}

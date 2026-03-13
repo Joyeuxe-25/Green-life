@@ -1,0 +1,83 @@
+/* responsive.css - Media queries */
+
+/* Tablet */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    /* Typography adjustments */
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.35rem; }
+
+    /* Header & navigation */
+    .site-header .container {
+        position: relative;
+    }
+
+    .mobile-menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        flex-direction: column;
+        padding: var(--space-md);
+        box-shadow: var(--shadow-medium);
+        z-index: 99;
+        gap: var(--space-sm);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: var(--space-xs) 0;
+        display: block;
+        width: 100%;
+    }
+
+    .nav-links a::after {
+        display: none;
+    }
+
+    .donate-btn {
+        margin-left: 0;
+        order: 3;
+    }
+
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    .footer-about,
+    .footer-links,
+    .footer-contact,
+    .footer-social {
+        text-align: center;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 576px) {
+    .section {
+        padding: var(--space-md) 0;
+    }
+
+    .btn {
+        display: block;
+        width: 100%;
+    }
+}

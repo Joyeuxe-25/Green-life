@@ -1,0 +1,346 @@
+/* home.css — homepage-specific styles */
+
+/* Hero Section */
+.hero {
+    padding: var(--space-lg) 0;
+    background-color: var(--off-white);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+.hero-content h1 {
+    margin-bottom: var(--space-sm);
+    color: var(--deep-green);
+}
+
+.hero-subhead {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-md);
+    color: var(--text-light);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.hero-image .image-placeholder {
+    background-color: var(--light-green);
+    border-radius: var(--radius-md);
+    padding: 30% 0;
+    text-align: center;
+    color: var(--deep-green);
+    font-weight: 500;
+    border: 2px dashed var(--accent-green);
+}
+
+/* Intro Section */
+.intro {
+    text-align: center;
+    background-color: var(--white);
+}
+
+.section-label {
+    display: inline-block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-green);
+    margin-bottom: var(--space-xs);
+}
+
+.intro h2 {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.intro p {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--space-md);
+}
+
+/* Focus Areas Section */
+.focus-areas {
+    background-color: var(--off-white);
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.focus-card,
+.activity-card,
+.update-card {
+    background-color: var(--white);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-light);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.focus-card:hover,
+.activity-card:hover,
+.update-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-medium);
+}
+
+.icon-placeholder {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-sm);
+    text-align: center;
+}
+
+.focus-card h3,
+.activity-card h3 {
+    margin-bottom: var(--space-xs);
+}
+
+.focus-card p,
+.activity-card p,
+.update-card p {
+    font-size: 0.95rem;
+    margin-bottom: var(--space-sm);
+}
+
+.card-link {
+    font-weight: 600;
+    color: var(--accent-green);
+    text-decoration: none;
+}
+
+.card-link:hover {
+    text-decoration: underline;
+}
+
+/* Impact Section */
+.impact {
+    background-color: var(--white);
+}
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.impact-card {
+    text-align: center;
+    padding: var(--space-md);
+    background-color: var(--off-white);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--accent-green);
+}
+
+.impact-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--deep-green);
+    line-height: 1;
+    margin-bottom: var(--space-xs);
+}
+
+.impact-label {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--accent-green);
+    margin-bottom: var(--space-xs);
+}
+
+.impact-detail {
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* Featured Activities */
+.featured {
+    background-color: var(--off-white);
+}
+
+.activity-card .image-placeholder {
+    background-color: var(--light-green);
+    height: 160px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    margin: -1rem -1rem var(--space-sm) -1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--deep-green);
+    font-weight: 500;
+    border-bottom: 2px solid var(--accent-green);
+}
+
+/* Get Involved Section */
+.get-involved {
+    background: linear-gradient(135deg, var(--deep-green), var(--accent-green));
+    color: var(--white);
+}
+
+.cta-box {
+    text-align: center;
+    padding: var(--space-lg) 0;
+}
+
+.cta-box h2 {
+    color: var(--white);
+}
+
+.cta-box p {
+    color: var(--light-green);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--space-md);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-buttons .btn-primary {
+    background-color: var(--white);
+    color: var(--deep-green);
+    border: 2px solid var(--white);
+}
+
+.cta-buttons .btn-primary:hover {
+    background-color: transparent;
+    color: var(--white);
+}
+
+/* Updates Section */
+.updates {
+    background-color: var(--white);
+}
+
+.update-card .update-category {
+    display: inline-block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--accent-green);
+    margin-bottom: var(--space-xs);
+}
+
+.update-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: var(--space-xs);
+}
+
+.update-card h3 a {
+    color: var(--deep-green);
+    text-decoration: none;
+}
+
+.update-card h3 a:hover {
+    color: var(--accent-green);
+}
+
+.update-excerpt {
+    font-size: 0.9rem;
+    margin-bottom: var(--space-sm);
+}
+
+/* Final CTA */
+.final-cta {
+    background-color: var(--light-green);
+    text-align: center;
+}
+
+.final-cta-content {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.final-cta-content h2 {
+    color: var(--deep-green);
+}
+
+.final-cta-content p {
+    margin-bottom: var(--space-md);
+}
+
+.final-cta-content .btn {
+    margin: 0 var(--space-xs) var(--space-xs) 0;
+}
+
+/* Responsive adjustments for homepage */
+@media (max-width: 992px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+
+    .hero-content {
+        order: 1;
+    }
+
+    .hero-image {
+        order: 0;
+    }
+
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .impact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .final-cta-content .btn {
+        display: block;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto var(--space-xs) auto;
+    }
+}
+
+/* Scroll reveal (optional) */
+.section-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
