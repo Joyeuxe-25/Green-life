@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-brand">
-                        <img src="assets/logos/logo.jpg" alt="Green for Life Rwanda" class="footer-logo">
+                        <img src="assets/logos/logo.JPG" alt="Green for Life Rwanda" class="footer-logo">
                         <p>An environmental organization that empowers communities, particularly small household farmers, to conserve the environment and improve livelihoods.</p>
                         <div class="footer-social">
                             <a href="https://web.facebook.com/GREEN-for-LIFE-Rwanda-100208564927414" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
