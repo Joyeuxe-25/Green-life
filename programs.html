@@ -10,164 +10,285 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="icon" href="assets/logos/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-   <div id="site-header"></div>
+    <div id="site-header"></div>
 
     <main>
-        <!-- Page Hero -->
-        <section class="page-hero">
-            <div class="container">
-                <span class="section-label">Our Work</span>
+
+        <!-- ===== HERO ===== -->
+        <section class="programs-hero">
+            <div class="programs-hero-bg" style="background-image: url('assets/images/youth.jpg')"></div>
+            <div class="programs-hero-overlay"></div>
+            <div class="container programs-hero-content">
+                <span class="programs-hero-label">What We Do</span>
                 <h1>Our Programs</h1>
-                <p class="hero-subhead">Practical environmental action that empowers communities and strengthens livelihoods.</p>
+                <p>Practical environmental action that empowers communities, supports small household farmers, and builds lasting resilience across Rwanda.</p>
+                <div class="programs-hero-meta">
+                    <div class="programs-meta-item">
+                        <i class="fas fa-tree"></i>
+                        <span>Agroforestry</span>
+                    </div>
+                    <div class="programs-meta-item">
+                        <i class="fas fa-cloud-sun-rain"></i>
+                        <span>Climate Action</span>
+                    </div>
+                    <div class="programs-meta-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Youth Education</span>
+                    </div>
+                    <div class="programs-meta-item">
+                        <i class="fas fa-hands-helping"></i>
+                        <span>Community Livelihoods</span>
+                    </div>
+                </div>
             </div>
-            <div class="hero-image-placeholder"></div>
         </section>
 
-        <!-- Overview Section -->
+        <!-- ===== OVERVIEW ===== -->
         <section class="overview section">
-            <div class="container">
-                <h2>How We Work</h2>
-                <p>Green for Life Rwanda partners with communities to implement programs that integrate environmental conservation with livelihood improvement. Through hands-on training, community mobilization, and sustainable practices, we help people become active stewards of their environment while building a better future for themselves and their families.</p>
+            <div class="container overview-layout">
+                <div class="overview-text">
+                    <span class="section-label">How We Work</span>
+                    <h2>Integrated Environmental Action</h2>
+                    <p>Green for Life Rwanda partners with communities to implement programs that integrate environmental conservation with livelihood improvement. Through hands-on training, community mobilization, and sustainable practices, we help people become active stewards of their environment while building a better future for themselves and their families.</p>
+                    <p>Our programs are designed to reinforce each other — environmental education builds awareness, agroforestry restores land and provides income, and livelihood activities reduce pressure on natural resources. Together they create a cycle of sustainability and empowerment.</p>
+                </div>
+                <div class="overview-image">
+                    <img src="assets/images/env-club.jpg" alt="Community members participating in environmental program">
+                    <div class="overview-badge">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Integrated Approach</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Main Program Areas -->
+        <!-- ===== MAIN PROGRAM AREAS ===== -->
         <section class="program-areas section">
             <div class="container">
-                <h2 class="section-title">Main Program Areas</h2>
+                <span class="section-label">Main Program Areas</span>
+                <h2 class="section-title">What We Focus On</h2>
                 <div class="program-grid">
-                    <article class="program-card">
-                        <div class="icon-placeholder">🌳</div>
-                        <h3>Agroforestry</h3>
-                        <p>Promoting tree planting alongside crops to restore soil health, increase biodiversity, and provide additional income through fruit, timber, and firewood.</p>
-                        <ul class="program-features">
-                            <li>Fruit tree nurseries</li>
-                            <li>Boundary planting</li>
-                            <li>Soil conservation</li>
-                        </ul>
+
+                    <article id="agroforestry" class="program-card">
+                        <div class="program-card-img">
+                            <img src="assets/images/youth.jpg" alt="Agroforestry practices in Rwanda">
+                        </div>
+                        <div class="program-card-body">
+                            <div class="program-icon"><i class="fas fa-tree"></i></div>
+                            <h3>Agroforestry</h3>
+                            <p>Promoting tree planting alongside crops to restore soil health, increase biodiversity, and provide additional income through fruit, timber, and firewood.</p>
+                            <ul class="program-features">
+                                <li><i class="fas fa-check"></i> Fruit tree nurseries</li>
+                                <li><i class="fas fa-check"></i> Boundary planting</li>
+                                <li><i class="fas fa-check"></i> Soil conservation</li>
+                            </ul>
+                        </div>
                     </article>
-                    <article class="program-card">
-                        <div class="icon-placeholder">🌍</div>
-                        <h3>Climate Action</h3>
-                        <p>Helping communities adapt to climate change through reforestation, water conservation, and sustainable land management practices.</p>
-                        <ul class="program-features">
-                            <li>Tree planting campaigns</li>
-                            <li>Rainwater harvesting</li>
-                            <li>Climate-smart agriculture</li>
-                        </ul>
+
+                    <article id="climate" class="program-card">
+                        <div class="program-card-img">
+                            <img src="assets/images/home-hero.jpg" alt="Climate action and reforestation in Rwanda">
+                        </div>
+                        <div class="program-card-body">
+                            <div class="program-icon"><i class="fas fa-cloud-sun-rain"></i></div>
+                            <h3>Climate Action</h3>
+                            <p>Helping communities adapt to climate change through reforestation, water conservation, and sustainable land management practices.</p>
+                            <ul class="program-features">
+                                <li><i class="fas fa-check"></i> Tree planting campaigns</li>
+                                <li><i class="fas fa-check"></i> Rainwater harvesting</li>
+                                <li><i class="fas fa-check"></i> Climate-smart agriculture</li>
+                            </ul>
+                        </div>
                     </article>
-                    <article class="program-card">
-                        <div class="icon-placeholder">📚</div>
-                        <h3>Environmental Education & Youth Clubs</h3>
-                        <p>Engaging young people through school-based environmental clubs, workshops, and activities that build awareness and leadership.</p>
-                        <ul class="program-features">
-                            <li>School tree planting</li>
-                            <li>Waste management projects</li>
-                            <li>Environmental camps</li>
-                        </ul>
+
+                    <article id="education" class="program-card">
+                        <div class="program-card-img">
+                            <img src="assets/images/youth.jpg" alt="Youth environmental education clubs">
+                        </div>
+                        <div class="program-card-body">
+                            <div class="program-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <h3>Environmental Education & Youth Clubs</h3>
+                            <p>Engaging young people through school-based environmental clubs, workshops, and activities that build awareness and environmental leadership.</p>
+                            <ul class="program-features">
+                                <li><i class="fas fa-check"></i> School tree planting</li>
+                                <li><i class="fas fa-check"></i> Waste management projects</li>
+                                <li><i class="fas fa-check"></i> Environmental camps</li>
+                            </ul>
+                        </div>
                     </article>
-                    <article class="program-card">
-                        <div class="icon-placeholder">👩‍🌾</div>
-                        <h3>Community Livelihoods & Advocacy</h3>
-                        <p>Empowering smallholder farmers, especially women, with training in sustainable agriculture, income-generating activities, and advocacy for environmental rights.</p>
-                        <ul class="program-features">
-                            <li>Compost making</li>
-                            <li>Organic pesticides</li>
-                            <li>Saving groups support</li>
-                        </ul>
+
+                    <article id="livelihoods" class="program-card">
+                        <div class="program-card-img">
+                            <img src="assets/images/env-club.jpg" alt="Community livelihoods and saving groups">
+                        </div>
+                        <div class="program-card-body">
+                            <div class="program-icon"><i class="fas fa-hands-helping"></i></div>
+                            <h3>Community Livelihoods & Advocacy</h3>
+                            <p>Empowering smallholder farmers, especially women, with training in sustainable agriculture, income-generating activities, and advocacy for environmental rights.</p>
+                            <ul class="program-features">
+                                <li><i class="fas fa-check"></i> Compost making</li>
+                                <li><i class="fas fa-check"></i> Organic pesticides</li>
+                                <li><i class="fas fa-check"></i> Saving groups support</li>
+                            </ul>
+                        </div>
                     </article>
+
                 </div>
             </div>
         </section>
 
-        <!-- Practical Activities Section -->
-        <section class="practical-activities section">
+        <!-- ===== HANDS-ON ACTIVITIES ===== -->
+        <section id="activities" class="practical-activities section">
             <div class="container">
-                <h2 class="section-title">Hands‑on Activities</h2>
+                <span class="section-label">In the Field</span>
+                <h2 class="section-title">Hands-on Activities</h2>
                 <div class="activities-grid">
                     <div class="activity-card">
-                        <div class="image-placeholder">Compost Making</div>
-                        <h3>Compost Production</h3>
-                        <p>Training farmers to turn organic waste into nutrient-rich compost, improving soil fertility and reducing reliance on chemical fertilizers.</p>
+                        <div class="activity-img">
+                            <img src="assets/images/youth.jpg" alt="Compost making training">
+                        </div>
+                        <div class="activity-body">
+                            <div class="activity-icon"><i class="fas fa-recycle"></i></div>
+                            <h3>Compost Production</h3>
+                            <p>Training farmers to turn organic waste into nutrient-rich compost, improving soil fertility and reducing reliance on chemical fertilizers.</p>
+                        </div>
                     </div>
                     <div class="activity-card">
-                        <div class="image-placeholder">Pesticides Making</div>
-                        <h3>Natural Pesticides</h3>
-                        <p>Workshops on preparing botanical pesticides from local plants, offering a low-cost, eco-friendly alternative.</p>
+                        <div class="activity-img">
+                            <img src="assets/images/env-club.jpg" alt="Natural pesticides workshop">
+                        </div>
+                        <div class="activity-body">
+                            <div class="activity-icon"><i class="fas fa-flask"></i></div>
+                            <h3>Natural Pesticides</h3>
+                            <p>Workshops on preparing botanical pesticides from local plants, offering a low-cost, eco-friendly alternative to chemical inputs.</p>
+                        </div>
                     </div>
                     <div class="activity-card">
-                        <div class="image-placeholder">Tree Nurseries</div>
-                        <h3>Tree Nursery Management</h3>
-                        <p>Community-run nurseries produce seedlings for reforestation and agroforestry, creating local employment and ownership.</p>
+                        <div class="activity-img">
+                            <img src="assets/images/youth.jpg" alt="Tree nursery management">
+                        </div>
+                        <div class="activity-body">
+                            <div class="activity-icon"><i class="fas fa-seedling"></i></div>
+                            <h3>Tree Nursery Management</h3>
+                            <p>Community-run nurseries produce seedlings for reforestation and agroforestry, creating local employment and community ownership.</p>
+                        </div>
                     </div>
                     <div class="activity-card">
-                        <div class="image-placeholder">Farmer Field Schools</div>
-                        <h3>Farmer Training</h3>
-                        <p>Hands-on learning groups where farmers experiment with and adopt sustainable techniques together.</p>
+                        <div class="activity-img">
+                            <img src="assets/images/home-hero.jpg" alt="Farmer field school training">
+                        </div>
+                        <div class="activity-body">
+                            <div class="activity-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                            <h3>Farmer Training</h3>
+                            <p>Hands-on learning groups where farmers experiment with and adopt sustainable techniques together, building shared knowledge.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Who Benefits Section -->
+        <!-- ===== WHO WE SUPPORT ===== -->
         <section class="beneficiaries section">
             <div class="container">
-                <h2 class="section-title">Who We Support</h2>
+                <span class="section-label">Who We Support</span>
+                <h2 class="section-title">Our Beneficiaries</h2>
                 <div class="beneficiaries-grid">
-                    <div class="benefit-item">
-                        <div class="icon-placeholder">👨‍🌾</div>
-                        <h3>Smallholder Farmers</h3>
-                        <p>Men and women who depend on farming for their livelihoods, receiving training and resources to improve yields sustainably.</p>
+                    <div class="benefit-card">
+                        <div class="benefit-img">
+                            <img src="assets/images/youth.jpg" alt="Smallholder farmers">
+                        </div>
+                        <div class="benefit-body">
+                            <div class="benefit-icon"><i class="fas fa-tractor"></i></div>
+                            <h3>Smallholder Farmers</h3>
+                            <p>Men and women who depend on farming for their livelihoods, receiving training and resources to improve yields sustainably.</p>
+                        </div>
                     </div>
-                    <div class="benefit-item">
-                        <div class="icon-placeholder">🧒</div>
-                        <h3>Youth & Students</h3>
-                        <p>Young people engaged through environmental clubs, learning to become future environmental leaders.</p>
+                    <div class="benefit-card">
+                        <div class="benefit-img">
+                            <img src="assets/images/youth.jpg" alt="Youth and students">
+                        </div>
+                        <div class="benefit-body">
+                            <div class="benefit-icon"><i class="fas fa-user-graduate"></i></div>
+                            <h3>Youth & Students</h3>
+                            <p>Young people engaged through environmental clubs, learning to become future environmental leaders and advocates.</p>
+                        </div>
                     </div>
-                    <div class="benefit-item">
-                        <div class="icon-placeholder">🏘️</div>
-                        <h3>Local Communities</h3>
-                        <p>Entire communities benefit from restored ecosystems, improved water sources, and collective action.</p>
+                    <div class="benefit-card">
+                        <div class="benefit-img">
+                            <img src="assets/images/env-club.jpg" alt="Local communities">
+                        </div>
+                        <div class="benefit-body">
+                            <div class="benefit-icon"><i class="fas fa-users"></i></div>
+                            <h3>Local Communities</h3>
+                            <p>Entire communities benefit from restored ecosystems, improved water sources, and the power of collective environmental action.</p>
+                        </div>
                     </div>
-                    <div class="benefit-item">
-                        <div class="icon-placeholder">👩</div>
-                        <h3>Women's Groups</h3>
-                        <p>Special focus on empowering women through saving groups, leadership opportunities, and livelihood activities.</p>
+                    <div class="benefit-card">
+                        <div class="benefit-img">
+                            <img src="assets/images/home-hero.jpg" alt="Women's groups">
+                        </div>
+                        <div class="benefit-body">
+                            <div class="benefit-icon"><i class="fas fa-female"></i></div>
+                            <h3>Women's Groups</h3>
+                            <p>Special focus on empowering women through saving groups, leadership opportunities, and sustainable livelihood activities.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- How Programs Connect Section -->
-        <section class="programs-connect section">
-            <div class="container">
-                <div class="connect-box">
-                    <h2>Integrated Approach</h2>
-                    <p>Our programs are designed to reinforce each other. Environmental education builds awareness that leads to community-led conservation. Agroforestry provides food and income while restoring land. Livelihood activities reduce pressure on natural resources. Together, they create a cycle of sustainability and empowerment.</p>
+        <!-- ===== INTEGRATED APPROACH STRIP ===== -->
+        <section class="connect-strip">
+            <div class="container connect-strip-inner">
+                <div class="connect-item">
+                    <i class="fas fa-tree"></i>
+                    <span>Agroforestry restores land & provides income</span>
+                </div>
+                <div class="connect-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="connect-item">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>Education builds environmental awareness</span>
+                </div>
+                <div class="connect-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="connect-item">
+                    <i class="fas fa-hands-helping"></i>
+                    <span>Livelihoods reduce pressure on resources</span>
+                </div>
+                <div class="connect-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="connect-item">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Sustainability & empowerment cycle</span>
                 </div>
             </div>
         </section>
 
-        <!-- Call to Action -->
-        <section class="cta-section section">
+        <!-- ===== CALL TO ACTION ===== -->
+        <section class="programs-cta section">
             <div class="container">
-                <div class="cta-box">
-                    <h2>See Our Programs in Action</h2>
-                    <p>Explore specific projects, read impact stories, or find out how you can support this work.</p>
-                    <div class="cta-buttons">
-                        <a href="projects.html" class="btn btn-primary">View Projects</a>
-                        <a href="impact.html" class="btn btn-primary">See Impact</a>
-                        <a href="get-involved.html" class="btn btn-primary">Get Involved</a>
+                <div class="programs-cta-inner">
+                    <div class="programs-cta-text">
+                        <span class="section-label programs-cta-label">Get Involved</span>
+                        <h2>See Our Programs in Action</h2>
+                        <p>Explore specific projects, read impact stories, or find out how you can support this work across Rwanda.</p>
+                        <div class="programs-cta-buttons">
+                            <a href="projects.html" class="btn btn-white">View Projects</a>
+                            <a href="impact.html" class="btn btn-outline-white-prog">See Impact</a>
+                            <a href="get-involved.html" class="btn btn-outline-white-prog">Get Involved</a>
+                        </div>
+                    </div>
+                    <div class="programs-cta-image">
+                        <img src="assets/images/youth.jpg" alt="Youth environmental activities in Rwanda">
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
-   <div id="site-footer"></div>
-
+    <div id="site-footer"></div>
     <script src="js/shared.js"></script>
     <script src="js/programs.js"></script>
 </body>

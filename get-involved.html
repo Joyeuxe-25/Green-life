@@ -10,122 +10,248 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="icon" href="assets/logos/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="site-header"></div>
 
     <main>
-        <!-- Page Hero -->
-        <section class="page-hero">
-            <div class="container">
-                <span class="section-label">Join Us</span>
+
+        <!-- ===== HERO ===== -->
+        <section class="gi-hero">
+            <div class="gi-hero-bg" style="background-image: url('assets/images/home-hero.jpg')"></div>
+            <div class="gi-hero-overlay"></div>
+            <div class="container gi-hero-content">
+                <span class="gi-hero-label">Join Us</span>
                 <h1>Get Involved</h1>
-                <p class="hero-subhead">Everyone can play a part in protecting the environment and strengthening communities.</p>
+                <p>Everyone can play a part in protecting the environment and strengthening communities. Whether you volunteer, partner, or donate — your participation makes a real difference.</p>
+                <div class="gi-hero-meta">
+                    <div class="gi-meta-item">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <span>Volunteer</span>
+                    </div>
+                    <div class="gi-meta-item">
+                        <i class="fas fa-handshake"></i>
+                        <span>Partner</span>
+                    </div>
+                    <div class="gi-meta-item">
+                        <i class="fas fa-donate"></i>
+                        <span>Donate</span>
+                    </div>
+                    <div class="gi-meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>Community</span>
+                    </div>
+                </div>
             </div>
-            <div class="hero-image-placeholder"></div>
         </section>
 
-        <!-- Why Get Involved -->
+        <!-- ===== WHY GET INVOLVED ===== -->
         <section class="why-involve section">
-            <div class="container">
-                <h2>Why Your Participation Matters</h2>
-                <p>Green for Life Rwanda’s work is driven by community involvement. Whether you volunteer, partner with us, or participate in our activities, you help advance environmental conservation, support smallholder farmers, and build a sustainable future for all.</p>
+            <div class="container why-layout">
+                <div class="why-text">
+                    <span class="section-label">Why It Matters</span>
+                    <h2>Your Participation Matters</h2>
+                    <p>Green for Life Rwanda's work is driven by community involvement. Whether you volunteer, partner with us, or participate in our activities, you help advance environmental conservation, support smallholder farmers, and build a sustainable future for all.</p>
+                    <p>Every action — planting a tree, joining a training, or supporting a saving group — contributes to a cycle of lasting environmental and community change.</p>
+                </div>
+                <div class="why-image">
+                    <img src="assets/images/env-club.jpg" alt="Community members taking part in environmental activities">
+                    <div class="why-badge">
+                        <i class="fas fa-globe-africa"></i>
+                        <span>Make a Real Difference</span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Ways to Get Involved (Cards) -->
+        <!-- ===== WAYS TO GET INVOLVED ===== -->
         <section class="ways-involve section">
             <div class="container">
-                <h2 class="section-title">Ways You Can Help</h2>
+                <span class="section-label">Ways You Can Help</span>
+                <h2 class="section-title">How to Get Involved</h2>
                 <div class="involvement-grid">
                     <div class="involvement-card">
-                        <div class="icon-placeholder">🤝</div>
-                        <h3>Volunteer</h3>
-                        <p>Join our field activities, assist with training, or help spread awareness in your community.</p>
-                        <a href="#volunteer" class="card-link">Learn more →</a>
+                        <div class="involvement-img">
+                            <img src="assets/images/env-club.jpg" alt="Volunteering with Green for Life Rwanda">
+                        </div>
+                        <div class="involvement-body">
+                            <div class="involvement-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                            <h3>Volunteer</h3>
+                            <p>Join our field activities, assist with training, or help spread awareness in your community. No experience necessary.</p>
+                            <a href="#volunteer" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                     <div class="involvement-card">
-                        <div class="icon-placeholder">🎓</div>
-                        <h3>Internships</h3>
-                        <p>Gain hands‑on experience in environmental work, community development, and sustainable agriculture.</p>
-                        <a href="#intern" class="card-link">Learn more →</a>
+                        <div class="involvement-img">
+                            <img src="assets/images/youth.jpg" alt="Internship opportunities in environmental work">
+                        </div>
+                        <div class="involvement-body">
+                            <div class="involvement-icon"><i class="fas fa-user-graduate"></i></div>
+                            <h3>Internships</h3>
+                            <p>Gain hands-on experience in environmental work, community development, and sustainable agriculture.</p>
+                            <a href="#intern" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                     <div class="involvement-card">
-                        <div class="icon-placeholder">👥</div>
-                        <h3>Community Participation</h3>
-                        <p>Take part in tree planting, composting workshops, or environmental clubs in your area.</p>
-                        <a href="#community" class="card-link">Learn more →</a>
+                        <div class="involvement-img">
+                            <img src="assets/images/youth.jpg" alt="Community participation in environmental clubs">
+                        </div>
+                        <div class="involvement-body">
+                            <div class="involvement-icon"><i class="fas fa-users"></i></div>
+                            <h3>Community Participation</h3>
+                            <p>Take part in tree planting, composting workshops, or environmental clubs in your area.</p>
+                            <a href="#community" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                     <div class="involvement-card">
-                        <div class="icon-placeholder">🤲</div>
-                        <h3>Partnerships</h3>
-                        <p>Organizations can collaborate with us on projects, training, or awareness campaigns.</p>
-                        <a href="#partners" class="card-link">Learn more →</a>
+                        <div class="involvement-img">
+                            <img src="assets/images/home-hero.jpg" alt="Partnership opportunities with Green for Life Rwanda">
+                        </div>
+                        <div class="involvement-body">
+                            <div class="involvement-icon"><i class="fas fa-handshake"></i></div>
+                            <h3>Partnerships</h3>
+                            <p>Organizations can collaborate with us on projects, training, or awareness campaigns.</p>
+                            <a href="#partners" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Volunteer & Participation Section -->
+        <!-- ===== VOLUNTEER ===== -->
         <section id="volunteer" class="volunteer-section section">
-            <div class="container">
-                <div class="two-col">
-                    <div class="col">
-                        <h2>Volunteer with Us</h2>
-                        <p>Volunteers are essential to our work. You can help with tree nurseries, farmer training, environmental education in schools, or community awareness events. No experience is necessary—just a willingness to learn and contribute.</p>
-                        <p>If you're interested, please reach out through our <a href="contact.html">contact page</a> and let us know how you'd like to help.</p>
+            <div class="container volunteer-layout">
+                <div class="volunteer-text">
+                    <span class="section-label">Volunteering</span>
+                    <h2>Volunteer with Us</h2>
+                    <p>Volunteers are essential to our work. You can help with tree nurseries, farmer training, environmental education in schools, or community awareness events. No experience is necessary — just a willingness to learn and contribute.</p>
+                    <p>If you're interested, please reach out through our contact page and let us know how you'd like to help.</p>
+                    <div class="volunteer-activities">
+                        <div class="vol-activity">
+                            <div class="vol-icon"><i class="fas fa-seedling"></i></div>
+                            <span>Tree nursery support</span>
+                        </div>
+                        <div class="vol-activity">
+                            <div class="vol-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                            <span>Farmer training assistance</span>
+                        </div>
+                        <div class="vol-activity">
+                            <div class="vol-icon"><i class="fas fa-school"></i></div>
+                            <span>Environmental education in schools</span>
+                        </div>
+                        <div class="vol-activity">
+                            <div class="vol-icon"><i class="fas fa-bullhorn"></i></div>
+                            <span>Community awareness events</span>
+                        </div>
                     </div>
-                    <div class="col">
-                        <div class="image-placeholder">Volunteers at work</div>
-                    </div>
+                    <a href="contact.html" class="btn btn-secondary">Contact Us to Volunteer</a>
+                </div>
+                <div class="volunteer-image">
+                    <img src="assets/images/youth.jpg" alt="Volunteers working on environmental activities">
                 </div>
             </div>
         </section>
 
-        <!-- Partnership & Support Section -->
+        <!-- ===== DONATE ===== -->
+        <section id="community" class="donate-section section">
+            <div class="container donate-layout">
+                <div class="donate-image">
+                    <img src="assets/images/youth.jpg" alt="Community environmental activities supported by donations">
+                </div>
+                <div class="donate-text">
+                    <span class="section-label">Support Our Work</span>
+                    <h2>Donate to Green for Life Rwanda</h2>
+                    <p>For as little as $5, you can give the gift of environmental conservation. Your contribution helps conserve soil, ensure food security, sustain rural livelihoods, and build community resilience to climate change.</p>
+                    <p>Donations are received through our Bank of Kigali account. Please contact us for full payment details and to confirm your donation.</p>
+                    <div class="donate-impact">
+                        <div class="donate-item">
+                            <div class="donate-icon"><i class="fas fa-tree"></i></div>
+                            <div>
+                                <strong>$5</strong>
+                                <span>Plants a tree and supports a farming family</span>
+                            </div>
+                        </div>
+                        <div class="donate-item">
+                            <div class="donate-icon"><i class="fas fa-users"></i></div>
+                            <div>
+                                <strong>$20</strong>
+                                <span>Supports a saving group meeting</span>
+                            </div>
+                        </div>
+                        <div class="donate-item">
+                            <div class="donate-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div>
+                                <strong>$50</strong>
+                                <span>Funds a youth environmental club session</span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn btn-secondary">Contact Us to Donate</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PARTNERSHIP ===== -->
         <section id="partners" class="partnership-section section">
             <div class="container">
-                <div class="two-col reverse">
-                    <div class="col">
+                <div class="partnership-inner">
+                    <div class="partnership-text">
+                        <span class="section-label">Partnerships</span>
                         <h2>Partner with Us</h2>
-                        <p>We welcome partnerships with organizations, institutions, and businesses that share our commitment to environmental sustainability and community development. Together we can expand training, resources, and impact.</p>
-                        <p>To explore partnership opportunities, please <a href="contact.html">contact us</a>.</p>
+                        <p>We welcome partnerships with organizations, institutions, and businesses that share our commitment to environmental sustainability and community development. Together we can expand training, resources, and impact across Rwanda.</p>
+                        <p>To explore partnership opportunities, please contact us directly.</p>
+                        <div class="partnership-types">
+                            <div class="partner-type">
+                                <i class="fas fa-university"></i>
+                                <span>Academic & Research Institutions</span>
+                            </div>
+                            <div class="partner-type">
+                                <i class="fas fa-building"></i>
+                                <span>NGOs & Development Organizations</span>
+                            </div>
+                            <div class="partner-type">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Private Sector & Businesses</span>
+                            </div>
+                            <div class="partner-type">
+                                <i class="fas fa-globe"></i>
+                                <span>International Donors & Foundations</span>
+                            </div>
+                        </div>
+                        <a href="contact.html" class="btn btn-secondary">Explore Partnership</a>
                     </div>
-                    <div class="col">
-                        <div class="image-placeholder">Partnerships</div>
+                    <div class="partnership-image">
+                        <img src="assets/images/env-club.jpg" alt="Partnership and community collaboration">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Additional Opportunities Note -->
-        <section class="opportunities-note section">
+        <!-- ===== CTA ===== -->
+        <section class="gi-cta section">
             <div class="container">
-                <div class="note-box">
-                    <h3>More Ways to Get Involved</h3>
-                    <p>As Green for Life Rwanda grows, new opportunities for engagement will be added here. Please check back, follow us on social media, or <a href="contact.html">contact us</a> for the latest updates on volunteering, internships, and community activities.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Final Call to Action -->
-        <section class="cta-section section">
-            <div class="container">
-                <div class="cta-box">
-                    <h2>Ready to Make a Difference?</h2>
-                    <p>Join Green for Life Rwanda in supporting environmental protection and community development.</p>
-                    <div class="cta-buttons">
-                        <a href="contact.html" class="btn btn-primary">Contact Us</a>
-                        <a href="programs.html" class="btn btn-primary">Our Programs</a>
-                        <a href="projects.html" class="btn btn-primary">View Projects</a>
+                <div class="gi-cta-inner">
+                    <div class="gi-cta-text">
+                        <span class="section-label gi-cta-label">Ready to Help?</span>
+                        <h2>Make a Difference Today</h2>
+                        <p>Join Green for Life Rwanda in supporting environmental protection and community development. Every contribution — big or small — creates lasting change.</p>
+                        <div class="gi-cta-buttons">
+                            <a href="contact.html" class="btn btn-white">Contact Us</a>
+                            <a href="programs.html" class="btn btn-outline-white-gi">Our Programs</a>
+                            <a href="projects.html" class="btn btn-outline-white-gi">View Projects</a>
+                        </div>
+                    </div>
+                    <div class="gi-cta-image">
+                        <img src="assets/images/youth.jpg" alt="Youth and community members taking environmental action">
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
-   <div id="site-footer"></div>
-
+    <div id="site-footer"></div>
     <script src="js/shared.js"></script>
     <script src="js/get-involved.js"></script>
 </body>

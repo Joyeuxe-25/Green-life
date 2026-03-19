@@ -10,95 +10,132 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="icon" href="assets/logos/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <div id="site-header"></div>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container hero-grid">
-                <div class="hero-content">
-                    <h1>Empowering Communities to Protect the Environment and Improve Livelihoods</h1>
-                    <p class="hero-subhead">Green for Life Rwanda is an environmental organization working with communities, including small household farmers, to promote environmental conservation, agroforestry, and sustainable livelihoods.</p>
-                    <div class="hero-buttons">
-                        <a href="programs.html" class="btn btn-primary">Explore Our Programs</a>
-                        <a href="get-involved.html" class="btn btn-secondary">Get Involved</a>
+
+        <!-- ===== HERO SECTION — Full Viewport Slideshow ===== -->
+        <section class="hero" aria-label="Homepage hero">
+            <div class="hero-slides">
+                <div class="hero-slide active" style="background-image: url('assets/images/home-hero.jpg')"></div>
+                <div class="hero-slide" style="background-image: url('assets/images/env-club.jpg')"></div>
+                <div class="hero-slide" style="background-image: url('assets/images/youth.jpg')"></div>
+                <div class="hero-slide" style="background-image: url('assets/images/agroforestry.jpg')"></div>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content container">
+                <span class="hero-label">Green for Life Rwanda</span>
+                <h1 class="hero-title">Protecting the Environment,<br>Improving Livelihoods</h1>
+                <p class="hero-subhead">We work with communities and small household farmers across Rwanda to conserve the environment, promote sustainable agroforestry, and build resilience for future generations.</p>
+                <div class="hero-buttons">
+                    <a href="programs.html" class="btn btn-hero-primary">Our Work</a>
+                    <a href="get-involved.html" class="btn btn-hero-secondary">Get Involved</a>
+                </div>
+            </div>
+            <div class="hero-indicators">
+                <button class="hero-dot active" aria-label="Slide 1"></button>
+                <button class="hero-dot" aria-label="Slide 2"></button>
+                <button class="hero-dot" aria-label="Slide 3"></button>
+                <button class="hero-dot" aria-label="Slide 4"></button>
+            </div>
+            <div class="hero-scroll-cue">
+                <span>Scroll</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- ===== WHO WE ARE — Intro ===== -->
+        <section class="intro section">
+            <div class="container intro-layout">
+                <div class="intro-text">
+                    <span class="section-label">Who We Are</span>
+                    <h2>Community-Based Environmental Action</h2>
+                    <p>Green for Life Rwanda (GLR) is an environmental organization that empowers communities, particularly small household farmers, to conserve the environment and improve livelihoods. Our work connects environmental conservation with practical community action.</p>
+                    <div class="intro-quote-block">
+                        <blockquote>
+                            <p>"Agroforestry is a bridge between sustainable agriculture and environmental conservation."</p>
+                            <cite>— World Agroforestry Center (ICRAF)</cite>
+                        </blockquote>
+                    </div>
+                    <a href="about.html" class="btn btn-secondary">Learn More About Us</a>
+                </div>
+                <div class="intro-images">
+                    <div class="intro-img-a">
+                        <img src="assets/images/env-club.jpg" alt="Environmental club members in Nyanza Sector">
+                    </div>
+                    <div class="intro-img-b">
+                        <img src="assets/images/youth.jpg" alt="Youth environmental club activities">
+                    </div>
+                    <div class="intro-img-accent">
+                        <i class="fas fa-seedling"></i>
                     </div>
                 </div>
-                <div class="hero-image">
-                    <div class="image-placeholder">Hero Image Placeholder</div>
-                </div>
             </div>
         </section>
 
-        <!-- Who We Are / Intro Section -->
-        <section class="intro section">
-            <div class="container">
-                <span class="section-label">Who We Are</span>
-                <h2>Dedicated to Environmental Conservation and Community Empowerment</h2>
-                <p>Green for Life Rwanda works hand-in-hand with local communities to restore ecosystems, promote sustainable farming, and build resilience to climate change. Our approach integrates environmental education, agroforestry, and livelihood support to create lasting impact.</p>
-                <a href="about.html" class="btn btn-secondary">Learn More About Us</a>
-            </div>
-        </section>
-
-        <!-- Key Focus Areas Section -->
+        <!-- ===== KEY FOCUS AREAS ===== -->
         <section class="focus-areas section">
             <div class="container">
-                <h2 class="section-title">Our Key Focus Areas</h2>
-                <div class="card-grid">
+                <span class="section-label">What We Do</span>
+                <h2 class="section-title">Our Areas of Work</h2>
+                <div class="focus-grid">
                     <div class="focus-card">
-                        <div class="icon-placeholder">🌳</div>
+                        <div class="focus-icon-wrap"><i class="fas fa-tree"></i></div>
                         <h3>Agroforestry</h3>
-                        <p>Promoting tree planting alongside crops to restore land, improve soil health, and provide additional income for farmers.</p>
-                        <a href="programs.html" class="card-link">Learn more →</a>
+                        <p>We promote agroforestry practices that support agricultural production, food security, soil health, water and air quality, and wildlife habitat for small household farmers.</p>
+                        <a href="programs.html#trees" class="card-link">Learn more →</a>
                     </div>
                     <div class="focus-card">
-                        <div class="icon-placeholder">📚</div>
-                        <h3>Environmental Education</h3>
-                        <p>Establishing environmental clubs in schools and communities to raise awareness and inspire the next generation of stewards.</p>
-                        <a href="programs.html" class="card-link">Learn more →</a>
+                        <div class="focus-icon-wrap"><i class="fas fa-globe-africa"></i></div>
+                        <h3>Climate Change</h3>
+                        <p>We work on environmental issues connected to climate change, sustainability, and conservation — building community resilience to a changing climate.</p>
+                        <a href="programs.html#climate" class="card-link">Learn more →</a>
                     </div>
                     <div class="focus-card">
-                        <div class="icon-placeholder">👩‍🌾</div>
-                        <h3>Community Livelihoods</h3>
-                        <p>Supporting smallholder farmers with training in sustainable agriculture, compost making, and income-generating activities.</p>
-                        <a href="programs.html" class="card-link">Learn more →</a>
+                        <div class="focus-icon-wrap"><i class="fas fa-bullhorn"></i></div>
+                        <h3>Mainstream Advocacy</h3>
+                        <p>We support environmental awareness and community engagement through advocacy, promoting good governance and democratic space for environmental sustainability.</p>
+                        <a href="programs.html#advocacy" class="card-link">Learn more →</a>
                     </div>
                     <div class="focus-card">
-                        <div class="icon-placeholder">🌍</div>
-                        <h3>Climate Action</h3>
-                        <p>Empowering communities to adapt to climate change through reforestation, water conservation, and sustainable practices.</p>
-                        <a href="programs.html" class="card-link">Learn more →</a>
+                        <div class="focus-icon-wrap"><i class="fas fa-users"></i></div>
+                        <h3>Youth Environmental Clubs</h3>
+                        <p>We engage students and youth through environmental clubs and discussions on environmental protection, building awareness and responsibility for tomorrow.</p>
+                        <a href="programs.html#gender" class="card-link">Learn more →</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Impact Highlights Section -->
+        <!-- ===== IMPACT HIGHLIGHTS ===== -->
         <section class="impact section">
             <div class="container">
-                <h2 class="section-title">Our Impact in Action</h2>
+                <span class="section-label">Our Impact</span>
+                <h2 class="section-title">Environmental & Community Action in Numbers</h2>
                 <div class="impact-grid">
                     <div class="impact-card">
-                        <div class="impact-number">19</div>
-                        <div class="impact-label">saving groups formed</div>
-                        <p class="impact-detail">Supporting community-led savings and investment in sustainable activities.</p>
+                        <div class="impact-number" data-target="19">0</div>
+                        <div class="impact-label">Saving Groups</div>
+                        <p class="impact-detail">In Nyanza Sector, Gisagara District</p>
                     </div>
                     <div class="impact-card">
-                        <div class="impact-number">353</div>
-                        <div class="impact-label">members involved</div>
-                        <p class="impact-detail">Farmers and community members actively participating in our programs.</p>
+                        <div class="impact-number" data-target="353">0</div>
+                        <div class="impact-label">Club Members</div>
+                        <p class="impact-detail">Engaged in saving groups and clubs</p>
                     </div>
                     <div class="impact-card">
-                        <div class="impact-number">✓</div>
-                        <div class="impact-label">Sustainable agriculture training</div>
-                        <p class="impact-detail">Hands-on workshops in compost making, organic pesticides, and soil conservation.</p>
+                        <div class="impact-number" data-target="45">0</div>
+                        <div class="impact-label">Farmers Trained</div>
+                        <p class="impact-detail">In sustainable agroforestry practices</p>
                     </div>
                     <div class="impact-card">
-                        <div class="impact-number">🌱</div>
-                        <div class="impact-label">Community environmental action</div>
-                        <p class="impact-detail">Tree planting campaigns and restoration of degraded lands.</p>
+                        <div class="impact-icon-fa"><i class="fas fa-seedling"></i></div>
+                        <div class="impact-label">Youth Empowered</div>
+                        <p class="impact-detail">Through environmental clubs & student discussions</p>
                     </div>
                 </div>
                 <div class="text-center mt-2">
@@ -107,89 +144,198 @@
             </div>
         </section>
 
-        <!-- Featured Activities / Projects Preview -->
-        <section class="featured section">
+        <!-- ===== COMMUNITY TESTIMONIALS ===== -->
+        <section class="testimonials section">
             <div class="container">
-                <h2 class="section-title">Featured Activities</h2>
-                <div class="card-grid">
-                    <div class="activity-card">
-                        <div class="image-placeholder">Tree Nursery</div>
-                        <h3>Tree Nursery Establishment</h3>
-                        <p>Community-managed tree nurseries provide seedlings for reforestation and agroforestry.</p>
-                        <a href="projects.html" class="card-link">Read more →</a>
+                <span class="section-label">Community Voices</span>
+                <h2 class="section-title">What Our Communities Say</h2>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-img">
+                            <img src="assets/images/env-club.jpg" alt="Environmental club members meeting">
+                        </div>
+                        <div class="testimonial-body">
+                            <div class="quote-mark">"</div>
+                            <p>The financial intermediation provided through village saving groups enhances agricultural production and productivity. This has changed how our families farm and plan for the future.</p>
+                            <div class="testimonial-author">
+                                <div class="author-icon"><i class="fas fa-leaf"></i></div>
+                                <div>
+                                    <strong>Environmental Club Members</strong>
+                                    <span>Nyanza Sector, Gisagara District</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="activity-card">
-                        <div class="image-placeholder">Compost Training</div>
-                        <h3>Compost Making Training</h3>
-                        <p>Farmers learn to turn organic waste into nutrient-rich compost, improving soil health.</p>
-                        <a href="projects.html" class="card-link">Read more →</a>
+                    <div class="testimonial-card">
+                        <div class="testimonial-img">
+                            <img src="assets/images/youth.jpg" alt="Farmers in agroforestry fields">
+                        </div>
+                        <div class="testimonial-body">
+                            <div class="quote-mark">"</div>
+                            <p>Agroforestry practices support agricultural production and improve water quality, air quality, soil health, and wildlife habitat. We are seeing real change in our fields.</p>
+                            <div class="testimonial-author">
+                                <div class="author-icon"><i class="fas fa-tree"></i></div>
+                                <div>
+                                    <strong>Agroforestry Farmers</strong>
+                                    <span>Nyanza Sector, Gisagara District</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="activity-card">
-                        <div class="image-placeholder">Youth Clubs</div>
-                        <h3>Environmental Youth Clubs</h3>
-                        <p>School-based clubs engage students in tree planting, waste management, and conservation.</p>
-                        <a href="projects.html" class="card-link">Read more →</a>
+                    <div class="testimonial-card">
+                        <div class="testimonial-img">
+                            <img src="assets/images/youth.jpg" alt="Youth environmental club students">
+                        </div>
+                        <div class="testimonial-body">
+                            <div class="quote-mark">"</div>
+                            <p>Empowering students in environmental protection today ensures a sustainable tomorrow. They are the custodians of our planet's future — and they take that seriously.</p>
+                            <div class="testimonial-author">
+                                <div class="author-icon"><i class="fas fa-graduation-cap"></i></div>
+                                <div>
+                                    <strong>Youth Environmental Club</strong>
+                                    <span>GLR Student Engagement Program</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Get Involved Section -->
+        <!-- ===== FEATURED ACTIVITIES ===== -->
+        <section class="featured section">
+            <div class="container">
+                <span class="section-label">Featured Activities</span>
+                <h2 class="section-title">Practical Work in Communities</h2>
+                <div class="activity-grid">
+                    <div class="activity-card">
+                        <div class="activity-img-wrap">
+                            <img src="assets/images/env-club.jpg" alt="Environmental saving groups meeting">
+                        </div>
+                        <div class="activity-body">
+                            <h3>Environmental Clubs & Saving Groups</h3>
+                            <p>19 saving groups with 353 members in Nyanza Sector, Gisagara District — strengthening community participation and agricultural productivity.</p>
+                            <a href="projects.html" class="card-link">Read more →</a>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-img-wrap">
+                            <img src="assets/images/youth.jpg" alt="Agroforestry tree nursery">
+                        </div>
+                        <div class="activity-body">
+                            <h3>Agroforestry & Tree Nurseries</h3>
+                            <p>We promote agroforestry as a key practice for food security and environmental quality, including running community tree nurseries in Nyanza Sector.</p>
+                            <a href="projects.html" class="card-link">Read more →</a>
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-img-wrap">
+                            <img src="assets/images/youth.jpg" alt="Youth environmental education">
+                        </div>
+                        <div class="activity-body">
+                            <h3>Youth Environmental Education</h3>
+                            <p>We engage students in environmental clubs and discussions, building awareness, responsibility, and commitment to sustainability for the next generation.</p>
+                            <a href="projects.html" class="card-link">Read more →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== QUOTE STRIP ===== -->
+        <section class="quote-strip">
+            <div class="container quote-strip-inner">
+                <div class="quote-item">
+                    <span>"The Earth is what we all have in common."</span>
+                    <cite>— Wendell Berry</cite>
+                </div>
+                <div class="quote-divider"></div>
+                <div class="quote-item">
+                    <span>"The future of the farmer is the future of humanity."</span>
+                    <cite>— Masanobu Fukuoka</cite>
+                </div>
+                <div class="quote-divider"></div>
+                <div class="quote-item">
+                    <span>"He who plants a tree plants a hope."</span>
+                    <cite>— Lucy Larcom</cite>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== GET INVOLVED ===== -->
         <section class="get-involved section">
             <div class="container">
                 <div class="cta-box">
-                    <h2>Join Us in Making a Difference</h2>
-                    <p>Your support helps us expand our reach and deepen our impact. Whether you volunteer, partner with us, or donate, you become part of the solution.</p>
+                    <span class="section-label">Get Involved</span>
+                    <h2>Support Environmental Action in Rwanda</h2>
+                    <p>Plant a tree in your neighborhood, work on conservation issues locally, help fund projects that lessen global warming, or partner with us. Your support makes a real difference.</p>
                     <div class="cta-buttons">
-                        <a href="get-involved.html#volunteer" class="btn btn-primary">Volunteer</a>
-                        <a href="get-involved.html#partner" class="btn btn-primary">Partner With Us</a>
-                        <a href="#" class="btn btn-primary">Donate</a>
+                        <a href="get-involved.html" class="btn btn-primary">Get Involved</a>
+                        <a href="contact.html" class="btn btn-outline-white">Contact Us</a>
                     </div>
+                    <p class="donate-detail">For as little as $5, you can give the gift of environmental conservation in Rwanda.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Latest Updates Preview -->
+        <!-- ===== LATEST NEWS ===== -->
         <section class="updates section">
             <div class="container">
-                <h2 class="section-title">Latest Updates</h2>
-                <div class="card-grid">
-                    <div class="update-card">
-                        <span class="update-category">News</span>
-                        <h3><a href="news.html">Community Tree Planting Campaign</a></h3>
-                        <p class="update-excerpt">Hundreds of community members gathered to plant native trees along degraded hillsides.</p>
-                        <a href="news.html" class="card-link">Read more →</a>
+                <span class="section-label">Latest Updates</span>
+                <h2 class="section-title">News from Green for Life Rwanda</h2>
+                <div class="news-grid">
+                    <div class="update-card featured-news">
+                        <div class="update-img-wrap">
+                            <img src="assets/images/env-club.jpg" alt="Agroforestry training session">
+                        </div>
+                        <div class="update-body">
+                            <p class="update-date"><i class="fas fa-calendar"></i> April 22, 2023</p>
+                            <h3><a href="news.html">Nyanza Environmental Clubs Members Trained in Sustainable Agroforestry Practices</a></h3>
+                            <p class="update-excerpt">45 environmental club members from Nyanza Sector, Gisagara District were trained in sustainable agroforestry practices — covering key concepts, food security, and the link between poverty and environmental degradation.</p>
+                            <a href="news.html" class="card-link">Read full story →</a>
+                        </div>
                     </div>
                     <div class="update-card">
-                        <span class="update-category">Event</span>
-                        <h3><a href="news.html">Training on Organic Pesticides</a></h3>
-                        <p class="update-excerpt">Farmers learned to prepare natural pesticides using locally available materials.</p>
-                        <a href="news.html" class="card-link">Read more →</a>
+                        <div class="update-img-wrap">
+                            <img src="assets/images/youth.jpg" alt="Youth environmental club activities">
+                        </div>
+                        <div class="update-body">
+                            <p class="update-date"><i class="fas fa-calendar"></i> Coming Soon</p>
+                            <h3>Upcoming Community Events</h3>
+                            <p class="update-excerpt">Stay tuned for upcoming community events, training sessions, and environmental activities across Rwanda.</p>
+                        </div>
                     </div>
                     <div class="update-card">
-                        <span class="update-category">Story</span>
-                        <h3><a href="news.html">Youth Club Leads School Greening</a></h3>
-                        <p class="update-excerpt">Environmental club members transformed their school grounds with trees and gardens.</p>
-                        <a href="news.html" class="card-link">Read more →</a>
+                        <div class="update-img-wrap">
+                            <img src="assets/images/youth.jpg" alt="Agroforestry farmers in Rwanda">
+                        </div>
+                        <div class="update-body">
+                            <p class="update-date"><i class="fas fa-calendar"></i> Coming Soon</p>
+                            <h3>Community Stories</h3>
+                            <p class="update-excerpt">We will be sharing stories from our farmers, youth clubs, and community members across Rwanda.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Final Call to Action -->
+        <!-- ===== FINAL CTA ===== -->
         <section class="final-cta section">
             <div class="container">
                 <div class="final-cta-content">
-                    <h2>Together for a Greener Future</h2>
-                    <p>Your involvement can help us scale our work and protect Rwanda's natural heritage for generations to come.</p>
-                    <a href="contact.html" class="btn btn-primary">Contact Us</a>
-                    <a href="get-involved.html" class="btn btn-secondary">Support Our Work</a>
+                    <h2>Work With Green for Life Rwanda</h2>
+                    <p>Learn more about our work, explore current activities, and find ways to support environmental protection and community livelihoods across Rwanda.</p>
+                    <div class="final-cta-btns">
+                        <a href="about.html" class="btn btn-primary">About Us</a>
+                        <a href="contact.html" class="btn btn-secondary">Contact Us</a>
+                    </div>
                 </div>
             </div>
         </section>
+
     </main>
 
-   <div id="site-footer"></div>
+    <div id="site-footer"></div>
     <script src="js/shared.js"></script>
     <script src="js/home.js"></script>
 </body>

@@ -10,177 +10,303 @@
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="icon" href="assets/logos/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="site-header"></div>
 
     <main>
-        <!-- Page Hero -->
-        <section class="page-hero">
-            <div class="container">
-                <span class="section-label">Field Work</span>
+
+        <!-- ===== HERO ===== -->
+        <section class="projects-hero">
+            <div class="projects-hero-bg" style="background-image: url('assets/images/youth.jpg')"></div>
+            <div class="projects-hero-overlay"></div>
+            <div class="container projects-hero-content">
+                <span class="projects-hero-label">Field Work</span>
                 <h1>Our Projects</h1>
-                <p class="hero-subhead">Practical community‑based initiatives that put environmental action into practice.</p>
-            </div>
-            <div class="hero-image-placeholder"></div>
-        </section>
-
-        <!-- Overview Section -->
-        <section class="overview section">
-            <div class="container">
-                <h2>How We Turn Ideas into Action</h2>
-                <p>Our projects are hands‑on activities carried out with communities, schools, and farmers. They range from establishing tree nurseries to training in organic farming methods. Each project is designed to be locally led, environmentally sound, and socially inclusive.</p>
-            </div>
-        </section>
-
-        <!-- Featured Projects Grid -->
-        <section class="featured-projects section">
-            <div class="container">
-                <h2 class="section-title">Featured Projects</h2>
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <div class="image-placeholder">Tree Nursery</div>
-                        <span class="project-category">Agroforestry</span>
-                        <h3>Community Tree Nursery</h3>
-                        <p>Local groups manage nurseries that produce native and fruit trees for reforestation and farm planting.</p>
-                        <a href="#tree-nursery" class="card-link">Learn more →</a>
-                    </article>
-                    <article class="project-card">
-                        <div class="image-placeholder">Compost Training</div>
-                        <span class="project-category">Training</span>
-                        <h3>Compost Making Workshops</h3>
-                        <p>Farmers learn to turn organic waste into rich compost, improving soil health and reducing costs.</p>
-                        <a href="#compost" class="card-link">Learn more →</a>
-                    </article>
-                    <article class="project-card">
-                        <div class="image-placeholder">Pesticides Making</div>
-                        <span class="project-category">Training</span>
-                        <h3>Natural Pesticides Production</h3>
-                        <p>Hands‑on sessions where participants prepare botanical pesticides from locally available plants.</p>
-                        <a href="#pesticides" class="card-link">Learn more →</a>
-                    </article>
-                    <article class="project-card">
-                        <div class="image-placeholder">Youth Club</div>
-                        <span class="project-category">Education</span>
-                        <h3>Environmental Youth Clubs</h3>
-                        <p>School‑based clubs engage students in tree planting, waste management, and conservation activities.</p>
-                        <a href="#youth" class="card-link">Learn more →</a>
-                    </article>
-                    <article class="project-card">
-                        <div class="image-placeholder">Agroforestry</div>
-                        <span class="project-category">Agroforestry</span>
-                        <h3>Agroforestry Support</h3>
-                        <p>Assisting farmers to integrate trees with crops for better land management and additional income.</p>
-                        <a href="#agroforestry" class="card-link">Learn more →</a>
-                    </article>
-                    <article class="project-card">
-                        <div class="image-placeholder">Community Awareness</div>
-                        <span class="project-category">Outreach</span>
-                        <h3>Community Environmental Days</h3>
-                        <p>Regular events where community members come together for clean‑ups, tree planting, and education.</p>
-                        <a href="#awareness" class="card-link">Learn more →</a>
-                    </article>
+                <p>Practical community-based initiatives that put environmental action into practice — from tree nurseries and compost training to youth clubs and agroforestry support.</p>
+                <div class="projects-hero-meta">
+                    <div class="projects-meta-item">
+                        <i class="fas fa-seedling"></i>
+                        <span>Tree Nurseries</span>
+                    </div>
+                    <div class="projects-meta-item">
+                        <i class="fas fa-recycle"></i>
+                        <span>Compost Training</span>
+                    </div>
+                    <div class="projects-meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>Youth Clubs</span>
+                    </div>
+                    <div class="projects-meta-item">
+                        <i class="fas fa-tree"></i>
+                        <span>Agroforestry</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Expanded Project Highlights -->
+        <!-- ===== OVERVIEW ===== -->
+        <section class="overview section">
+            <div class="container overview-layout">
+                <div class="overview-text">
+                    <span class="section-label">How We Work</span>
+                    <h2>Turning Ideas into Action</h2>
+                    <p>Our projects are hands-on activities carried out with communities, schools, and farmers across Rwanda. They range from establishing tree nurseries to training in organic farming methods. Each project is designed to be locally led, environmentally sound, and socially inclusive.</p>
+                    <p>Every project we run builds on the knowledge and participation of community members — because lasting environmental change only happens when people are at the center of it.</p>
+                </div>
+                <div class="overview-image">
+                    <img src="assets/images/youth.jpg" alt="Community members working on environmental projects">
+                    <div class="overview-badge">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Nyanza Sector, Gisagara</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FEATURED PROJECTS GRID ===== -->
+        <section class="featured-projects section">
+            <div class="container">
+                <span class="section-label">Featured Projects</span>
+                <h2 class="section-title">What We Are Working On</h2>
+                <div class="projects-grid">
+
+                    <article class="project-card">
+                        <div class="project-card-img">
+                            <img src="assets/images/youth.jpg" alt="Community tree nursery in Nyanza Sector">
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-icon"><i class="fas fa-seedling"></i></div>
+                            <h3>Community Tree Nursery</h3>
+                            <p>Local groups manage nurseries that produce native and fruit trees for reforestation and farm planting across the district.</p>
+                            <a href="#tree-nursery" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-card-img">
+                            <img src="assets/images/env-club.jpg" alt="Compost making training for farmers">
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-icon"><i class="fas fa-recycle"></i></div>
+                            <h3>Compost Making Workshops</h3>
+                            <p>Farmers learn to turn organic waste into rich compost, improving soil health and reducing dependence on chemical fertilizers.</p>
+                            <a href="#compost" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-card-img">
+                            <img src="assets/images/home-hero.jpg" alt="Natural pesticides production workshop">
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-icon"><i class="fas fa-flask"></i></div>
+                            <h3>Natural Pesticides Production</h3>
+                            <p>Hands-on sessions where participants prepare botanical pesticides from locally available plants — safer and more affordable.</p>
+                            <a href="#pesticides" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-card-img">
+                            <img src="assets/images/youth.jpg" alt="Environmental youth clubs at school">
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <h3>Environmental Youth Clubs</h3>
+                            <p>School-based clubs engage students in tree planting, waste management, and conservation activities to build future leaders.</p>
+                            <a href="#youth" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-card-img">
+                            <img src="assets/images/youth.jpg" alt="Agroforestry support for farmers">
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-icon"><i class="fas fa-tree"></i></div>
+                            <h3>Agroforestry Support</h3>
+                            <p>Assisting farmers to integrate trees with crops for better land management, improved food security, and additional income.</p>
+                            <a href="#agroforestry" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="project-card-img">
+                            <img src="assets/images/env-club.jpg" alt="Community environmental awareness day">
+                        </div>
+                        <div class="project-card-body">
+                            <div class="project-icon"><i class="fas fa-hands-helping"></i></div>
+                            <h3>Community Environmental Days</h3>
+                            <p>Regular events where community members gather for clean-ups, tree planting, and environmental education sessions.</p>
+                            <a href="#awareness" class="card-link">Learn more <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROJECT HIGHLIGHTS ===== -->
         <section class="highlights section">
             <div class="container">
-                <h2 class="section-title">Project Highlights</h2>
+                <span class="section-label">Project Highlights</span>
+                <h2 class="section-title">A Closer Look</h2>
 
                 <div id="tree-nursery" class="highlight-block">
-                    <div class="highlight-image image-placeholder">Tree Nursery</div>
+                    <div class="highlight-img">
+                        <img src="assets/images/youth.jpg" alt="Community tree nursery project">
+                        <div class="highlight-img-badge">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                    </div>
                     <div class="highlight-content">
+                        <span class="section-label">Agroforestry</span>
                         <h3>Community Tree Nursery Project</h3>
-                        <p>In partnership with local farmers and groups, we support the establishment of small‑scale tree nurseries. These nurseries produce seedlings for reforestation, agroforestry, and fruit production, creating local jobs and improving food security.</p>
-                        <ul>
-                            <li>Native tree species and fruit trees grown</li>
-                            <li>Training in nursery management</li>
-                            <li>Seedlings distributed to community members</li>
+                        <p>In partnership with local farmers and groups, we support the establishment of small-scale tree nurseries. These nurseries produce seedlings for reforestation, agroforestry, and fruit production, creating local jobs and improving food security across Nyanza Sector.</p>
+                        <ul class="highlight-list">
+                            <li><i class="fas fa-check"></i> Native tree species and fruit trees grown</li>
+                            <li><i class="fas fa-check"></i> Training in nursery management provided</li>
+                            <li><i class="fas fa-check"></i> Seedlings distributed to community members</li>
                         </ul>
-                        <p class="note">Additional verified details can be added later.</p>
                     </div>
                 </div>
 
-                <div id="compost" class="highlight-block reverse">
-                    <div class="highlight-image image-placeholder">Compost Training</div>
+                <div id="compost" class="highlight-block highlight-reverse">
+                    <div class="highlight-img">
+                        <img src="assets/images/env-club.jpg" alt="Compost making training session">
+                        <div class="highlight-img-badge">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                    </div>
                     <div class="highlight-content">
+                        <span class="section-label">Training</span>
                         <h3>Compost Making Training</h3>
-                        <p>Through hands‑on workshops, farmers learn to produce compost from agricultural waste, animal manure, and household scraps. This reduces dependence on chemical fertilizers and improves soil fertility.</p>
-                        <ul>
-                            <li>Practical demonstrations and follow‑up</li>
-                            <li>Low‑cost, locally available materials</li>
-                            <li>Women and youth actively participate</li>
+                        <p>Through hands-on workshops, farmers learn to produce compost from agricultural waste, animal manure, and household scraps. This reduces dependence on chemical fertilizers and improves soil fertility for long-term sustainable farming.</p>
+                        <ul class="highlight-list">
+                            <li><i class="fas fa-check"></i> Practical demonstrations and follow-up support</li>
+                            <li><i class="fas fa-check"></i> Low-cost, locally available materials used</li>
+                            <li><i class="fas fa-check"></i> Women and youth actively participate</li>
                         </ul>
-                        <p class="note">Expanded information can be included with organization input.</p>
                     </div>
                 </div>
 
                 <div id="pesticides" class="highlight-block">
-                    <div class="highlight-image image-placeholder">Pesticides Making</div>
+                    <div class="highlight-img">
+                        <img src="assets/images/home-hero.jpg" alt="Natural pesticides preparation workshop">
+                        <div class="highlight-img-badge">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                    </div>
                     <div class="highlight-content">
+                        <span class="section-label">Training</span>
                         <h3>Natural Pesticides Production</h3>
-                        <p>Participants learn to prepare botanical pesticides using plants like neem, garlic, and chili. These natural alternatives are safer for farmers, consumers, and the environment.</p>
-                        <ul>
-                            <li>Identification of pesticidal plants</li>
-                            <li>Preparation techniques</li>
-                            <li>Application methods and safety</li>
+                        <p>Participants learn to prepare botanical pesticides using plants like neem, garlic, and chili. These natural alternatives are safer for farmers, consumers, and the environment — and significantly cheaper than commercial chemical inputs.</p>
+                        <ul class="highlight-list">
+                            <li><i class="fas fa-check"></i> Identification of local pesticidal plants</li>
+                            <li><i class="fas fa-check"></i> Step-by-step preparation techniques</li>
+                            <li><i class="fas fa-check"></i> Safe application methods demonstrated</li>
                         </ul>
-                        <p class="note">More details on specific plants and recipes can be added.</p>
                     </div>
                 </div>
+
+                <div id="youth" class="highlight-block highlight-reverse">
+                    <div class="highlight-img">
+                        <img src="assets/images/youth.jpg" alt="Youth environmental club activities">
+                        <div class="highlight-img-badge">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                    <div class="highlight-content">
+                        <span class="section-label">Education</span>
+                        <h3>Environmental Youth Clubs</h3>
+                        <p>Our youth clubs engage students in hands-on environmental activities at their schools and in their communities. From tree planting to waste management projects, young people learn that they are the custodians of our planet's future.</p>
+                        <ul class="highlight-list">
+                            <li><i class="fas fa-check"></i> School tree planting and maintenance</li>
+                            <li><i class="fas fa-check"></i> Waste collection and recycling awareness</li>
+                            <li><i class="fas fa-check"></i> Student-led environmental discussions</li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <!-- Project Delivery Approach -->
+        <!-- ===== DELIVERY APPROACH ===== -->
         <section class="approach section">
             <div class="container">
+                <span class="section-label">Our Approach</span>
                 <h2 class="section-title">How We Deliver Projects</h2>
                 <div class="approach-grid">
-                    <div class="approach-item">
-                        <div class="icon-placeholder">👥</div>
-                        <h3>Community Participation</h3>
-                        <p>Projects are planned and implemented with local communities, ensuring ownership and relevance.</p>
+                    <div class="approach-card">
+                        <div class="approach-img">
+                            <img src="assets/images/env-club.jpg" alt="Community participation in environmental projects">
+                        </div>
+                        <div class="approach-body">
+                            <div class="approach-icon"><i class="fas fa-users"></i></div>
+                            <h3>Community Participation</h3>
+                            <p>Projects are planned and implemented with local communities, ensuring ownership and long-term relevance.</p>
+                        </div>
                     </div>
-                    <div class="approach-item">
-                        <div class="icon-placeholder">🛠️</div>
-                        <h3>Practical Training</h3>
-                        <p>Hands‑on learning enables participants to immediately apply new skills.</p>
+                    <div class="approach-card">
+                        <div class="approach-img">
+                            <img src="assets/images/youth.jpg" alt="Practical training for farmers">
+                        </div>
+                        <div class="approach-body">
+                            <div class="approach-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                            <h3>Practical Training</h3>
+                            <p>Hands-on learning enables participants to immediately apply new skills in their own farms and communities.</p>
+                        </div>
                     </div>
-                    <div class="approach-item">
-                        <div class="icon-placeholder">🌱</div>
-                        <h3>Sustainability Focus</h3>
-                        <p>We promote practices that are ecologically sound and economically viable over the long term.</p>
+                    <div class="approach-card">
+                        <div class="approach-img">
+                            <img src="assets/images/home-hero.jpg" alt="Sustainable environmental practices">
+                        </div>
+                        <div class="approach-body">
+                            <div class="approach-icon"><i class="fas fa-leaf"></i></div>
+                            <h3>Sustainability Focus</h3>
+                            <p>We promote practices that are ecologically sound and economically viable over the long term for communities.</p>
+                        </div>
                     </div>
-                    <div class="approach-item">
-                        <div class="icon-placeholder">🧒</div>
-                        <h3>Youth Engagement</h3>
-                        <p>Involving young people through clubs and activities builds future environmental leaders.</p>
+                    <div class="approach-card">
+                        <div class="approach-img">
+                            <img src="assets/images/youth.jpg" alt="Youth engagement in environmental work">
+                        </div>
+                        <div class="approach-body">
+                            <div class="approach-icon"><i class="fas fa-user-graduate"></i></div>
+                            <h3>Youth Engagement</h3>
+                            <p>Involving young people through clubs and activities builds the next generation of environmental leaders.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Call to Action (UPDATED BUTTON CLASSES) -->
-        <section class="cta-section section">
+        <!-- ===== CTA ===== -->
+        <section class="projects-cta section">
             <div class="container">
-                <div class="cta-box">
-                    <h2>Discover More of Our Work</h2>
-                    <p>Explore our programs, see the impact we’re making, or find out how you can support these efforts.</p>
-                    <div class="cta-buttons">
-                        <a href="programs.html" class="btn btn-primary">Our Programs</a>
-                        <a href="impact.html" class="btn btn-primary">View Impact</a>
-                        <a href="get-involved.html" class="btn btn-primary">Get Involved</a>
-                        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                <div class="projects-cta-inner">
+                    <div class="projects-cta-text">
+                        <span class="section-label projects-cta-label">Discover More</span>
+                        <h2>Support This Work</h2>
+                        <p>Explore our programs, see the impact we're making, or find out how you can support these community-led environmental projects across Rwanda.</p>
+                        <div class="projects-cta-buttons">
+                            <a href="programs.html" class="btn btn-white">Our Programs</a>
+                            <a href="impact.html" class="btn btn-outline-white-proj">View Impact</a>
+                            <a href="get-involved.html" class="btn btn-outline-white-proj">Get Involved</a>
+                        </div>
+                    </div>
+                    <div class="projects-cta-image">
+                        <img src="assets/images/env-club.jpg" alt="Community environmental project in Rwanda">
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
 
     <div id="site-footer"></div>
-
     <script src="js/shared.js"></script>
     <script src="js/projects.js"></script>
 </body>

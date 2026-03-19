@@ -4,151 +4,266 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="News and updates from Green for Life Rwanda: community activities, environmental training, and program news.">
-    <title>Green for Life Rwanda | News & Updates</title>
+    <title>Green for Life Rwanda | News</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/news.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="icon" href="assets/logos/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-   <div id="site-header"></div>
+    <div id="site-header"></div>
 
     <main>
-        <!-- Page Hero -->
-        <section class="page-hero">
-            <div class="container">
-                <span class="section-label">Stories & Updates</span>
-                <h1>News & Updates</h1>
-                <p class="hero-subhead">Stay informed about our environmental activities, community programs, and the people making a difference.</p>
+
+        <!-- ===== HERO ===== -->
+        <section class="news-hero">
+            <div class="news-hero-bg" style="background-image: url('assets/images/env-club.jpg')"></div>
+            <div class="news-hero-overlay"></div>
+            <div class="container news-hero-content">
+                <span class="news-hero-label">Stories & Updates</span>
+                <h1>News</h1>
+                <p>Stay informed about our environmental activities, community programs, and the people making a difference across Rwanda.</p>
+                <div class="news-hero-meta">
+                    <div class="news-meta-item">
+                        <i class="fas fa-newspaper"></i>
+                        <span>Latest News</span>
+                    </div>
+                    <div class="news-meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Events</span>
+                    </div>
+                    <div class="news-meta-item">
+                        <i class="fas fa-photo-video"></i>
+                        <span>Media Resources</span>
+                    </div>
+                </div>
             </div>
-            <div class="hero-image-placeholder"></div>
         </section>
 
-        <!-- Featured News Section -->
-        <section class="featured-news section">
+        <!-- ===== FEATURED NEWS ===== -->
+        <section id="news" class="featured-news section">
             <div class="container">
-                <h2 class="section-title">Featured Update</h2>
+                <span class="section-label">Featured Update</span>
+                <h2 class="section-title">Latest from the Field</h2>
                 <div class="featured-card">
-                    <div class="featured-image image-placeholder">Community Tree Planting</div>
+                    <div class="featured-img">
+                        <img src="assets/images/env-club.jpg" alt="Nyanza Environmental Clubs agroforestry training">
+                    </div>
                     <div class="featured-content">
-                        <span class="news-category">Community Activity</span>
-                        <h3>Communities Come Together for Tree Planting Campaign</h3>
-                        <p class="news-excerpt">Hundreds of community members, including students and farmers, participated in a tree planting event to restore local hillsides and promote agroforestry. Seedlings were provided by community-managed nurseries.</p>
+                        <div class="news-date"><i class="fas fa-calendar"></i> April 22, 2023</div>
+                        <h3>Nyanza Environmental Clubs Members Trained in Sustainable Agroforestry Practices</h3>
+                        <p class="news-excerpt">On Thursday 21st April 2023, 45 environmental club members from Nyanza Sector, Gisagara District were trained in sustainable agroforestry practices. The training covered agroforestry definitions and key concepts, agroforestry in food security, and the link between poverty and environmental degradation.</p>
+                        <div class="featured-tags">
+                            <span class="news-tag"><i class="fas fa-tag"></i> Agroforestry</span>
+                            <span class="news-tag"><i class="fas fa-tag"></i> Training</span>
+                            <span class="news-tag"><i class="fas fa-tag"></i> Community</span>
+                        </div>
                         <a href="#" class="btn btn-secondary">Read Full Story</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Latest Updates Grid -->
+        <!-- ===== LATEST NEWS GRID ===== -->
         <section class="latest-updates section">
             <div class="container">
-                <h2 class="section-title">Latest Updates</h2>
+                <span class="section-label">Latest Updates</span>
+                <h2 class="section-title">More from Green for Life Rwanda</h2>
                 <div class="news-grid">
+
                     <article class="news-card">
-                        <div class="image-placeholder">Compost Training</div>
-                        <span class="news-category">Training</span>
-                        <h3><a href="#">Farmers Learn Compost Making Techniques</a></h3>
-                        <p class="news-excerpt">Hands‑on workshop teaches farmers to turn organic waste into nutrient‑rich compost.</p>
-                        <a href="#" class="read-more">Read more →</a>
+                        <div class="news-card-img">
+                            <img src="assets/images/youth.jpg" alt="Farmers learning compost making techniques">
+                        </div>
+                        <div class="news-card-body">
+                            <div class="news-date"><i class="fas fa-calendar"></i> Coming Soon</div>
+                            <h3><a href="#">Farmers Learn Compost Making Techniques</a></h3>
+                            <p>Hands-on workshop teaches farmers to turn organic waste into nutrient-rich compost, improving soil health and reducing costs.</p>
+                            <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </article>
+
                     <article class="news-card">
-                        <div class="image-placeholder">Youth Club</div>
-                        <span class="news-category">Youth Engagement</span>
-                        <h3><a href="#">Environmental Club Plants Trees at Local School</a></h3>
-                        <p class="news-excerpt">Students took part in a tree planting activity, learning about the importance of trees for the environment.</p>
-                        <a href="#" class="read-more">Read more →</a>
+                        <div class="news-card-img">
+                            <img src="assets/images/youth.jpg" alt="Environmental club tree planting at school">
+                        </div>
+                        <div class="news-card-body">
+                            <div class="news-date"><i class="fas fa-calendar"></i> Coming Soon</div>
+                            <h3><a href="#">Environmental Club Plants Trees at Local School</a></h3>
+                            <p>Students took part in a tree planting activity, learning about the importance of trees for the environment and their communities.</p>
+                            <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </article>
+
                     <article class="news-card">
-                        <div class="image-placeholder">Pesticides Workshop</div>
-                        <span class="news-category">Training</span>
-                        <h3><a href="#">Natural Pesticides Workshop Held</a></h3>
-                        <p class="news-excerpt">Participants learned to prepare botanical pesticides using locally available plants.</p>
-                        <a href="#" class="read-more">Read more →</a>
+                        <div class="news-card-img">
+                            <img src="assets/images/home-hero.jpg" alt="Natural pesticides workshop">
+                        </div>
+                        <div class="news-card-body">
+                            <div class="news-date"><i class="fas fa-calendar"></i> Coming Soon</div>
+                            <h3><a href="#">Natural Pesticides Workshop Held</a></h3>
+                            <p>Participants learned to prepare botanical pesticides using locally available plants — a low-cost, eco-friendly alternative to chemical inputs.</p>
+                            <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </article>
+
                     <article class="news-card">
-                        <div class="image-placeholder">Saving Group</div>
-                        <span class="news-category">Community</span>
-                        <h3><a href="#">New Saving Group Formed in Eastern Province</a></h3>
-                        <p class="news-excerpt">Community members come together to support each other and invest in sustainable activities.</p>
-                        <a href="#" class="read-more">Read more →</a>
+                        <div class="news-card-img">
+                            <img src="assets/images/env-club.jpg" alt="Saving group community meeting">
+                        </div>
+                        <div class="news-card-body">
+                            <div class="news-date"><i class="fas fa-calendar"></i> Coming Soon</div>
+                            <h3><a href="#">New Saving Group Formed in Gisagara District</a></h3>
+                            <p>Community members come together to support each other and invest in sustainable environmental and agricultural activities.</p>
+                            <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </article>
+
                     <article class="news-card">
-                        <div class="image-placeholder">Agroforestry</div>
-                        <span class="news-category">Environment</span>
-                        <h3><a href="#">Farmers Adopt Agroforestry Practices</a></h3>
-                        <p class="news-excerpt">Training sessions help farmers integrate trees with crops for better soil and additional income.</p>
-                        <a href="#" class="read-more">Read more →</a>
+                        <div class="news-card-img">
+                            <img src="assets/images/youth.jpg" alt="Farmers adopting agroforestry practices">
+                        </div>
+                        <div class="news-card-body">
+                            <div class="news-date"><i class="fas fa-calendar"></i> Coming Soon</div>
+                            <h3><a href="#">Farmers Adopt Agroforestry Practices</a></h3>
+                            <p>Training sessions help farmers integrate trees with crops for better soil health, food security, and additional household income.</p>
+                            <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </article>
+
                     <article class="news-card">
-                        <div class="image-placeholder">Awareness Event</div>
-                        <span class="news-category">Outreach</span>
-                        <h3><a href="#">Community Environmental Day a Success</a></h3>
-                        <p class="news-excerpt">Clean‑up and tree planting event brought together residents to care for their local environment.</p>
-                        <a href="#" class="read-more">Read more →</a>
+                        <div class="news-card-img">
+                            <img src="assets/images/youth.jpg" alt="Community environmental day activities">
+                        </div>
+                        <div class="news-card-body">
+                            <div class="news-date"><i class="fas fa-calendar"></i> Coming Soon</div>
+                            <h3><a href="#">Community Environmental Day a Success</a></h3>
+                            <p>Clean-up and tree planting event brought together residents to care for their local environment and celebrate conservation efforts.</p>
+                            <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </article>
+
                 </div>
             </div>
         </section>
 
-        <!-- Community Activities Section -->
+        <!-- ===== COMMUNITY ACTIVITIES IN FOCUS ===== -->
         <section class="community-activities section">
             <div class="container">
-                <h2 class="section-title">Community Activities in Focus</h2>
+                <span class="section-label">Community Activities</span>
+                <h2 class="section-title">Activities in Focus</h2>
                 <div class="activities-grid">
                     <div class="activity-item">
-                        <div class="icon-placeholder">🌱</div>
-                        <h3>Compost Making</h3>
-                        <p>Farmers turn waste into compost, improving soil health and reducing costs.</p>
+                        <div class="activity-item-img">
+                            <img src="assets/images/youth.jpg" alt="Compost making activity">
+                        </div>
+                        <div class="activity-item-body">
+                            <div class="activity-item-icon"><i class="fas fa-recycle"></i></div>
+                            <h3>Compost Making</h3>
+                            <p>Farmers turn organic waste into compost, improving soil health and reducing input costs.</p>
+                        </div>
                     </div>
                     <div class="activity-item">
-                        <div class="icon-placeholder">🧪</div>
-                        <h3>Natural Pesticides</h3>
-                        <p>Workshops on preparing organic pesticides from local plants.</p>
+                        <div class="activity-item-img">
+                            <img src="assets/images/env-club.jpg" alt="Natural pesticides preparation">
+                        </div>
+                        <div class="activity-item-body">
+                            <div class="activity-item-icon"><i class="fas fa-flask"></i></div>
+                            <h3>Natural Pesticides</h3>
+                            <p>Workshops on preparing organic pesticides from locally available plants.</p>
+                        </div>
                     </div>
                     <div class="activity-item">
-                        <div class="icon-placeholder">🌳</div>
-                        <h3>Tree Nursery</h3>
-                        <p>Community nurseries provide seedlings for reforestation.</p>
+                        <div class="activity-item-img">
+                            <img src="assets/images/home-hero.jpg" alt="Tree nursery management">
+                        </div>
+                        <div class="activity-item-body">
+                            <div class="activity-item-icon"><i class="fas fa-seedling"></i></div>
+                            <h3>Tree Nursery</h3>
+                            <p>Community-run nurseries produce seedlings for reforestation and agroforestry programs.</p>
+                        </div>
                     </div>
                     <div class="activity-item">
-                        <div class="icon-placeholder">👧</div>
-                        <h3>Environmental Clubs</h3>
-                        <p>Youth engage in tree planting and conservation education.</p>
+                        <div class="activity-item-img">
+                            <img src="assets/images/youth.jpg" alt="Youth environmental clubs">
+                        </div>
+                        <div class="activity-item-body">
+                            <div class="activity-item-icon"><i class="fas fa-users"></i></div>
+                            <h3>Environmental Clubs</h3>
+                            <p>Youth engage in tree planting, conservation education, and environmental leadership.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- News Archive Note -->
-        <section class="archive-note section">
+        <!-- ===== EVENTS ===== -->
+        <section id="events" class="events section">
             <div class="container">
-                <div class="note-box">
-                    <h3>More Stories Coming Soon</h3>
-                    <p>We regularly share updates about our work with communities. Additional news articles, stories, and reports will be added here as they become available. Please check back or <a href="contact.html">contact us</a> for more information.</p>
+                <span class="section-label">Events</span>
+                <h2 class="section-title">Upcoming Events</h2>
+                <div class="events-empty">
+                    <div class="events-empty-icon"><i class="fas fa-calendar-plus"></i></div>
+                    <h3>No upcoming events at this time</h3>
+                    <p>Check back soon or contact us to learn about future community events, training sessions, and environmental activities.</p>
+                    <a href="contact.html" class="btn btn-secondary">Contact Us</a>
                 </div>
             </div>
         </section>
 
-        <!-- Call to Action -->
-        <section class="cta-section section">
+        <!-- ===== MEDIA RESOURCES ===== -->
+        <section id="media" class="media-resources section">
             <div class="container">
-                <div class="cta-box">
-                    <h2>Explore More of Our Work</h2>
-                    <p>See our projects, learn about our programs, or find out how you can get involved.</p>
-                    <div class="cta-buttons">
-                        <a href="projects.html" class="btn btn-primary">View Projects</a>
-                        <a href="programs.html" class="btn btn-primary">Our Programs</a>
-                        <a href="get-involved.html" class="btn btn-primary">Get Involved</a>
-                        <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                <span class="section-label">Media Resources</span>
+                <h2 class="section-title">Photos & Resources</h2>
+                <div class="media-grid">
+                    <div class="media-card">
+                        <img src="assets/images/env-club.jpg" alt="Environmental clubs in Nyanza Sector">
+                        <div class="media-caption">Environmental Clubs — Nyanza Sector</div>
+                    </div>
+                    <div class="media-card">
+                        <img src="assets/images/youth.jpg" alt="Agroforestry practices in Gisagara District">
+                        <div class="media-caption">Agroforestry Practices — Gisagara District</div>
+                    </div>
+                    <div class="media-card">
+                        <img src="assets/images/youth.jpg" alt="Youth environmental education activities">
+                        <div class="media-caption">Youth Environmental Education</div>
+                    </div>
+                    <div class="media-card">
+                        <img src="assets/images/home-hero.jpg" alt="Community environmental activities">
+                        <div class="media-caption">Community Environmental Action</div>
+                    </div>
+                </div>
+                <p class="media-note">For high-resolution images or press inquiries, please <a href="contact.html">contact us</a>.</p>
+            </div>
+        </section>
+
+        <!-- ===== CTA ===== -->
+        <section class="news-cta section">
+            <div class="container">
+                <div class="news-cta-inner">
+                    <div class="news-cta-text">
+                        <span class="section-label news-cta-label">Get Involved</span>
+                        <h2>Explore More of Our Work</h2>
+                        <p>See our projects, learn about our programs, or find out how you can support environmental protection and community livelihoods in Rwanda.</p>
+                        <div class="news-cta-buttons">
+                            <a href="projects.html" class="btn btn-white">View Projects</a>
+                            <a href="programs.html" class="btn btn-outline-white-news">Our Programs</a>
+                            <a href="get-involved.html" class="btn btn-outline-white-news">Get Involved</a>
+                        </div>
+                    </div>
+                    <div class="news-cta-image">
+                        <img src="assets/images/youth.jpg" alt="Community environmental work in Rwanda">
                     </div>
                 </div>
             </div>
         </section>
+
     </main>
-<div id="site-footer"></div>
 
+    <div id="site-footer"></div>
     <script src="js/shared.js"></script>
     <script src="js/news.js"></script>
 </body>
