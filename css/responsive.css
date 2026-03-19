@@ -1,59 +1,173 @@
-/* responsive.css - Media queries */
+/* ============================================
+   DESKTOP — hide mobile-only elements
+   ============================================ */
 
-/* Tablet */
+/* The mobile donate button injected by JS must be hidden on desktop */
+.nav-mobile-donate {
+    display: none;
+}
+
+/* responsive.css — Media queries */
+
+/* ============================================
+   TABLET (max 992px)
+   ============================================ */
+
 @media (max-width: 992px) {
     .footer-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-}
 
-/* Mobile */
-@media (max-width: 768px) {
-    /* Typography adjustments */
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.75rem; }
-    h3 { font-size: 1.35rem; }
+    /* ===== MOBILE NAV — starts at 992px ===== */
 
-    /* Header & navigation */
-    .site-header .container {
-        position: relative;
+    /* Hide donate button from header bar on mobile —
+       it will appear inside the open nav menu instead */
+    .site-header .donate-btn {
+        display: none !important;
     }
 
+    /* Hamburger visible */
     .mobile-menu-toggle {
         display: block;
     }
 
+    /* Nav menu — hidden by default, slides open */
     .nav-links {
         display: none;
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: var(--white);
+        background-color: #1a4a2e;   /* deep green — always readable */
         flex-direction: column;
-        padding: var(--space-md);
-        box-shadow: var(--shadow-medium);
-        z-index: 99;
-        gap: var(--space-sm);
+        padding: 12px 0 20px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+        z-index: 9998;
+        gap: 0;
+        /* Scrollable on small screens */
+        max-height: calc(100svh - 70px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .nav-links.active {
         display: flex;
     }
 
-    .nav-links a {
-        padding: var(--space-xs) 0;
-        display: block;
+    /* Top-level nav links */
+    .nav-links > li > a {
+        color: #ffffff !important;   /* always white in open menu */
+        padding: 13px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         width: 100%;
+        font-size: 0.95rem;
+        font-weight: 600;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        text-decoration: none;
     }
 
-    .nav-links a::after {
-        display: none;
+    .nav-links > li > a:hover {
+        background-color: rgba(255,255,255,0.08);
+        color: #a8d5a2 !important;
     }
 
-    .donate-btn {
-        margin-left: 0;
-        order: 3;
+    .nav-links > li:last-child > a {
+        border-bottom: none;
+    }
+
+    /* Donate Now button — lives INSIDE the menu on mobile */
+    .nav-links::after {
+        content: '';  /* placeholder — actual button injected via JS below */
+    }
+
+    /* ===== DROPDOWN in mobile menu ===== */
+
+    /* Override any page-specific CSS that hides/collapses dropdowns */
+    .nav-links .dropdown-menu {
+        position: static !important;
+        transform: none !important;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        background-color: rgba(0,0,0,0.2);
+        transition: opacity 0.28s ease, max-height 0.28s ease;
+        pointer-events: none;
+        width: 100%;
+        min-width: unset;
+        list-style: none;
+    }
+
+    /* Open state — triggered by .dropdown-open class from shared.js */
+    .nav-links .has-dropdown.dropdown-open .dropdown-menu {
+        opacity: 1;
+        max-height: 500px;
+        pointer-events: all;
+    }
+
+    /* Dropdown items — clearly visible on dark background */
+    .nav-links .dropdown-menu li a {
+        color: rgba(255,255,255,0.88) !important;
+        padding: 11px 24px 11px 40px;   /* indent to show hierarchy */
+        font-size: 0.88rem;
+        font-weight: 400 !important;
+        display: block;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        background-color: transparent;
+        text-decoration: none;
+    }
+
+    .nav-links .dropdown-menu li:last-child a {
+        border-bottom: none;
+    }
+
+    .nav-links .dropdown-menu li a:hover {
+        background-color: rgba(255,255,255,0.08);
+        color: #a8d5a2 !important;
+    }
+
+    /* Arrow rotates when dropdown is open */
+    .has-dropdown.dropdown-open .nav-arrow {
+        transform: rotate(180deg);
+    }
+
+    /* Donate Now inside menu — shown as a styled row at the bottom */
+    .nav-links .nav-mobile-donate {
+        display: block;
+        margin: 14px 16px 0;
+        padding: 13px 20px;
+        background-color: var(--accent-green, #4a7c59);
+        color: #ffffff !important;
+        text-align: center;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: background-color 0.2s;
+    }
+
+    .nav-links .nav-mobile-donate:hover {
+        background-color: #3a6449;
+    }
+}
+
+/* ============================================
+   MOBILE (max 768px)
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Typography */
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.35rem; }
+
+    /* Header container */
+    .site-header .container {
+        position: relative;
     }
 
     /* Footer */
@@ -70,7 +184,10 @@
     }
 }
 
-/* Small mobile */
+/* ============================================
+   SMALL MOBILE (max 576px)
+   ============================================ */
+
 @media (max-width: 576px) {
     .section {
         padding: var(--space-md) 0;

@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="container">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="assets/logos/logo.JPG" alt="Green for Life Rwanda">
+                        <img src="assets/logos/logo.jpg" alt="Green for Life Rwanda">
                     </a>
                 </div>
                 <nav class="main-nav">
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </header>
     `;
 
-    //===== FOOTER TEMPLATE =====
+    // ===== FOOTER TEMPLATE =====
     const footerTemplate = `
         <footer class="site-footer">
             <div class="container">
@@ -66,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="footer-social">
                             <a href="https://web.facebook.com/GREEN-for-LIFE-Rwanda-100208564927414" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://x.com/liferwanda1" target="_blank" aria-label="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+                            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
@@ -123,6 +124,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const navLinks = document.querySelector('.nav-links');
         if (!menuToggle || !navLinks) return;
 
+        // Inject Donate Now button at bottom of mobile nav if not already there
+        if (!navLinks.querySelector('.nav-mobile-donate')) {
+            const mobileBtn = document.createElement('a');
+            mobileBtn.href = 'donate.html';
+            mobileBtn.className = 'nav-mobile-donate';
+            mobileBtn.innerHTML = '<i class="fas fa-heart"></i> Donate Now';
+            navLinks.appendChild(mobileBtn);
+        }
+
         menuToggle.addEventListener('click', function () {
             const expanded = this.getAttribute('aria-expanded') === 'true';
             this.setAttribute('aria-expanded', !expanded);
@@ -130,20 +140,33 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.classList.toggle('menu-open');
         });
 
+        // Mobile dropdown accordion
         document.querySelectorAll('.has-dropdown > a').forEach(link => {
             link.addEventListener('click', function (e) {
                 if (window.innerWidth <= 992) {
                     e.preventDefault();
-                    this.closest('.has-dropdown').classList.toggle('dropdown-open');
+                    const parent = this.closest('.has-dropdown');
+                    // Close all other open dropdowns first
+                    document.querySelectorAll('.has-dropdown.dropdown-open').forEach(el => {
+                        if (el !== parent) el.classList.remove('dropdown-open');
+                    });
+                    parent.classList.toggle('dropdown-open');
                 }
             });
         });
 
+        // Close menu when a non-parent link is clicked
         navLinks.addEventListener('click', function (e) {
-            if (e.target.tagName === 'A' && !e.target.closest('.has-dropdown > a')) {
+            const link = e.target.closest('a');
+            if (!link) return;
+            const isDropdownParent = link.closest('.has-dropdown > a');
+            if (!isDropdownParent) {
                 navLinks.classList.remove('active');
                 menuToggle.setAttribute('aria-expanded', 'false');
                 document.body.classList.remove('menu-open');
+                document.querySelectorAll('.has-dropdown.dropdown-open').forEach(el => {
+                    el.classList.remove('dropdown-open');
+                });
             }
         });
     }
