@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="container">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="assets/logos/logo.jpg" alt="Green for Life Rwanda">
+                        <img src="assets/logos/logo.JPG" alt="Green for Life Rwanda">
                     </a>
                 </div>
                 <nav class="main-nav">
