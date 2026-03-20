@@ -182,6 +182,48 @@
     .footer-social {
         text-align: center;
     }
+
+    /* ============================================
+       FORCE ALL CARD GRIDS TO SINGLE COLUMN
+       ============================================ */
+
+    /* home.css grids */
+    .focus-grid,
+    .impact-grid,
+    .testimonial-grid,
+    .activity-grid,
+    .news-grid { grid-template-columns: 1fr !important; }
+
+    /* about.css grids */
+    .values-grid,
+    .focus-grid,
+    .mv-grid { grid-template-columns: 1fr !important; }
+
+    /* programs.css grids */
+    .program-grid,
+    .activities-grid,
+    .beneficiaries-grid { grid-template-columns: 1fr !important; }
+
+    /* projects.css grids */
+    .projects-grid,
+    .approach-grid { grid-template-columns: 1fr !important; }
+
+    /* impact.css grids */
+    .highlights-grid,
+    .action-grid { grid-template-columns: 1fr !important; }
+
+    /* news.css grids */
+    .activities-grid,
+    .media-grid { grid-template-columns: 1fr !important; }
+
+    /* get-involved.css grids */
+    .involvement-grid { grid-template-columns: 1fr !important; }
+
+    /* donate.css grids */
+    .donation-impact-grid { grid-template-columns: 1fr !important; }
+
+    /* contact.css grids */
+    .contact-cards { grid-template-columns: 1fr !important; }
 }
 
 /* ============================================
