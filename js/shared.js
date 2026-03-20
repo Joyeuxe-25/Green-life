@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="container">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="assets/logos/logo.JPG" alt="Green for Life Rwanda">
+                        <img src="assets/logos/logo.jpg" alt="Green for Life Rwanda">
                     </a>
                 </div>
                 <nav class="main-nav">
@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", function () {
                             <ul class="dropdown-menu">
                                 <li><a href="about.html#vision">Vision, Mission & Core Values</a></li>
                                 <li><a href="about.html#history">Our History</a></li>
-                                <li><a href="about.html#staff">Our Staff & Board</a></li>
-                                <li><a href="about.html#reports">Annual & Other Reports</a></li>
+                                <li><a href="staff.html">Our Staff & Board</a></li>
+                                <li><a href="reports.html">Annual & Other Reports</a></li>
                                 <li><a href="contact.html">Contact Us</a></li>
                             </ul>
                         </li>
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <div class="container">
                 <div class="footer-grid">
                     <div class="footer-brand">
-                        <img src="assets/logos/logo.JPG" alt="Green for Life Rwanda" class="footer-logo">
+                        <img src="assets/logos/logo.jpg" alt="Green for Life Rwanda" class="footer-logo">
                         <p>An environmental organization that empowers communities, particularly small household farmers, to conserve the environment and improve livelihoods.</p>
                         <div class="footer-social">
                             <a href="https://web.facebook.com/GREEN-for-LIFE-Rwanda-100208564927414" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Pages that have a full-image hero — start transparent on these
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-        const heroPages = ['index.html', 'about.html', 'programs.html', 'news.html', 'projects.html', 'impact.html', 'get-involved.html', 'donate.html', 'contact.html', ''];
+        const heroPages = ['index.html', 'about.html', 'programs.html', 'news.html', 'projects.html', 'impact.html', 'get-involved.html', 'donate.html', 'contact.html', 'staff.html', 'reports.html', ''];
         const hasHero = heroPages.includes(currentPage);
 
         // Force wrapper fixed — beats global.css
