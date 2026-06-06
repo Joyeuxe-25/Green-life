@@ -1,5 +1,5 @@
 {
-  "name": "shared",
+  "name": "@green-life-rwanda/shared",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,6 +8,9 @@
   "scripts": {
     "build": "tsc --emitDeclarationOnly",
     "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "latest"
   },
   "devDependencies": {
     "typescript": "latest"

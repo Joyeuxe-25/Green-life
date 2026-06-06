@@ -1,16 +1,26 @@
-:root {
-  color-scheme: light;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f7faf7;
-  color: #18351f;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-  box-sizing: border-box;
-}
+@layer base {
+  :root {
+    --background: 120 33% 97%;
+    --foreground: 133 38% 15%;
+    --border: 130 14% 86%;
+    --primary: 142 55% 28%;
+    --primary-foreground: 0 0% 100%;
+    --radius: 0.5rem;
+  }
 
-body {
-  margin: 0;
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+  }
 }
 
 .page-shell {

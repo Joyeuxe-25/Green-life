@@ -7,7 +7,8 @@
     "dev:public": "pnpm --filter public-site dev",
     "dev:admin": "pnpm --filter admin-site dev",
     "dev:api": "pnpm --filter api dev",
-    "build:shared": "pnpm --filter shared build"
+    "build:shared": "pnpm --filter @green-life-rwanda/shared build",
+    "typecheck": "pnpm --recursive typecheck"
   },
   "packageManager": "pnpm@9.0.0"
 }
