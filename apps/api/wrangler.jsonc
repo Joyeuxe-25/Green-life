@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "green-life-rwanda-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-06-06",
+  "d1_databases": [
+    {
+      "binding": "DATABASE",
+      "database_name": "green-life-rwanda",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "MEDIA_BUCKET",
+      "bucket_name": "green-life-rwanda-media"
+    }
+  ]
+}
