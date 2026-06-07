@@ -1,12 +1,26 @@
-import type { CONTENT_MODULES, MEDIA_ENTITY_TYPES } from "./constants";
+import type {
+  CONTENT_MODULES,
+  EVENT_STATUSES,
+  MEDIA_ENTITY_TYPES,
+  MESSAGE_STATUSES,
+  PROJECT_STATUSES,
+  PUBLICATION_STATUSES,
+  VISIBILITY_STATUSES
+} from "./constants";
 
 export type ContentModule = (typeof CONTENT_MODULES)[number];
 
 export type MediaEntityType = (typeof MEDIA_ENTITY_TYPES)[number];
 
-export type PublicationStatus = "draft" | "published" | "archived";
+export type PublicationStatus = (typeof PUBLICATION_STATUSES)[number];
 
-export type MessageStatus = "new" | "read" | "archived";
+export type MessageStatus = (typeof MESSAGE_STATUSES)[number];
+
+export type ProjectStatus = (typeof PROJECT_STATUSES)[number];
+
+export type EventStatus = (typeof EVENT_STATUSES)[number];
+
+export type VisibilityStatus = (typeof VISIBILITY_STATUSES)[number];
 
 export type BaseEntity = {
   id: string;
