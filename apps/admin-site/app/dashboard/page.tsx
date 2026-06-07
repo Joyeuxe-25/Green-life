@@ -1,12 +1,12 @@
 import { AdminShell } from "@/components/admin-shell";
 import { AdminPlaceholder } from "@/components/admin-placeholder";
 
-export default function AdminHomePage() {
+export default function DashboardPage() {
   return (
     <AdminShell>
       <AdminPlaceholder
-        title="Green Life Rwanda Admin"
-        description="Root admin route shell for the future management website."
+        title="Dashboard"
+        description="Placeholder shell for the future admin dashboard overview."
       />
     </AdminShell>
   );

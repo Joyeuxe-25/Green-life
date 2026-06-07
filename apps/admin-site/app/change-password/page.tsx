@@ -1,12 +1,12 @@
 import { AdminShell } from "@/components/admin-shell";
 import { AdminPlaceholder } from "@/components/admin-placeholder";
 
-export default function AdminHomePage() {
+export default function ChangePasswordPage() {
   return (
     <AdminShell>
       <AdminPlaceholder
-        title="Green Life Rwanda Admin"
-        description="Root admin route shell for the future management website."
+        title="Change Password"
+        description="Placeholder shell for future password change flow requiring a valid cookie session."
       />
     </AdminShell>
   );
