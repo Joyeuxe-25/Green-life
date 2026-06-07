@@ -1,7 +1,7 @@
 import type { Context } from "hono";
 
 type JsonRecord = Record<string, unknown>;
-type ApiStatus = 200 | 201 | 400 | 404 | 500;
+type ApiStatus = 200 | 201 | 400 | 401 | 403 | 404 | 500;
 
 export function success(c: Context, data: unknown = {}, status: ApiStatus = 200) {
   return c.json({ ok: true, data }, status);
@@ -35,6 +35,14 @@ export function validationError(
 
 export function notFound(c: Context, message = "Not found") {
   return errorResponse(c, message, 404);
+}
+
+export function unauthorized(c: Context, message = "Unauthorized") {
+  return errorResponse(c, message, 401);
+}
+
+export function forbidden(c: Context, message = "Forbidden") {
+  return errorResponse(c, message, 403);
 }
 
 export function placeholder(c: Context, moduleName: string) {

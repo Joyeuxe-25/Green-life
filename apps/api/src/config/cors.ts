@@ -7,5 +7,13 @@ export function getAllowedOrigins(env: Env) {
     .filter(Boolean);
 }
 
-// Planning note: admin authenticated requests will later need credentials
-// support because auth is locked to secure HTTP-only cookies.
+export function isAllowedOrigin(env: Env, origin: string | undefined) {
+  if (!origin) {
+    return false;
+  }
+
+  return getAllowedOrigins(env).includes(origin);
+}
+
+export const CORS_ALLOWED_METHODS = "GET,POST,PUT,PATCH,DELETE,OPTIONS";
+export const CORS_ALLOWED_HEADERS = "Content-Type,Authorization";
