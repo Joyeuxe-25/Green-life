@@ -97,7 +97,7 @@ The current working branch remains `main`.
 - CSS: `css/global.css`, `css/about.css`, `css/responsive.css`
 - JS: `js/shared.js`, `js/about.js`
 - Major sections: about hero, who we are/vision, mission and vision, values, focus areas, history, CTA.
-- Images used: `about-team-meeting.jpg`, `nursery-community-work.jpg`, `community-seedling-training.jpg`, `tree-planting-demonstration.jpg`, `tree-tomato-plantation.jpg`, `fruit-tree-plantation.jpg`, `tree-nursery-group.jpg`, `env-club.jpg`
+- Images used: `excluded legacy team meeting image`, `nursery-community-work.jpg`, `community-seedling-training.jpg`, `tree-planting-demonstration.jpg`, `tree-tomato-plantation.jpg`, `fruit-tree-plantation.jpg`, `tree-nursery-group.jpg`, `env-club.jpg`
 - Internal links: `programs.html`, `get-involved.html`, `contact.html`
 
 ### `programs.html`
@@ -142,7 +142,7 @@ The current working branch remains `main`.
 - CSS: `css/global.css`, `css/get-involved.css`, `css/responsive.css`
 - JS: `js/shared.js`, `js/get-involved.js`
 - Major sections: get involved hero, why involve, ways to get involved, volunteer, community/donate, partners, CTA.
-- Images used: `community-seedling-training.jpg`, `tree-planting-demonstration.jpg`, `nursery-community-work.jpg`, `tree-nursery-inspection.jpg`, `farmers-with-grevillea-seedlings.jpg`, `about-team-meeting.jpg`, `fruit-tree-plantation.jpg`
+- Images used: `community-seedling-training.jpg`, `tree-planting-demonstration.jpg`, `nursery-community-work.jpg`, `tree-nursery-inspection.jpg`, `farmers-with-grevillea-seedlings.jpg`, `excluded legacy team meeting image`, `fruit-tree-plantation.jpg`
 - Internal links: `contact.html`, `programs.html`, `projects.html`
 
 ### `donate.html`
@@ -160,7 +160,7 @@ The current working branch remains `main`.
 - CSS: `css/global.css`, `css/contact.css`, `css/responsive.css`
 - JS: `js/shared.js`, `js/contact.js`
 - Major sections: contact hero, contact overview, contact form, location, CTA.
-- Images used: `about-team-meeting.jpg`, `community-seedling-training.jpg`
+- Images used: `excluded legacy team meeting image`, `community-seedling-training.jpg`
 - Internal links: `donate.html`, `programs.html`, `get-involved.html`, `about.html`
 
 ### `reports.html`
@@ -169,7 +169,7 @@ The current working branch remains `main`.
 - CSS: `css/global.css`, `css/reports.css`, `css/responsive.css`
 - JS: `js/shared.js`
 - Major sections: reports hero, reports intro, annual reports, other reports, request report, CTA.
-- Images used: `about-team-meeting.jpg`, `community-seedling-training.jpg`, `tree-nursery-landscape.jpg`
+- Images used: `excluded legacy team meeting image`, `community-seedling-training.jpg`, `tree-nursery-landscape.jpg`
 - Internal links: `contact.html`, `impact.html`, `programs.html`, `projects.html`
 
 ### `staff.html`
@@ -178,14 +178,14 @@ The current working branch remains `main`.
 - CSS: `css/global.css`, `css/staff.css`, `css/responsive.css`
 - JS: `js/shared.js`
 - Major sections: staff hero, staff intro, staff section, join CTA.
-- Images used: `about-team-meeting.jpg`, `tree-tomato-plantation.jpg`, `speciose.JPG`, `juvens.JPG`, `sarah.JPG`, `anastasie.JPG`, `eugenie.JPG`, `community-seedling-training.jpg`
+- Images used: `excluded legacy team meeting image`, `tree-tomato-plantation.jpg`, `speciose.JPG`, `juvens.JPG`, `sarah.JPG`, `anastasie.JPG`, `eugenie.JPG`, `community-seedling-training.jpg`
 - Internal links: `get-involved.html`, `contact.html`
 
 ## Current Asset Inventory
 
 ### Current Images In `assets/images`
 
-- `about-team-meeting.jpg`
+- `excluded legacy team meeting image`
 - `anastasie.JPG`
 - `community-field-activity.jpg`
 - `community-seedling-training.jpg`
@@ -221,9 +221,9 @@ The current working branch remains `main`.
 
 ## Old Image Reference Findings
 
-Search terms checked: `about-team-meeting`, `about-team-meeting.jpg`, `home-hero.jpg`, `env-club.jpg`, `youth.jpg`, `agroforestry.jpg`.
+Search terms checked: `excluded legacy team meeting image`, `excluded legacy team meeting image`, `home-hero.jpg`, `env-club.jpg`, `youth.jpg`, `agroforestry.jpg`.
 
-- `about-team-meeting.jpg` is used in `about.html`, `contact.html`, `get-involved.html`, `reports.html`, and `staff.html`.
+- `excluded legacy team meeting image` is used in `about.html`, `contact.html`, `get-involved.html`, `reports.html`, and `staff.html`.
 - `home-hero.jpg` is used in `index.html` and `programs.html`.
 - `env-club.jpg` is used in `about.html` and `projects.html`.
 - `youth.jpg` is used in `news.html`, `programs.html`, and `projects.html`.
@@ -320,7 +320,7 @@ No files were deleted in Phase 0.
 - The supplied AVIF media pack, video asset pack, partner logos, and DOCX content document are not present in the current workspace.
 - Current forms appear to be static/front-end only and will need backend planning in a later phase, but no backend work was started.
 - `reports.html` exists even though the approved future system has no reports feature.
-- Several current image files are large, especially `vegetable-garden-farmer.jpg`, `fruit-tree-harvest.jpg`, `about-team-meeting.jpg`, `youth.jpg`, and `home-hero.jpg`; future media optimization should be handled in the media migration phase.
+- Several current image files are large, especially `vegetable-garden-farmer.jpg`, `fruit-tree-harvest.jpg`, `excluded legacy team meeting image`, `youth.jpg`, and `home-hero.jpg`; future media optimization should be handled in the media migration phase.
 - Partner logos are not available for validation, cleaning, or placement yet.
 - The Git status command emitted a user-level Git ignore permission warning unrelated to repository content.
 

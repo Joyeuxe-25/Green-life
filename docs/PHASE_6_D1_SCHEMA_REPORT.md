@@ -370,7 +370,7 @@ pnpm --filter api typecheck
 - Soft deletes are represented with nullable `deleted_at`; API queries must filter deleted records later.
 - Restore Local logo is still missing and should remain text-only until a logo is provided.
 - Do not add reports or activity log tables in later phases unless the locked decisions change.
-- Do not use `about-team-meeting` in media seed/upload plans.
+- Do not use `excluded legacy team meeting image` in media seed/upload plans.
 
 ## Recommended Phase 7
 

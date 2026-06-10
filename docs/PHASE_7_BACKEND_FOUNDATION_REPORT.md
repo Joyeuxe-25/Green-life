@@ -204,7 +204,7 @@ No session creation, login, logout, password hashing, token signing, or cookie v
 - `reports.html` was not deleted.
 - No reports feature was added.
 - No activity logs feature was added.
-- `about-team-meeting` was not used.
+- `excluded legacy team meeting image` was not used.
 - No packages were installed.
 - No commit was made.
 

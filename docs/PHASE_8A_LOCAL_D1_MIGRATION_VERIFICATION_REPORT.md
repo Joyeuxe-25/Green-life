@@ -54,7 +54,7 @@ Findings:
 - No plain text passwords were found.
 - No `reports` table was created.
 - No `activity_logs` table was created.
-- No `about-team-meeting` reference was found in the SQL.
+- No `excluded legacy team meeting image` reference was found in the SQL.
 
 ## Expected Tables
 
@@ -151,7 +151,7 @@ After local migration apply, confirm:
 - No frontend apps were modified.
 - The old static website was not modified or deleted.
 - `reports.html` was not deleted.
-- `about-team-meeting` was not used.
+- `excluded legacy team meeting image` was not used.
 - No packages were installed.
 - No commit was made.
 

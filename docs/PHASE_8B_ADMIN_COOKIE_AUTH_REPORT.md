@@ -277,7 +277,7 @@ curl.exe -i -X POST http://localhost:8787/admin/auth/login -H "Content-Type: app
 - No public content was migrated.
 - The old static website was not deleted.
 - `reports.html` was not deleted.
-- `about-team-meeting` was not used.
+- `excluded legacy team meeting image` was not used.
 - No packages were installed.
 - No commit was made.
 

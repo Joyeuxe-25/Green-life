@@ -182,7 +182,7 @@ The DOCX does not provide detailed contact or donation fields. Current static co
 
 ## Selected AVIF Image Inventory
 
-The AVIF media pack contains 30 selected images under `00_INPUTS/02_selected_avif_media/assets/images/`. The media guide explicitly says `about-team-meeting.jpg` / source `8Z6A5893.jpg` was intentionally excluded and should be removed from website use.
+The AVIF media pack contains 30 selected images under `00_INPUTS/02_selected_avif_media/assets/images/`. The media guide explicitly says `excluded legacy team meeting image` / source `excluded source image` was intentionally excluded and should be removed from website use.
 
 ### AVIF Files
 
@@ -233,7 +233,7 @@ Recommended:
 
 Do not use:
 
-- `about-team-meeting` or any related source.
+- `excluded legacy team meeting image` or any related source.
 - The vertical video as homepage hero.
 
 ### About Page Images
@@ -364,14 +364,14 @@ Partner name warnings:
 - Keep: homepage role, environmental/livelihood positioning, program teasers, impact section, news preview, calls to action.
 - Replace: current generic headline and older focus labels with DOCX language around GLR, smallholder farmers, sustainable agroforestry, ecosystem restoration, food security, and resilient livelihoods.
 - Add: final impact numbers, clearer program pillars, project teasers for the three named projects, partner preview.
-- Remove later: any dependency on `about-team-meeting`; old impact numbers if they differ from approved figures.
+- Remove later: any dependency on `excluded legacy team meeting image`; old impact numbers if they differ from approved figures.
 
 ### `about.html`
 
 - Keep: About page, mission/vision/history structure, values concept, CTA.
 - Replace: current about copy with DOCX "Who We Are", Mission, Vision, Core Values, and History.
 - Add: founding details from 2017, legal registration in 2021, ISAE Busogo origin, Gisagara base, nationwide ambition.
-- Remove later: `about-team-meeting.jpg` hero usage and any generic focus-area copy that belongs better on Programs.
+- Remove later: `excluded legacy team meeting image` hero usage and any generic focus-area copy that belongs better on Programs.
 
 ### `programs.html`
 
@@ -420,14 +420,14 @@ Partner name warnings:
 - Keep: volunteer, partnership, donation/support, community involvement structure.
 - Replace: copy with DOCX "Support Our Work", "Visit GLR", and Jobs/Internship/Volunteering direction.
 - Add: pathways for support, visit, volunteer/internship, partnership, and contact forms.
-- Remove later: `about-team-meeting.jpg` usage.
+- Remove later: `excluded legacy team meeting image` usage.
 
 ### `staff.html`
 
 - Keep: Staff page and staff listing if still approved.
 - Replace: staff content only after official staff data is confirmed.
 - Add: possible admin-managed staff entries later.
-- Remove later: `about-team-meeting.jpg` hero/intro usage.
+- Remove later: `excluded legacy team meeting image` hero/intro usage.
 
 ### `reports.html`
 
@@ -680,8 +680,8 @@ Likely fields:
 - Any reports/admin/database planning.
 - Any `reports` table.
 - Any `activity_logs` table.
-- `about-team-meeting.jpg` from all future website usage.
-- Current `about-team-meeting` references in:
+- `excluded legacy team meeting image` from all future website usage.
+- Current `excluded legacy team meeting image` references in:
   - `about.html`
   - `contact.html`
   - `get-involved.html`

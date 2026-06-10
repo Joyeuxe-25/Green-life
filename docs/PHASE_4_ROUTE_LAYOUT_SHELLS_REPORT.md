@@ -208,7 +208,7 @@ The shared constants continue to include module/media constants from earlier pha
 - Reports page was excluded from the new public navigation.
 - `reports.html` in the old static site was not deleted.
 - The old static website was not edited, moved, or deleted.
-- `about-team-meeting` was not used in new route or layout files.
+- `excluded legacy team meeting image` was not used in new route or layout files.
 - No backend features were started.
 - No D1 database schema was created.
 - No CRUD endpoints were created.

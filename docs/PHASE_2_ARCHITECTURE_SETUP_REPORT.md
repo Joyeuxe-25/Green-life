@@ -196,7 +196,7 @@ Clarifications:
 - Restore Local remains text-only until a logo is provided.
 - Partner spelling set to Biocoor.
 - FMI Ubumuntu used as the preferred spelling.
-- `about-team-meeting` was not used anywhere in the new skeleton.
+- `excluded legacy team meeting image` was not used anywhere in the new skeleton.
 
 ## Commands For Human To Run Later
 

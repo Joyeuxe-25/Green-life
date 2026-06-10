@@ -272,7 +272,7 @@ Do not run shadcn component commands until the UI implementation phase is approv
 - `tailwindcss-animate`, `class-variance-authority`, `clsx`, and `tailwind-merge` are prepared for shadcn readiness only.
 - Admin form dependencies are listed for later use, but no forms were built.
 - `reports.html` still exists in the old static site and should remain excluded from the future rebuild.
-- `about-team-meeting` was not used in Phase 3 files and must remain excluded.
+- `excluded legacy team meeting image` was not used in Phase 3 files and must remain excluded.
 
 ## Recommended Next Phase
 

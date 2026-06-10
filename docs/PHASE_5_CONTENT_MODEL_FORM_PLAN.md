@@ -10,7 +10,7 @@ Scope: planning and structure only. No SQL schema, backend routes, CRUD endpoint
 - `packages/shared/src/constants.ts`
 - `packages/shared/src/types.ts`
 
-Phase 1 is the main source for content structure, final impact numbers, partner list, media recommendations, Reports exclusion, and `about-team-meeting` exclusion.
+Phase 1 is the main source for content structure, final impact numbers, partner list, media recommendations, Reports exclusion, and `excluded legacy team meeting image` exclusion.
 
 ## Files Changed
 
@@ -166,7 +166,7 @@ Partner names locked/planned:
 
 - Static content sections: confirmed contact details, location, contact intro, contact message CTA/form later.
 - Dynamic content needed: contact form submissions later create `contact_messages`.
-- Media needed: community or field-supporting image; do not use `about-team-meeting`.
+- Media needed: community or field-supporting image; do not use `excluded legacy team meeting image`.
 - CTA buttons/links: Donate, Programs, Get Involved.
 - Detail pages needed: no.
 
@@ -445,7 +445,7 @@ Media guidance:
 
 - The video `community-tree-nursery-testimony.mp4` should be supporting media only, not homepage hero media.
 - Restore Local can be stored as a partner row with `is_text_only = true` until a logo is provided.
-- Do not use `about-team-meeting` or related source media anywhere in the future system.
+- Do not use `excluded legacy team meeting image` or related source media anywhere in the future system.
 
 ## Status Rules
 
@@ -501,7 +501,7 @@ Applies to:
 - No reports table.
 - No activity logs table.
 - `reports.html` remains in the old static site but is excluded from future rebuild scope.
-- `about-team-meeting` must not be used.
+- `excluded legacy team meeting image` must not be used.
 - Admin authentication will use HTTP-only cookies later, not localStorage.
 
 ## Warnings
