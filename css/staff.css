@@ -56,178 +56,26 @@
 .staff-intro-badge i { color: #a8d5a2; }
 
 /* ============================================
-   STAFF GRID — 3 columns, co-founder featured
+   STAFF PLACEHOLDER
    ============================================ */
 
 .staff-section { background-color: var(--off-white); }
 
-.staff-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md);
+.staff-placeholder {
     margin-top: var(--space-md);
-}
-
-/* Featured card (Co-Founder) spans full width on first row */
-.staff-card-featured {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 340px 1fr;
-    gap: 0;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 0 8px 40px rgba(0,0,0,0.12);
     background-color: var(--white);
-    border-bottom: 4px solid var(--accent-green);
-    transition: transform 0.25s, box-shadow 0.25s;
-}
-
-.staff-card-featured:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 20px 56px rgba(0,0,0,0.16);
-}
-
-.staff-card-featured .staff-card-img {
-    height: 100%;
-    min-height: 320px;
-}
-
-.staff-card-featured .staff-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-    transition: transform 0.55s ease;
-}
-
-.staff-card-featured:hover .staff-card-img img { transform: scale(1.04); }
-
-.staff-card-featured .staff-card-body {
     padding: var(--space-lg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: var(--white);
-}
-
-/* Regular staff cards */
-.staff-card {
-    background-color: var(--white);
     border-radius: 12px;
-    overflow: hidden;
     box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-    transition: transform 0.25s ease, box-shadow 0.25s;
-    border-bottom: 3px solid transparent;
-    display: flex;
-    flex-direction: column;
+    border-bottom: 3px solid var(--accent-green);
+    text-align: center;
 }
 
-.staff-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.13);
-    border-bottom-color: var(--accent-green);
-}
-
-/* Card image */
-.staff-card-img {
-    position: relative;
-    height: 220px;
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.staff-card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-    transition: transform 0.55s ease;
-}
-
-.staff-card:hover .staff-card-img img { transform: scale(1.06); }
-
-/* Role badge on image */
-.staff-role-badge {
-    position: absolute;
-    bottom: 12px;
-    left: 12px;
-    background-color: var(--accent-green);
-    color: #ffffff;
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 4px 12px;
-    border-radius: 20px;
-}
-
-/* Card body */
-.staff-card-body {
-    padding: var(--space-md);
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.staff-card-body h3 {
+.staff-placeholder p {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     color: var(--deep-green);
-    margin-bottom: 4px;
-}
-
-.staff-title {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--accent-green);
-    margin-bottom: var(--space-sm);
-}
-
-.staff-title i { font-size: 0.8rem; }
-
-.staff-bio {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    line-height: 1.72;
-    margin-bottom: var(--space-md);
-    flex: 1;
-}
-
-/* Contact links */
-.staff-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    border-top: 1px solid #e8f2e4;
-    padding-top: var(--space-sm);
-    margin-top: auto;
-}
-
-.staff-contact-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.84rem;
-    color: var(--text-light);
-    text-decoration: none;
-    transition: color 0.2s;
-    word-break: break-all;
-}
-
-.staff-contact-item:hover { color: var(--accent-green); }
-
-.staff-contact-item i {
-    color: var(--accent-green);
-    font-size: 0.85rem;
-    flex-shrink: 0;
-    width: 14px;
+    margin: 0;
 }
 
 /* ============================================
@@ -259,17 +107,10 @@
    RESPONSIVE
    ============================================ */
 
-@media (max-width: 1100px) {
-    .staff-grid { grid-template-columns: repeat(2, 1fr); }
-    .staff-card-featured { grid-column: 1 / -1; }
-}
-
 @media (max-width: 900px) {
     .staff-intro-layout { grid-template-columns: 1fr; }
     .staff-intro-image img { height: 260px; }
     .staff-intro-badge { right: 0; bottom: -14px; }
-    .staff-card-featured { grid-template-columns: 1fr; }
-    .staff-card-featured .staff-card-img { height: 280px; }
     .staff-join-inner { grid-template-columns: 1fr; }
     .staff-join-image { display: none; }
 }
@@ -278,8 +119,6 @@
     .staff-hero { height: 100svh; }
     .staff-hero-content { padding-bottom: 80px; }
     .staff-hero-meta { flex-direction: column; gap: 10px; }
-    .staff-grid { grid-template-columns: 1fr !important; }
-    .staff-card-featured { grid-column: auto; }
     .staff-join-buttons { flex-direction: column; }
     .btn-white, .btn-outline-white-staff { width: 100%; max-width: 280px; text-align: center; }
 }

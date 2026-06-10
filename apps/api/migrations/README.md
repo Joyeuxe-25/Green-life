@@ -18,7 +18,7 @@ These migration files are reviewed schema files only until an approved phase app
 
 - No reports table should be added.
 - No activity logs table should be added.
-- Do not use `about-team-meeting` in future media seed or upload plans.
+- Do not use `excluded legacy team meeting image` in future media seed or upload plans.
 
 ## Applying Later
 
