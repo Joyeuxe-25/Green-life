@@ -7,6 +7,12 @@ type AdminRow = SafeAdmin & {
   is_active: number;
 };
 
+type CreateAdminInput = {
+  name: string;
+  email: string;
+  passwordHash: string;
+};
+
 function toSafeAdmin(row: AdminRow): SafeAdmin {
   return {
     id: row.id,
@@ -38,6 +44,43 @@ export async function findActiveAdminById(c: Context<AppBindings>, id: string) {
     .first<AdminRow>();
 
   return row ?? null;
+}
+
+export async function countActiveAdmins(c: Context<AppBindings>) {
+  const row = await getDb(c)
+    .prepare("SELECT COUNT(*) AS count FROM admin WHERE is_active = 1")
+    .first<{ count: number }>();
+
+  return Number(row?.count ?? 0);
+}
+
+export async function createAdmin(
+  c: Context<AppBindings>,
+  input: CreateAdminInput
+) {
+  const now = nowIso();
+  const id = crypto.randomUUID();
+
+  await getDb(c)
+    .prepare(
+      "INSERT INTO admin (id, name, email, password_hash, password_updated_at, is_active, created_at, updated_at) VALUES (?, ?, ?, ?, ?, 1, ?, ?)"
+    )
+    .bind(
+      id,
+      input.name,
+      input.email,
+      input.passwordHash,
+      now,
+      now,
+      now
+    )
+    .run();
+
+  return {
+    id,
+    name: input.name,
+    email: input.email
+  };
 }
 
 export async function updateAdminLastLogin(c: Context<AppBindings>, id: string) {

@@ -13,6 +13,7 @@ out/
 # Build outputs
 dist/
 build/
+*.tsbuildinfo
 
 # Environment files
 .env
@@ -25,6 +26,7 @@ npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+cookies.text
 
 # OS/editor files
 .DS_Store

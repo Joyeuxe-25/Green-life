@@ -5,6 +5,7 @@ import { adminEventsRoutes } from "./routes/admin-events";
 import { adminNewsRoutes } from "./routes/admin-news";
 import { adminPartnersRoutes } from "./routes/admin-partners";
 import { adminProjectsRoutes } from "./routes/admin-projects";
+import { adminSetupRoutes } from "./routes/admin-setup";
 import { adminStaffRoutes } from "./routes/admin-staff";
 import { contactRoutes } from "./routes/contact";
 import { donationRoutes } from "./routes/donations";
@@ -26,6 +27,7 @@ app.get("/", (c) => {
 
 app.route("/", healthRoutes);
 app.route("/public", publicRoutes);
+app.route("/admin/setup", adminSetupRoutes);
 app.route("/admin/auth", adminAuthRoutes);
 app.route("/admin/news", adminNewsRoutes);
 app.route("/admin/events", adminEventsRoutes);
