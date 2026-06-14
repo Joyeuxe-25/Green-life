@@ -29,7 +29,7 @@ npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-cookies.text
+cookies.txt
 
 # OS/editor files
 .DS_Store
