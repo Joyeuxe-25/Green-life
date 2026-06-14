@@ -53,7 +53,43 @@ const primaryItems: AdminNavItem[] = [
     ]
   },
   { label: "Contact Messages", href: "/contact-messages" },
-  { label: "Donation Messages", href: "/donation-messages" }
+  { label: "Donation Messages", href: "/donation-messages" },
+  { label: "Media Library", href: "/media" }
+];
+
+const websiteContentItems: AdminNavItem[] = [
+  {
+    label: "Site Content",
+    href: "/site-content",
+    children: [
+      { label: "Add New", href: "/site-content/add" },
+      { label: "Update", href: "/site-content/update" }
+    ]
+  },
+  {
+    label: "Programs",
+    href: "/programs",
+    children: [
+      { label: "Add New", href: "/programs/add" },
+      { label: "Update", href: "/programs/update" }
+    ]
+  },
+  {
+    label: "Impact Stats",
+    href: "/impact-stats",
+    children: [
+      { label: "Add New", href: "/impact-stats/add" },
+      { label: "Update", href: "/impact-stats/update" }
+    ]
+  },
+  {
+    label: "Site Settings",
+    href: "/site-settings",
+    children: [
+      { label: "Add New", href: "/site-settings/add" },
+      { label: "Update", href: "/site-settings/update" }
+    ]
+  }
 ];
 
 const bottomItems = [{ label: "Change Password", href: "/change-password" }];
@@ -127,6 +163,39 @@ export function AdminSidebar({
             </li>
           ))}
         </ul>
+        <div>
+          <p className="px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+            Website Content
+          </p>
+          <ul className="mt-2 flex list-none flex-col gap-1 p-0 text-sm">
+            {websiteContentItems.map((item) => (
+              <li key={item.href}>
+                <Link
+                  className="block rounded-lg px-3 py-2 font-semibold text-foreground transition hover:bg-background hover:text-primary"
+                  href={item.href}
+                  onClick={onNavigate}
+                >
+                  {item.label}
+                </Link>
+                {item.children ? (
+                  <ul className="mb-2 ml-3 mt-1 flex list-none flex-col gap-1 border-l border-border pl-3 text-muted-foreground">
+                    {item.children.map((child) => (
+                      <li key={child.href}>
+                        <Link
+                          className="block rounded-md px-3 py-1.5 text-xs font-medium transition hover:bg-background hover:text-primary"
+                          href={child.href}
+                          onClick={onNavigate}
+                        >
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </div>
         <ul className="mt-auto flex list-none flex-col gap-2 border-t border-border p-0 pt-4 text-sm">
           {bottomItems.map((item) => (
             <li key={item.href}>
