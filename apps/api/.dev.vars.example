@@ -4,3 +4,4 @@ ADMIN_SESSION_SECRET=replace-with-local-session-secret
 ADMIN_SESSION_COOKIE_NAME=glr_admin_session
 ADMIN_SESSION_EXPIRES_DAYS=7
 CORS_ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001
+R2_PUBLIC_BASE_URL=https://media.greenliferwanda.org

@@ -1,6 +1,7 @@
 export type Env = {
   DATABASE: D1Database;
   MEDIA_BUCKET: R2Bucket;
+  R2_PUBLIC_BASE_URL?: string;
   ADMIN_SESSION_SECRET?: string;
   ADMIN_SESSION_COOKIE_NAME?: string;
   ADMIN_SESSION_EXPIRES_DAYS?: string;

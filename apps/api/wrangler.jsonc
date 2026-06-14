@@ -15,5 +15,8 @@
       "binding": "MEDIA_BUCKET",
       "bucket_name": "green-life-rwanda-media"
     }
-  ]
+  ],
+  "vars": {
+    "R2_PUBLIC_BASE_URL": "https://media.greenliferwanda.org"
+  }
 }
