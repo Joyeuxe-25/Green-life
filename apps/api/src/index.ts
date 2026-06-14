@@ -1,6 +1,8 @@
 import { Hono } from "hono";
 import { corsPlanningMiddleware } from "./middleware/cors";
 import { adminAuthRoutes } from "./routes/admin-auth";
+import { adminContactMessagesRoutes } from "./routes/admin-contact-messages";
+import { adminDonationMessagesRoutes } from "./routes/admin-donation-messages";
 import { adminEventsRoutes } from "./routes/admin-events";
 import { adminNewsRoutes } from "./routes/admin-news";
 import { adminPartnersRoutes } from "./routes/admin-partners";
@@ -34,6 +36,8 @@ app.route("/admin/events", adminEventsRoutes);
 app.route("/admin/projects", adminProjectsRoutes);
 app.route("/admin/staff", adminStaffRoutes);
 app.route("/admin/partners", adminPartnersRoutes);
+app.route("/admin/contact-messages", adminContactMessagesRoutes);
+app.route("/admin/donation-messages", adminDonationMessagesRoutes);
 app.route("/contact", contactRoutes);
 app.route("/donations", donationRoutes);
 app.route("/media", mediaRoutes);
