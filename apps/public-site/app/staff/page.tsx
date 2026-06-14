@@ -1,10 +1,32 @@
-import { PageShell } from "@/components/page-shell";
+import {
+  CardGrid,
+  EmptyState,
+  PageHero,
+  SectionHeading,
+  StaffCard
+} from "@/components/public-components";
+import { fetchStaff } from "@/lib/public-api";
 
-export default function StaffPage() {
+export default async function StaffPage() {
+  const { staff } = await fetchStaff();
+
   return (
-    <PageShell
-      title="Staff"
-      description="Placeholder shell for future staff and board profiles."
-    />
+    <>
+      <PageHero title="Staff" />
+      <section className="section">
+        <div className="container">
+          <SectionHeading title="Staff" />
+          {staff.length > 0 ? (
+            <CardGrid>
+              {staff.map((member) => (
+                <StaffCard key={member.id} member={member} />
+              ))}
+            </CardGrid>
+          ) : (
+            <EmptyState label="No active staff profiles yet." />
+          )}
+        </div>
+      </section>
+    </>
   );
 }

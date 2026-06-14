@@ -1,10 +1,27 @@
-import { PageShell } from "@/components/page-shell";
+import {
+  ContentSections,
+  EmptyState,
+  PageHero,
+  pickHero
+} from "@/components/public-components";
+import { fetchPage } from "@/lib/public-api";
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const data = await fetchPage("contact");
+  const hero = pickHero(data.blocks, "Contact");
+
   return (
-    <PageShell
-      title="Contact"
-      description="Placeholder shell for future contact information and contact message flow."
-    />
+    <>
+      <PageHero block={hero} title="Contact" />
+      {data.blocks.length > 0 ? (
+        <ContentSections blocks={data.blocks} />
+      ) : (
+        <section className="section">
+          <div className="container">
+            <EmptyState label="No published contact content yet." />
+          </div>
+        </section>
+      )}
+    </>
   );
 }

@@ -17,18 +17,16 @@ const navigationItems = [
 
 export function SiteHeader() {
   return (
-    <header className="border-b border-border bg-white">
-      <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-4 lg:flex-row lg:items-center lg:justify-between">
-        <Link className="font-semibold text-primary" href="/">
+    <header className="site-header">
+      <div className="container header-inner">
+        <Link className="brand" href="/">
           Green Life Rwanda
         </Link>
         <nav aria-label="Public navigation">
-          <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-foreground/75">
+          <ul className="nav-list">
             {navigationItems.map((item) => (
               <li key={item.href}>
-                <Link className="hover:text-primary" href={item.href}>
-                  {item.label}
-                </Link>
+                <Link href={item.href}>{item.label}</Link>
               </li>
             ))}
           </ul>

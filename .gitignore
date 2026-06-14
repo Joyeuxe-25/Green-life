@@ -14,11 +14,14 @@ out/
 dist/
 build/
 *.tsbuildinfo
+00_INPUTS/
 
 # Environment files
 .env
 .env.*
 !.env.example
+!.env.*.example
+!**/.env.*.example
 
 # Logs
 *.log

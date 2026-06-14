@@ -1,10 +1,27 @@
-import { PageShell } from "@/components/page-shell";
+import {
+  ContentSections,
+  EmptyState,
+  PageHero,
+  pickHero
+} from "@/components/public-components";
+import { fetchPage } from "@/lib/public-api";
 
-export default function DonatePage() {
+export default async function DonatePage() {
+  const data = await fetchPage("donate");
+  const hero = pickHero(data.blocks, "Donate");
+
   return (
-    <PageShell
-      title="Donate"
-      description="Placeholder shell for future donation information and donation inquiry flow."
-    />
+    <>
+      <PageHero block={hero} title="Donate" />
+      {data.blocks.length > 0 ? (
+        <ContentSections blocks={data.blocks} />
+      ) : (
+        <section className="section">
+          <div className="container">
+            <EmptyState label="No published donation content yet." />
+          </div>
+        </section>
+      )}
+    </>
   );
 }

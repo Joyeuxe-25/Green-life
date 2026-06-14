@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Green Life Rwanda",
-  description: "Future Green Life Rwanda public website."
+  description: "Green Life Rwanda public website."
 };
 
 export default function RootLayout({

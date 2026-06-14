@@ -1,10 +1,32 @@
-import { PageShell } from "@/components/page-shell";
+import {
+  CardGrid,
+  EmptyState,
+  PageHero,
+  ProjectCard,
+  SectionHeading
+} from "@/components/public-components";
+import { fetchProjects } from "@/lib/public-api";
 
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const { projects } = await fetchProjects();
+
   return (
-    <PageShell
-      title="Projects"
-      description="Placeholder shell for future project listings."
-    />
+    <>
+      <PageHero title="Projects" />
+      <section className="section">
+        <div className="container">
+          <SectionHeading title="Projects" />
+          {projects.length > 0 ? (
+            <CardGrid>
+              {projects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </CardGrid>
+          ) : (
+            <EmptyState label="No public projects yet." />
+          )}
+        </div>
+      </section>
+    </>
   );
 }
