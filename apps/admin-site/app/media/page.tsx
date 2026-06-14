@@ -13,9 +13,15 @@ import {
 
 const statusOptions: MediaStatus[] = ["active", "hidden"];
 
+type UploadStatus = {
+  fileName: string;
+  status: "queued" | "uploading" | "uploaded" | "failed";
+  message?: string;
+};
+
 export default function MediaLibraryPage() {
   const [media, setMedia] = useState<MediaItem[]>([]);
-  const [file, setFile] = useState<File | null>(null);
+  const [files, setFiles] = useState<File[]>([]);
   const [altText, setAltText] = useState("");
   const [caption, setCaption] = useState("");
   const [entityType, setEntityType] = useState("");
@@ -27,6 +33,7 @@ export default function MediaLibraryPage() {
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [uploadStatuses, setUploadStatuses] = useState<UploadStatus[]>([]);
 
   useEffect(() => {
     void loadMedia();
@@ -52,34 +59,91 @@ export default function MediaLibraryPage() {
     setError("");
     setSuccess("");
 
-    if (!file) {
-      setError("Choose an image file to upload.");
+    if (files.length === 0) {
+      setError("Choose one or more image files to upload.");
       return;
     }
 
     setIsUploading(true);
+    setUploadStatuses(
+      files.map((selectedFile) => ({
+        fileName: selectedFile.name,
+        status: "queued"
+      }))
+    );
+
+    const uploadedMedia: MediaItem[] = [];
+    const failedUploads: UploadStatus[] = [];
+
     try {
-      const data = await uploadMedia({
-        file,
-        altText: altText.trim(),
-        caption: caption.trim(),
-        entityType: entityType.trim(),
-        entityId: entityId.trim(),
-        displayOrder: Number.parseInt(displayOrder, 10) || 0
-      });
-      setMedia((currentMedia) => [data.media, ...currentMedia]);
-      setFile(null);
-      setAltText("");
-      setCaption("");
-      setEntityType("");
-      setEntityId("");
-      setDisplayOrder("0");
-      setSuccess("Media uploaded.");
-      event.currentTarget.reset();
-    } catch (uploadError) {
-      setError(
-        uploadError instanceof Error ? uploadError.message : "Could not upload media."
-      );
+      for (const [index, selectedFile] of files.entries()) {
+        setUploadStatuses((currentStatuses) =>
+          currentStatuses.map((item) =>
+            item.fileName === selectedFile.name
+              ? { ...item, status: "uploading", message: "Uploading..." }
+              : item
+          )
+        );
+
+        try {
+          const data = await uploadMedia({
+            file: selectedFile,
+            altText: altText.trim(),
+            caption: caption.trim(),
+            entityType: entityType.trim(),
+            entityId: entityId.trim(),
+            displayOrder: (Number.parseInt(displayOrder, 10) || 0) + index
+          });
+          uploadedMedia.push(data.media);
+          setUploadStatuses((currentStatuses) =>
+            currentStatuses.map((item) =>
+              item.fileName === selectedFile.name
+                ? { ...item, status: "uploaded", message: "Uploaded" }
+                : item
+            )
+          );
+        } catch (uploadError) {
+          const message =
+            uploadError instanceof Error
+              ? uploadError.message
+              : "Could not upload this file.";
+          failedUploads.push({
+            fileName: selectedFile.name,
+            status: "failed",
+            message
+          });
+          setUploadStatuses((currentStatuses) =>
+            currentStatuses.map((item) =>
+              item.fileName === selectedFile.name
+                ? { ...item, status: "failed", message }
+                : item
+            )
+          );
+        }
+      }
+
+      if (uploadedMedia.length > 0) {
+        setMedia((currentMedia) => [...uploadedMedia.reverse(), ...currentMedia]);
+      }
+
+      if (failedUploads.length === 0) {
+        setFiles([]);
+        setAltText("");
+        setCaption("");
+        setEntityType("");
+        setEntityId("");
+        setDisplayOrder("0");
+        setSuccess(
+          uploadedMedia.length === 1
+            ? "Media uploaded."
+            : `${uploadedMedia.length} media files uploaded.`
+        );
+        event.currentTarget.reset();
+      } else {
+        setError(
+          `${failedUploads.length} of ${files.length} files could not be uploaded.`
+        );
+      }
     } finally {
       setIsUploading(false);
     }
@@ -179,7 +243,10 @@ export default function MediaLibraryPage() {
               accept="image/avif,image/jpeg,image/png,image/webp"
               className="w-full rounded-lg border border-border bg-white px-3 py-2 text-sm outline-none transition file:mr-3 file:rounded-md file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-primary-foreground focus:border-primary"
               disabled={isUploading}
-              onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+              multiple
+              onChange={(event) =>
+                setFiles(Array.from(event.target.files ?? []))
+              }
               type="file"
             />
           </Field>
@@ -231,6 +298,31 @@ export default function MediaLibraryPage() {
 
         {error ? <Alert tone="error" message={error} /> : null}
         {success ? <Alert tone="success" message={success} /> : null}
+        {uploadStatuses.length > 0 ? (
+          <div className="grid gap-2 rounded-lg border border-border bg-background p-3 text-sm">
+            {uploadStatuses.map((item) => (
+              <div
+                className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between"
+                key={item.fileName}
+              >
+                <span className="truncate font-medium text-foreground">
+                  {item.fileName}
+                </span>
+                <span
+                  className={
+                    item.status === "failed"
+                      ? "text-red-700"
+                      : item.status === "uploaded"
+                        ? "text-green-700"
+                        : "text-muted-foreground"
+                  }
+                >
+                  {item.message ?? item.status}
+                </span>
+              </div>
+            ))}
+          </div>
+        ) : null}
 
         <div className="flex justify-end">
           <button
