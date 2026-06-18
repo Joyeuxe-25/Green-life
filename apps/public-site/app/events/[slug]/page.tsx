@@ -22,7 +22,30 @@ export default async function EventDetailPage({
 
   return (
     <>
-      <PageHero title={event.title} />
+      <PageHero
+        block={
+          event.image_url
+            ? {
+                id: `${event.id}-hero`,
+                page_key: "events",
+                block_key: "event-hero",
+                block_type: "hero",
+                eyebrow: event.category,
+                title: event.title,
+                subtitle: null,
+                summary: event.description,
+                body: null,
+                cta_label: null,
+                cta_href: null,
+                secondary_cta_label: null,
+                secondary_cta_href: null,
+                image_url: event.image_url,
+                display_order: 0
+              }
+            : undefined
+        }
+        title={event.title}
+      />
       <section className="section">
         <div className="container detail-layout">
           <SectionHeading

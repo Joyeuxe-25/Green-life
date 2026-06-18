@@ -5,7 +5,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AdminShell } from "@/components/admin-shell";
 import { EventForm } from "@/components/event-form";
-import { createEventItem, type EventInput } from "@/lib/admin-api";
+import {
+  createEventItem,
+  replaceEntityImage,
+  type EventInput
+} from "@/lib/admin-api";
 
 export default function AddEventPage() {
   const router = useRouter();
@@ -16,7 +20,11 @@ export default function AddEventPage() {
     setError("");
     setIsSubmitting(true);
     try {
-      await createEventItem(input);
+      const { imageFile, removeImage: _removeImage, ...payload } = input;
+      const { event } = await createEventItem(payload);
+      if (imageFile) {
+        await replaceEntityImage("event", event.id, imageFile);
+      }
       router.replace("/events");
     } catch (createError) {
       setError(

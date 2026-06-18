@@ -20,6 +20,9 @@ export type ProjectRow = {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type ProjectInput = {
@@ -36,8 +39,10 @@ export type ProjectInput = {
   impactSummary: string | null;
 };
 
-const PROJECT_COLUMNS =
-  "id, title, slug, summary, description, district, sector, start_date, end_date, status, category, impact_summary, created_at, updated_at, deleted_at";
+const PROJECT_COLUMNS = `id, title, slug, summary, description, district, sector, start_date, end_date, status, category, impact_summary, created_at, updated_at, deleted_at,
+  (SELECT public_url FROM media_files WHERE entity_type = 'project' AND entity_id = projects.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS image_url,
+  (SELECT alt_text FROM media_files WHERE entity_type = 'project' AND entity_id = projects.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS image_alt_text,
+  (SELECT caption FROM media_files WHERE entity_type = 'project' AND entity_id = projects.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS image_caption`;
 
 export async function listProjects(c: Context<AppBindings>) {
   const result = await getDb(c)

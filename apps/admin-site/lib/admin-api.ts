@@ -2,6 +2,7 @@ export type AdminUser = {
   id: string;
   name: string;
   email: string;
+  role?: string | null;
 };
 
 type ApiEnvelope<T> =
@@ -44,6 +45,9 @@ export type NewsItem = {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type NewsInput = {
@@ -56,6 +60,8 @@ export type NewsInput = {
   status: NewsStatus;
   seoTitle?: string;
   seoDescription?: string;
+  imageFile?: File | null;
+  removeImage?: boolean;
 };
 
 export type EventStatus = "draft" | "upcoming" | "completed" | "cancelled";
@@ -74,6 +80,9 @@ export type EventItem = {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type EventInput = {
@@ -86,6 +95,8 @@ export type EventInput = {
   location?: string;
   category?: string;
   status: EventStatus;
+  imageFile?: File | null;
+  removeImage?: boolean;
 };
 
 export type ProjectStatus = "planned" | "active" | "completed";
@@ -106,6 +117,9 @@ export type ProjectItem = {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type ProjectInput = {
@@ -120,6 +134,8 @@ export type ProjectInput = {
   status: ProjectStatus;
   category?: string;
   impactSummary?: string;
+  imageFile?: File | null;
+  removeImage?: boolean;
 };
 
 export type StaffStatus = "active" | "hidden";
@@ -350,7 +366,7 @@ export type MediaUpdateInput = {
 };
 
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8787";
+  process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/+$/, "") ?? "";
 
 async function requestApi<T>(
   path: string,
@@ -783,6 +799,62 @@ export async function uploadMedia(input: MediaUploadInput) {
     method: "POST",
     body: formData
   });
+}
+
+export async function replaceEntityImage(
+  entityType: "news" | "event" | "project",
+  entityId: string,
+  file: File
+) {
+  const existing = await listMedia({
+    entityType,
+    entityId,
+    status: "active"
+  });
+
+  for (const media of existing.media) {
+    await deleteMedia(media.id);
+  }
+
+  return uploadMedia({
+    file,
+    altText: "",
+    caption: "",
+    entityType,
+    entityId,
+    displayOrder: 0
+  });
+}
+
+export async function removeEntityImages(
+  entityType: "news" | "event" | "project",
+  entityId: string
+) {
+  const existing = await listMedia({
+    entityType,
+    entityId,
+    status: "active"
+  });
+
+  for (const media of existing.media) {
+    await deleteMedia(media.id);
+  }
+}
+
+export function resolveAdminMediaUrl(value: string | null | undefined) {
+  if (!value) {
+    return "";
+  }
+
+  if (/^https?:\/\//i.test(value) || value.startsWith("data:")) {
+    return value;
+  }
+
+  if (value.startsWith("/")) {
+    return `${API_BASE_URL}${value}`;
+  }
+
+  return value;
 }
 
 export async function updateMedia(id: string, input: MediaUpdateInput) {

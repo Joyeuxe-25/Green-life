@@ -15,6 +15,7 @@ export function AdminShell({ children }: AdminShellProps) {
   const router = useRouter();
   const [admin, setAdmin] = useState<AdminUser | null>(null);
   const [isCheckingSession, setIsCheckingSession] = useState(true);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [logoutError, setLogoutError] = useState("");
 
@@ -71,9 +72,18 @@ export function AdminShell({ children }: AdminShellProps) {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-background text-foreground lg:grid lg:grid-cols-[18rem_1fr]">
+    <div
+      className={`min-h-screen overflow-x-hidden bg-background text-foreground lg:grid ${
+        isSidebarCollapsed ? "lg:grid-cols-[5.5rem_1fr]" : "lg:grid-cols-[18rem_1fr]"
+      }`}
+    >
       <div className="hidden lg:block">
-        <AdminSidebar admin={admin} onLogout={handleLogout} />
+        <AdminSidebar
+          admin={admin}
+          isCollapsed={isSidebarCollapsed}
+          onCollapseToggle={() => setIsSidebarCollapsed((current) => !current)}
+          onLogout={handleLogout}
+        />
       </div>
 
       {isSidebarOpen ? (

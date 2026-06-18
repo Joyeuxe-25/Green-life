@@ -7,6 +7,8 @@ import { AdminShell } from "@/components/admin-shell";
 import { EventForm } from "@/components/event-form";
 import {
   getEventItem,
+  removeEntityImages,
+  replaceEntityImage,
   updateEventItem,
   type EventInput,
   type EventItem
@@ -48,7 +50,13 @@ export default function UpdateEventItemPage() {
     setError("");
     setIsSubmitting(true);
     try {
-      await updateEventItem(params.id, input);
+      const { imageFile, removeImage, ...payload } = input;
+      const { event } = await updateEventItem(params.id, payload);
+      if (imageFile) {
+        await replaceEntityImage("event", event.id, imageFile);
+      } else if (removeImage) {
+        await removeEntityImages("event", event.id);
+      }
       router.replace("/events");
     } catch (updateError) {
       setError(

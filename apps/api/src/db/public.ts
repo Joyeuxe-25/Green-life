@@ -6,10 +6,12 @@ export type PublicPageKey =
   | "home"
   | "about"
   | "programs"
+  | "projects"
   | "impact"
   | "contact"
   | "donate"
-  | "get-involved";
+  | "get-involved"
+  | "partners";
 
 export type PublicContentBlock = {
   id: string;
@@ -66,6 +68,9 @@ export type PublicNewsItem = {
   published_at: string | null;
   created_at: string;
   updated_at: string;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type PublicEventItem = {
@@ -79,6 +84,9 @@ export type PublicEventItem = {
   location: string | null;
   category: string | null;
   status: string;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type PublicProjectItem = {
@@ -94,6 +102,9 @@ export type PublicProjectItem = {
   status: string;
   category: string | null;
   impact_summary: string | null;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type PublicStaffMember = {
@@ -114,6 +125,9 @@ export type PublicPartner = {
   description: string | null;
   display_order: number;
   is_text_only: number;
+  logo_url: string | null;
+  logo_alt_text: string | null;
+  logo_caption: string | null;
 };
 
 export type PublicMediaItem = {
@@ -128,6 +142,26 @@ export type PublicMediaItem = {
   created_at: string;
 };
 
+export type PublicMediaFile = PublicMediaItem & {
+  storage_key: string;
+};
+
+export type PublicContactMessageInput = {
+  sender_name: string;
+  email: string;
+  phone: string | null;
+  subject: string | null;
+  message: string;
+};
+
+export type PublicDonationMessageInput = {
+  donor_name: string;
+  email: string;
+  phone: string | null;
+  intended_amount: string | null;
+  message: string | null;
+};
+
 const CONTENT_BLOCK_COLUMNS =
   "id, page_key, block_key, block_type, eyebrow, title, subtitle, summary, body, cta_label, cta_href, secondary_cta_label, secondary_cta_href, image_url, display_order";
 const IMPACT_STAT_COLUMNS =
@@ -135,22 +169,54 @@ const IMPACT_STAT_COLUMNS =
 const PROGRAM_COLUMNS =
   "id, title, slug, summary, body, icon_name, display_order";
 const SITE_SETTING_COLUMNS = "key, group_key, label, value, field_type";
-const NEWS_LIST_COLUMNS =
-  "id, title, slug, excerpt, category, published_at, created_at, updated_at";
-const NEWS_DETAIL_COLUMNS =
-  "id, title, slug, excerpt, content, category, published_at, created_at, updated_at";
-const EVENT_COLUMNS =
-  "id, title, slug, description, event_date, start_time, end_time, location, category, status";
-const PROJECT_LIST_COLUMNS =
-  "id, title, slug, summary, district, sector, start_date, end_date, status, category, impact_summary";
-const PROJECT_DETAIL_COLUMNS =
-  "id, title, slug, summary, description, district, sector, start_date, end_date, status, category, impact_summary";
+const NEWS_LIST_COLUMNS = withAttachedMediaColumns(
+  "news",
+  "news",
+  "id, title, slug, excerpt, category, published_at, created_at, updated_at"
+);
+const NEWS_DETAIL_COLUMNS = withAttachedMediaColumns(
+  "news",
+  "news",
+  "id, title, slug, excerpt, content, category, published_at, created_at, updated_at"
+);
+const EVENT_COLUMNS = withAttachedMediaColumns(
+  "event",
+  "events",
+  "id, title, slug, description, event_date, start_time, end_time, location, category, status"
+);
+const PROJECT_LIST_COLUMNS = withAttachedMediaColumns(
+  "project",
+  "projects",
+  "id, title, slug, summary, district, sector, start_date, end_date, status, category, impact_summary"
+);
+const PROJECT_DETAIL_COLUMNS = withAttachedMediaColumns(
+  "project",
+  "projects",
+  "id, title, slug, summary, description, district, sector, start_date, end_date, status, category, impact_summary"
+);
 const STAFF_COLUMNS =
   "id, full_name, role_title, short_bio, email, phone, display_order";
-const PARTNER_COLUMNS =
-  "id, name, slug, website_url, description, display_order, is_text_only";
+const PARTNER_COLUMNS = withAttachedMediaColumns(
+  "partner",
+  "partners",
+  "id, name, slug, website_url, description, display_order, is_text_only",
+  "logo"
+);
 const MEDIA_COLUMNS =
   "id, public_url, alt_text, caption, mime_type, entity_type, entity_id, display_order, created_at";
+const MEDIA_FILE_COLUMNS = `${MEDIA_COLUMNS}, storage_key`;
+
+function withAttachedMediaColumns(
+  entityType: string,
+  tableName: string,
+  baseColumns: string,
+  prefix = "image"
+) {
+  return `${baseColumns},
+    (SELECT public_url FROM media_files WHERE entity_type = '${entityType}' AND entity_id = ${tableName}.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS ${prefix}_url,
+    (SELECT alt_text FROM media_files WHERE entity_type = '${entityType}' AND entity_id = ${tableName}.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS ${prefix}_alt_text,
+    (SELECT caption FROM media_files WHERE entity_type = '${entityType}' AND entity_id = ${tableName}.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS ${prefix}_caption`;
+}
 
 export async function listPublishedContentBlocks(
   c: Context<AppBindings>,
@@ -358,4 +424,79 @@ export async function findActiveMediaById(c: Context<AppBindings>, id: string) {
     .first<PublicMediaItem>();
 
   return row ?? null;
+}
+
+export async function findActiveMediaFileById(
+  c: Context<AppBindings>,
+  id: string
+) {
+  const row = await getDb(c)
+    .prepare(
+      `SELECT ${MEDIA_FILE_COLUMNS}
+       FROM media_files
+       WHERE id = ? AND status = ?
+       LIMIT 1`
+    )
+    .bind(id, "active")
+    .first<PublicMediaFile>();
+
+  return row ?? null;
+}
+
+export async function createPublicContactMessage(
+  c: Context<AppBindings>,
+  input: PublicContactMessageInput
+) {
+  const id = crypto.randomUUID();
+  const now = new Date().toISOString();
+
+  await getDb(c)
+    .prepare(
+      `INSERT INTO contact_messages (
+        id, sender_name, email, phone, subject, message, status, created_at, updated_at, deleted_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)`
+    )
+    .bind(
+      id,
+      input.sender_name,
+      input.email,
+      input.phone,
+      input.subject,
+      input.message,
+      "new",
+      now,
+      now
+    )
+    .run();
+
+  return { id };
+}
+
+export async function createPublicDonationMessage(
+  c: Context<AppBindings>,
+  input: PublicDonationMessageInput
+) {
+  const id = crypto.randomUUID();
+  const now = new Date().toISOString();
+
+  await getDb(c)
+    .prepare(
+      `INSERT INTO donation_messages (
+        id, donor_name, email, phone, intended_amount, message, status, created_at, updated_at, deleted_at
+      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NULL)`
+    )
+    .bind(
+      id,
+      input.donor_name,
+      input.email,
+      input.phone,
+      input.intended_amount,
+      input.message,
+      "new",
+      now,
+      now
+    )
+    .run();
+
+  return { id };
 }

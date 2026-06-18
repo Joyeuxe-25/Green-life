@@ -3,16 +3,18 @@ import {
   EmptyState,
   PageHero,
   ProjectCard,
-  SectionHeading
+  SectionHeading,
+  pickHero
 } from "@/components/public-components";
 import { fetchProjects } from "@/lib/public-api";
 
 export default async function ProjectsPage() {
-  const { projects } = await fetchProjects();
+  const { blocks, projects } = await fetchProjects();
+  const hero = pickHero(blocks, "Projects");
 
   return (
     <>
-      <PageHero title="Projects" />
+      <PageHero block={hero} title="Projects" />
       <section className="section">
         <div className="container">
           <SectionHeading title="Projects" />

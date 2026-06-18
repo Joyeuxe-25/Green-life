@@ -23,7 +23,7 @@ export default async function StaffPage() {
               ))}
             </CardGrid>
           ) : (
-            <EmptyState label="No active staff profiles yet." />
+            <EmptyState label="Staff profiles will be updated soon." />
           )}
         </div>
       </section>

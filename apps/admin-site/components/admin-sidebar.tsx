@@ -1,224 +1,321 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useMemo, useState } from "react";
+import {
+  BarChart3,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  FileText,
+  FolderKanban,
+  Handshake,
+  Images,
+  LayoutDashboard,
+  MessageSquare,
+  Newspaper,
+  Settings,
+  Sprout,
+  UsersRound,
+  X
+} from "lucide-react";
+import { AdminProfileMenu } from "@/components/admin-profile-menu";
+import { ADMIN_LOGO_URL } from "@/lib/admin-brand-assets";
 import type { AdminUser } from "@/lib/admin-api";
 
-type AdminNavItem = {
+type SidebarChild = {
   label: string;
   href: string;
-  children?: Array<{
-    label: string;
-    href: string;
-  }>;
 };
 
-const primaryItems: AdminNavItem[] = [
-  { label: "Dashboard", href: "/dashboard" },
-  {
-    label: "News",
-    href: "/news",
-    children: [
-      { label: "Add New", href: "/news/add" },
-      { label: "Update", href: "/news/update" }
-    ]
-  },
-  {
-    label: "Events",
-    href: "/events",
-    children: [
-      { label: "Add New", href: "/events/add" },
-      { label: "Update", href: "/events/update" }
-    ]
-  },
-  {
-    label: "Projects",
-    href: "/projects",
-    children: [
-      { label: "Add New", href: "/projects/add" },
-      { label: "Update", href: "/projects/update" }
-    ]
-  },
-  {
-    label: "Staff",
-    href: "/staff",
-    children: [
-      { label: "Add New", href: "/staff/add" },
-      { label: "Update", href: "/staff/update" }
-    ]
-  },
-  {
-    label: "Partners",
-    href: "/partners",
-    children: [
-      { label: "Add New", href: "/partners/add" },
-      { label: "Update", href: "/partners/update" }
-    ]
-  },
-  { label: "Contact Messages", href: "/contact-messages" },
-  { label: "Donation Messages", href: "/donation-messages" },
-  { label: "Media Library", href: "/media" }
+type SidebarItem = {
+  icon: typeof LayoutDashboard;
+  label: string;
+  href: string;
+  children?: SidebarChild[];
+};
+
+const actionChildren = (base: string): SidebarChild[] => [
+  { label: "Update", href: `/${base}/update` },
+  { label: "Add New", href: `/${base}/add` }
 ];
 
-const websiteContentItems: AdminNavItem[] = [
+const primaryItems: SidebarItem[] = [
+  { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
+  { icon: Newspaper, label: "News", href: "/news", children: actionChildren("news") },
+  { icon: FileText, label: "Events", href: "/events", children: actionChildren("events") },
   {
+    icon: FolderKanban,
+    label: "Projects",
+    href: "/projects",
+    children: actionChildren("projects")
+  },
+  { icon: UsersRound, label: "Staff", href: "/staff", children: actionChildren("staff") },
+  {
+    icon: Handshake,
+    label: "Partners",
+    href: "/partners",
+    children: actionChildren("partners")
+  },
+  {
+    icon: MessageSquare,
+    label: "Messages",
+    href: "/contact-messages",
+    children: [
+      { label: "Contact", href: "/contact-messages" },
+      { label: "Donations", href: "/donation-messages" }
+    ]
+  },
+  { icon: Images, label: "Media Library", href: "/media" },
+  {
+    icon: FileText,
     label: "Site Content",
     href: "/site-content",
-    children: [
-      { label: "Add New", href: "/site-content/add" },
-      { label: "Update", href: "/site-content/update" }
-    ]
+    children: actionChildren("site-content")
   },
   {
+    icon: Sprout,
     label: "Programs",
     href: "/programs",
-    children: [
-      { label: "Add New", href: "/programs/add" },
-      { label: "Update", href: "/programs/update" }
-    ]
+    children: actionChildren("programs")
   },
   {
+    icon: BarChart3,
     label: "Impact Stats",
     href: "/impact-stats",
-    children: [
-      { label: "Add New", href: "/impact-stats/add" },
-      { label: "Update", href: "/impact-stats/update" }
-    ]
+    children: actionChildren("impact-stats")
   },
   {
+    icon: Settings,
     label: "Site Settings",
     href: "/site-settings",
-    children: [
-      { label: "Add New", href: "/site-settings/add" },
-      { label: "Update", href: "/site-settings/update" }
-    ]
+    children: actionChildren("site-settings")
   }
 ];
 
-const bottomItems = [{ label: "Change Password", href: "/change-password" }];
-
 type AdminSidebarProps = {
   admin: AdminUser;
+  isCollapsed?: boolean;
   onClose?: () => void;
+  onCollapseToggle?: () => void;
   onLogout: () => void;
   onNavigate?: () => void;
 };
 
 export function AdminSidebar({
   admin,
+  isCollapsed = false,
   onClose,
+  onCollapseToggle,
   onLogout,
   onNavigate
 }: AdminSidebarProps) {
+  const pathname = usePathname();
+  const initialOpenGroups = useMemo(() => {
+    return primaryItems
+      .filter((item) => item.children && isItemActive(pathname, item))
+      .map((item) => item.href);
+  }, [pathname]);
+  const [openGroups, setOpenGroups] = useState<string[]>(initialOpenGroups);
+
+  function toggleGroup(href: string) {
+    setOpenGroups((current) =>
+      current.includes(href)
+        ? current.filter((item) => item !== href)
+        : [...current, href]
+    );
+  }
+
   return (
-    <aside className="flex h-full min-h-screen w-full flex-col overflow-y-auto border-r border-border bg-card p-4 shadow-xl sm:p-5 lg:sticky lg:top-0 lg:w-72 lg:shadow-sm">
-      <div className="mb-5 flex items-start justify-between gap-3">
+    <aside
+      className={`flex h-full min-h-screen flex-col border-r border-border bg-card shadow-xl transition-[width] duration-200 lg:sticky lg:top-0 lg:shadow-sm ${
+        isCollapsed ? "w-[5.5rem] p-3" : "w-full p-4 sm:p-5 lg:w-72"
+      }`}
+    >
+      <div className="mb-5 flex items-center justify-between gap-3">
         <Link
-          className="block min-w-0 flex-1 rounded-xl bg-primary px-4 py-3 text-primary-foreground shadow-sm"
+          className={`flex min-w-0 items-center gap-3 rounded-xl bg-primary text-primary-foreground shadow-sm transition hover:brightness-105 ${
+            isCollapsed ? "justify-center p-2" : "flex-1 px-3 py-3"
+          }`}
           href="/dashboard"
           onClick={onNavigate}
+          title="Green Life Rwanda Admin"
         >
-          <span className="block text-sm font-semibold uppercase tracking-wide">
-            Green Life Rwanda
+          <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-white p-1.5">
+            <img
+              alt="Green Life Rwanda"
+              className="max-h-8 w-auto object-contain"
+              src={ADMIN_LOGO_URL}
+            />
           </span>
-          <span className="mt-1 block text-lg font-bold">GLR Admin</span>
+          {!isCollapsed ? (
+            <span className="min-w-0">
+              <span className="block truncate text-xs font-semibold uppercase tracking-wide">
+                Green Life Rwanda
+              </span>
+              <span className="mt-0.5 block truncate text-base font-bold">
+                GLR Admin
+              </span>
+            </span>
+          ) : null}
         </Link>
         {onClose ? (
           <button
-            className="rounded-lg border border-border px-3 py-2 text-sm font-semibold text-foreground lg:hidden"
+            aria-label="Close admin menu"
+            className="grid size-10 place-items-center rounded-lg border border-border text-foreground lg:hidden"
             onClick={onClose}
             type="button"
           >
-            Close
+            <X aria-hidden="true" size={18} />
           </button>
         ) : null}
       </div>
-      <div className="mb-5 rounded-xl border border-border bg-background p-3 text-xs text-muted-foreground">
-        <p className="font-semibold text-foreground">{admin.name}</p>
-        <p className="mt-1 break-all">{admin.email}</p>
-      </div>
-      <nav aria-label="Admin navigation" className="flex flex-1 flex-col gap-5">
+
+      {onCollapseToggle ? (
+        <button
+          className="mb-4 hidden min-h-10 items-center justify-center gap-2 rounded-xl border border-border bg-background px-3 text-sm font-semibold text-foreground shadow-sm transition hover:border-primary hover:text-primary lg:inline-flex"
+          onClick={onCollapseToggle}
+          type="button"
+        >
+          {isCollapsed ? (
+            <ChevronRight aria-hidden="true" size={18} />
+          ) : (
+            <ChevronLeft aria-hidden="true" size={18} />
+          )}
+          {!isCollapsed ? "Collapse" : null}
+        </button>
+      ) : null}
+
+      <nav aria-label="Admin navigation" className="min-h-0 flex-1 overflow-y-auto">
         <ul className="flex list-none flex-col gap-1 p-0 text-sm">
           {primaryItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                className="block rounded-lg px-3 py-2 font-semibold text-foreground transition hover:bg-background hover:text-primary"
-                href={item.href}
-                onClick={onNavigate}
-              >
-                {item.label}
-              </Link>
-              {item.children ? (
-                <ul className="mb-2 ml-3 mt-1 flex list-none flex-col gap-1 border-l border-border pl-3 text-muted-foreground">
-                  {item.children.map((child) => (
-                    <li key={child.href}>
-                      <Link
-                        className="block rounded-md px-3 py-1.5 text-xs font-medium transition hover:bg-background hover:text-primary"
-                        href={child.href}
-                        onClick={onNavigate}
-                      >
-                        {child.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-            </li>
+            <SidebarNavItem
+              isCollapsed={isCollapsed}
+              isOpen={openGroups.includes(item.href)}
+              isActive={isItemActive(pathname, item)}
+              item={item}
+              key={item.href}
+              onNavigate={onNavigate}
+              onToggle={() => toggleGroup(item.href)}
+              pathname={pathname}
+            />
           ))}
-        </ul>
-        <div>
-          <p className="px-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-            Website Content
-          </p>
-          <ul className="mt-2 flex list-none flex-col gap-1 p-0 text-sm">
-            {websiteContentItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  className="block rounded-lg px-3 py-2 font-semibold text-foreground transition hover:bg-background hover:text-primary"
-                  href={item.href}
-                  onClick={onNavigate}
-                >
-                  {item.label}
-                </Link>
-                {item.children ? (
-                  <ul className="mb-2 ml-3 mt-1 flex list-none flex-col gap-1 border-l border-border pl-3 text-muted-foreground">
-                    {item.children.map((child) => (
-                      <li key={child.href}>
-                        <Link
-                          className="block rounded-md px-3 py-1.5 text-xs font-medium transition hover:bg-background hover:text-primary"
-                          href={child.href}
-                          onClick={onNavigate}
-                        >
-                          {child.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <ul className="mt-auto flex list-none flex-col gap-2 border-t border-border p-0 pt-4 text-sm">
-          {bottomItems.map((item) => (
-            <li key={item.href}>
-              <Link
-                className="block rounded-lg px-3 py-2 font-semibold transition hover:bg-background hover:text-primary"
-                href={item.href}
-                onClick={onNavigate}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-          <li>
-            <button
-              className="w-full rounded-lg border border-border px-3 py-2 text-left font-semibold text-foreground transition hover:border-primary hover:text-primary"
-              onClick={onLogout}
-              type="button"
-            >
-              Logout
-            </button>
-          </li>
         </ul>
       </nav>
+
+      <div className="mt-4 border-t border-border pt-4">
+        <AdminProfileMenu
+          admin={admin}
+          align={isCollapsed ? "left" : "right"}
+          compact={isCollapsed}
+          onLogout={onLogout}
+          onNavigate={onNavigate}
+          placement="up"
+        />
+      </div>
     </aside>
   );
+}
+
+function SidebarNavItem({
+  isActive,
+  isCollapsed,
+  isOpen,
+  item,
+  onNavigate,
+  onToggle,
+  pathname
+}: {
+  isActive: boolean;
+  isCollapsed: boolean;
+  isOpen: boolean;
+  item: SidebarItem;
+  onNavigate?: () => void;
+  onToggle: () => void;
+  pathname: string;
+}) {
+  const Icon = item.icon;
+  const baseClasses =
+    "group flex min-h-11 w-full items-center gap-3 rounded-xl px-3 py-2 font-semibold transition";
+  const activeClasses = isActive
+    ? "bg-primary text-primary-foreground shadow-sm"
+    : "text-foreground hover:bg-background hover:text-primary";
+
+  if (!item.children) {
+    return (
+      <li>
+        <Link
+          className={`${baseClasses} ${activeClasses} ${
+            isCollapsed ? "justify-center" : ""
+          }`}
+          href={item.href}
+          onClick={onNavigate}
+          title={item.label}
+        >
+          <Icon aria-hidden="true" size={19} />
+          {!isCollapsed ? <span>{item.label}</span> : null}
+        </Link>
+      </li>
+    );
+  }
+
+  return (
+    <li className="relative">
+      <button
+        aria-expanded={isOpen}
+        className={`${baseClasses} ${activeClasses} ${
+          isCollapsed ? "justify-center" : ""
+        }`}
+        onClick={onToggle}
+        title={item.label}
+        type="button"
+      >
+        <Icon aria-hidden="true" size={19} />
+        {!isCollapsed ? (
+          <>
+            <span className="min-w-0 flex-1 text-left">{item.label}</span>
+            <ChevronDown
+              aria-hidden="true"
+              className={`transition ${isOpen ? "rotate-180" : ""}`}
+              size={16}
+            />
+          </>
+        ) : null}
+      </button>
+      {isOpen ? (
+        <ul
+          className={
+            isCollapsed
+              ? "absolute left-full top-0 z-40 ml-2 min-w-40 rounded-xl border border-border bg-card p-2 shadow-xl"
+              : "mb-2 ml-5 mt-1 flex list-none flex-col gap-1 border-l border-border pl-3"
+          }
+        >
+          {item.children.map((child) => {
+            const childActive = pathname === child.href || pathname.startsWith(`${child.href}/`);
+
+            return (
+              <li key={child.href}>
+                <Link
+                  className={`block rounded-lg px-3 py-2 text-xs font-semibold transition ${
+                    childActive
+                      ? "bg-background text-primary"
+                      : "text-muted-foreground hover:bg-background hover:text-primary"
+                  }`}
+                  href={child.href}
+                  onClick={onNavigate}
+                >
+                  {child.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+    </li>
+  );
+}
+
+function isItemActive(pathname: string, item: SidebarItem) {
+  return pathname === item.href || pathname.startsWith(`${item.href}/`);
 }

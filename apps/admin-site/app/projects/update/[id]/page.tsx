@@ -7,6 +7,8 @@ import { AdminShell } from "@/components/admin-shell";
 import { ProjectForm } from "@/components/project-form";
 import {
   getProjectItem,
+  removeEntityImages,
+  replaceEntityImage,
   updateProjectItem,
   type ProjectInput,
   type ProjectItem
@@ -50,7 +52,13 @@ export default function UpdateProjectItemPage() {
     setError("");
     setIsSubmitting(true);
     try {
-      await updateProjectItem(params.id, input);
+      const { imageFile, removeImage, ...payload } = input;
+      const { project } = await updateProjectItem(params.id, payload);
+      if (imageFile) {
+        await replaceEntityImage("project", project.id, imageFile);
+      } else if (removeImage) {
+        await removeEntityImages("project", project.id);
+      }
       router.replace("/projects");
     } catch (updateError) {
       setError(

@@ -3,21 +3,23 @@ import {
   EmptyState,
   PageHero,
   PartnerCard,
-  SectionHeading
+  SectionHeading,
+  pickHero
 } from "@/components/public-components";
 import { fetchPartners } from "@/lib/public-api";
 
 export default async function PartnersPage() {
-  const { partners } = await fetchPartners();
+  const { blocks, partners } = await fetchPartners();
+  const hero = pickHero(blocks, "Partners");
 
   return (
     <>
-      <PageHero title="Partners" />
+      <PageHero block={hero} title="Partners" />
       <section className="section">
         <div className="container">
           <SectionHeading title="Partners" />
           {partners.length > 0 ? (
-            <CardGrid>
+            <CardGrid variant="partners">
               {partners.map((partner) => (
                 <PartnerCard key={partner.id} partner={partner} />
               ))}

@@ -1,4 +1,21 @@
 import Link from "next/link";
+import {
+  CalendarDays,
+  CloudSun,
+  ExternalLink,
+  GraduationCap,
+  HandHeart,
+  Handshake,
+  Leaf,
+  MapPinned,
+  Newspaper,
+  Sprout,
+  Trees,
+  TreePine,
+  UsersRound
+} from "lucide-react";
+import { AnimatedImpactStatCard } from "@/components/animated-impact-stat-card";
+import { resolvePublicUrl } from "@/lib/public-api";
 import type {
   ContentBlock,
   EventItem,
@@ -41,11 +58,11 @@ export function pickHero(blocks: ContentBlock[], fallbackTitle: string) {
 
 export function PageHero({ block, title }: { block?: ContentBlock; title: string }) {
   const hero = block ?? pickHero([], title);
+  const hasImage = Boolean(hero.image_url);
 
   return (
-    <section className="hero-band">
-      {hero.image_url ? <MediaImage alt={hero.title ?? title} src={hero.image_url} /> : null}
-      <div className="hero-overlay" />
+    <section className={`hero-band${hasImage ? " has-image" : ""}`}>
+      {hero.image_url ? <MediaImage alt={hero.title ?? title} src={hero.image_url} priority /> : null}
       <div className="container hero-content">
         {hero.eyebrow ? <p className="eyebrow light">{hero.eyebrow}</p> : null}
         <h1>{hero.title || title}</h1>
@@ -88,7 +105,9 @@ export function SectionHeading({
 }
 
 export function ContentSections({ blocks }: { blocks: ContentBlock[] }) {
-  const sections = blocks.filter((block) => block.block_type !== "hero");
+  const sections = blocks.filter(
+    (block) => block.block_type !== "hero" && block.block_type !== "cta"
+  );
   if (sections.length === 0) {
     return null;
   }
@@ -98,22 +117,55 @@ export function ContentSections({ blocks }: { blocks: ContentBlock[] }) {
       <div className="container section-stack">
         {sections.map((block) => (
           <article className="content-panel" key={block.id}>
-            <SectionHeading
-              eyebrow={block.eyebrow}
-              title={block.title || block.block_key}
-              summary={block.subtitle || block.summary}
-            />
+            <div className="content-copy">
+              <SectionHeading
+                eyebrow={block.eyebrow}
+                title={block.title || block.block_key}
+                summary={block.subtitle || block.summary}
+              />
+              {block.body ? <RichText text={block.body} /> : null}
+              <CtaButtons block={block} />
+            </div>
             {block.image_url ? (
-              <div className="content-media">
+              <div className="content-media content-media-side">
                 <MediaImage alt={block.title || block.block_key} src={block.image_url} />
               </div>
             ) : null}
-            {block.body ? <RichText text={block.body} /> : null}
-            <CtaButtons block={block} />
           </article>
         ))}
       </div>
     </section>
+  );
+}
+
+export function ContentBlockCard({ block }: { block: ContentBlock }) {
+  return (
+    <article className="info-card content-card">
+      {block.image_url ? (
+        <div className="card-media">
+          <MediaImage alt={block.title || block.block_key} src={block.image_url} />
+        </div>
+      ) : null}
+      {block.eyebrow ? <p className="card-kicker">{block.eyebrow}</p> : null}
+      <h3>{block.title || block.block_key}</h3>
+      {block.summary || block.subtitle ? <p>{block.summary || block.subtitle}</p> : null}
+      {block.body ? <RichText text={block.body} /> : null}
+      <CtaButtons block={block} />
+    </article>
+  );
+}
+
+export function ContentBlockGrid({ blocks }: { blocks: ContentBlock[] }) {
+  if (blocks.length === 0) {
+    return null;
+  }
+
+  return (
+    <CardGrid>
+      {blocks.map((block) => (
+        <ContentBlockCard block={block} key={block.id} />
+      ))}
+    </CardGrid>
   );
 }
 
@@ -161,32 +213,38 @@ export function CtaButtons({ block }: { block: ContentBlock }) {
 export function EmptyState({ label }: { label: string }) {
   return (
     <div className="empty-state">
+      <span aria-hidden="true" className="empty-state-mark" />
       <p>{label}</p>
     </div>
   );
 }
 
-export function MediaImage({ alt, src }: { alt: string; src: string }) {
-  return <img alt={alt} className="media-image" src={src} />;
+export function MediaImage({
+  alt,
+  priority,
+  src
+}: {
+  alt: string;
+  priority?: boolean;
+  src: string;
+}) {
+  return <img alt={alt} className="media-image" loading={priority ? "eager" : "lazy"} src={resolvePublicUrl(src)} />;
 }
 
 export function ImpactStatCard({ stat }: { stat: ImpactStat }) {
-  return (
-    <article className="stat-card">
-      <p className="stat-value">
-        {stat.value}
-        {stat.suffix}
-      </p>
-      <h3>{stat.label}</h3>
-      {stat.description ? <p>{stat.description}</p> : null}
-    </article>
-  );
+  return <AnimatedImpactStatCard stat={stat} />;
 }
 
 export function ProgramCard({ program }: { program: Program }) {
+  const Icon = getProgramIcon(
+    [program.icon_name, program.slug, program.title].filter(Boolean).join(" ")
+  );
+
   return (
-    <article className="info-card">
-      {program.icon_name ? <p className="card-kicker">{program.icon_name}</p> : null}
+    <article className="info-card program-card reveal-card">
+      <span className="card-icon" aria-hidden="true">
+        <Icon size={21} />
+      </span>
       <h3>{program.title}</h3>
       {program.summary ? <p>{program.summary}</p> : null}
     </article>
@@ -194,9 +252,24 @@ export function ProgramCard({ program }: { program: Program }) {
 }
 
 export function ProjectCard({ project }: { project: ProjectItem }) {
+  const Icon = getProjectIcon(project.category || project.title);
+
   return (
-    <article className="info-card">
-      <p className="card-kicker">{[project.district, project.sector].filter(Boolean).join(", ") || project.status}</p>
+    <article className="info-card reveal-card">
+      {project.image_url ? (
+        <div className="card-media">
+          <MediaImage
+            alt={project.image_alt_text || project.image_caption || project.title}
+            src={project.image_url}
+          />
+        </div>
+      ) : null}
+      <span className="card-icon" aria-hidden="true">
+        <Icon size={21} />
+      </span>
+      <p className="card-kicker">
+        {[project.district, project.sector].filter(Boolean).join(", ") || project.status}
+      </p>
       <h3>{project.title}</h3>
       <p>{project.summary}</p>
       <Link className="text-link" href={`/projects/${project.slug}`}>
@@ -208,7 +281,20 @@ export function ProjectCard({ project }: { project: ProjectItem }) {
 
 export function NewsCard({ item }: { item: NewsItem }) {
   return (
-    <article className="info-card">
+    <article className="info-card reveal-card">
+      {item.image_url ? (
+        <div className="card-media">
+          <MediaImage
+            alt={item.image_alt_text || item.image_caption || item.title}
+            src={item.image_url}
+          />
+        </div>
+      ) : null}
+      {!item.image_url ? (
+        <span className="card-icon" aria-hidden="true">
+          <Newspaper size={21} />
+        </span>
+      ) : null}
       <p className="card-kicker">{formatDate(item.published_at || item.created_at)}</p>
       <h3>{item.title}</h3>
       <p>{item.excerpt}</p>
@@ -221,7 +307,20 @@ export function NewsCard({ item }: { item: NewsItem }) {
 
 export function EventCard({ event }: { event: EventItem }) {
   return (
-    <article className="info-card">
+    <article className="info-card reveal-card">
+      {event.image_url ? (
+        <div className="card-media">
+          <MediaImage
+            alt={event.image_alt_text || event.image_caption || event.title}
+            src={event.image_url}
+          />
+        </div>
+      ) : null}
+      {!event.image_url ? (
+        <span className="card-icon" aria-hidden="true">
+          <CalendarDays size={21} />
+        </span>
+      ) : null}
       <p className="card-kicker">{formatDate(event.event_date)}</p>
       <h3>{event.title}</h3>
       <p>{event.description}</p>
@@ -234,7 +333,10 @@ export function EventCard({ event }: { event: EventItem }) {
 
 export function StaffCard({ member }: { member: StaffMember }) {
   return (
-    <article className="info-card">
+    <article className="info-card staff-card reveal-card">
+      <span className="card-icon" aria-hidden="true">
+        <UsersRound size={21} />
+      </span>
       <p className="card-kicker">{member.role_title}</p>
       <h3>{member.full_name}</h3>
       {member.short_bio ? <p>{member.short_bio}</p> : null}
@@ -246,17 +348,121 @@ export function StaffCard({ member }: { member: StaffMember }) {
 }
 
 export function PartnerCard({ partner }: { partner: Partner }) {
-  return (
-    <article className="info-card">
+  const cardTitle = `${partner.name}${partner.website_url ? " website" : ""}`;
+  const content = (
+    <>
+      <div className="logo-frame">
+        {partner.logo_url && !partner.is_text_only ? (
+          <img
+            alt={partner.logo_alt_text || partner.logo_caption || `${partner.name} logo`}
+            className="logo-image"
+            src={resolvePublicUrl(partner.logo_url)}
+          />
+        ) : (
+          <span>{partner.name}</span>
+        )}
+      </div>
       <h3>{partner.name}</h3>
+    </>
+  );
+
+  return (
+    <article className="info-card partner-card reveal-card">
+      {partner.website_url ? (
+        <a
+          aria-label={cardTitle}
+          className="partner-card-link"
+          href={partner.website_url}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          {content}
+        </a>
+      ) : (
+        content
+      )}
       {partner.description ? <p>{partner.description}</p> : null}
       {partner.website_url ? (
-        <a className="text-link" href={partner.website_url}>
-          Visit website
+        <a
+          className="text-link card-action-link"
+          href={partner.website_url}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Visit website <ExternalLink aria-hidden="true" size={14} />
         </a>
       ) : null}
     </article>
   );
+}
+
+function getProgramIcon(value: string) {
+  const normalized = value.toLowerCase().replace(/[^a-z0-9]+/g, "");
+
+  if (
+    normalized.includes("agroforestry") ||
+    normalized.includes("sprout") ||
+    normalized.includes("seed") ||
+    normalized.includes("tree") ||
+    normalized.includes("trees")
+  ) {
+    return Trees;
+  }
+
+  if (
+    normalized.includes("climate") ||
+    normalized.includes("cloudsun") ||
+    normalized.includes("leaf")
+  ) {
+    return CloudSun;
+  }
+
+  if (
+    normalized.includes("graduationcap") ||
+    normalized.includes("school") ||
+    normalized.includes("education") ||
+    normalized.includes("youth")
+  ) {
+    return GraduationCap;
+  }
+
+  if (
+    normalized.includes("community") ||
+    normalized.includes("livelihood") ||
+    normalized.includes("handshake") ||
+    normalized.includes("handheart") ||
+    normalized.includes("support")
+  ) {
+    return HandHeart;
+  }
+
+  return Leaf;
+}
+
+function getProjectIcon(value: string) {
+  const normalized = value.toLowerCase();
+
+  if (normalized.includes("school") || normalized.includes("education") || normalized.includes("youth")) {
+    return GraduationCap;
+  }
+
+  if (normalized.includes("climate")) {
+    return CloudSun;
+  }
+
+  if (normalized.includes("agro") || normalized.includes("restoration") || normalized.includes("tree")) {
+    return TreePine;
+  }
+
+  if (normalized.includes("livelihood") || normalized.includes("community")) {
+    return HandHeart;
+  }
+
+  if (normalized.includes("gisagara") || normalized.includes("rutsiro") || normalized.includes("nyanza")) {
+    return MapPinned;
+  }
+
+  return Sprout;
 }
 
 export function MediaGrid({ media }: { media: MediaItem[] }) {
@@ -288,8 +494,14 @@ export function RichText({ text }: { text: string }) {
   );
 }
 
-export function CardGrid({ children }: { children: React.ReactNode }) {
-  return <div className="card-grid">{children}</div>;
+export function CardGrid({
+  children,
+  variant = "default"
+}: {
+  children: React.ReactNode;
+  variant?: "default" | "stats" | "partners";
+}) {
+  return <div className={`card-grid card-grid-${variant}`}>{children}</div>;
 }
 
 export function formatDate(value: string | null | undefined) {

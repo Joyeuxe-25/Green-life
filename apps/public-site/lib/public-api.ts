@@ -1,5 +1,5 @@
 const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8787";
+  process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/+$/, "") ?? "";
 
 type ApiEnvelope<T> =
   | {
@@ -68,6 +68,9 @@ export type NewsItem = {
   published_at: string | null;
   created_at: string;
   updated_at: string;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type EventItem = {
@@ -81,6 +84,9 @@ export type EventItem = {
   location: string | null;
   category: string | null;
   status: string;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type ProjectItem = {
@@ -96,6 +102,9 @@ export type ProjectItem = {
   status: string;
   category: string | null;
   impact_summary: string | null;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type StaffMember = {
@@ -116,6 +125,9 @@ export type Partner = {
   description: string | null;
   display_order: number;
   is_text_only: number;
+  logo_url: string | null;
+  logo_alt_text: string | null;
+  logo_caption: string | null;
 };
 
 export type MediaItem = {
@@ -154,6 +166,30 @@ export type ImpactPageData = PageData & {
   impactStats: ImpactStat[];
 };
 
+export type PartnersPageData = PageData & {
+  partners: Partner[];
+};
+
+export type ProjectsPageData = PageData & {
+  projects: ProjectItem[];
+};
+
+export type ContactMessageInput = {
+  name: string;
+  email: string;
+  phone?: string;
+  subject?: string;
+  message: string;
+};
+
+export type DonationMessageInput = {
+  name: string;
+  email: string;
+  phone?: string;
+  donation_interest?: string;
+  message: string;
+};
+
 export async function fetchHome() {
   return requestPublic<HomeData>("/public/home");
 }
@@ -187,7 +223,7 @@ export async function fetchEvent(slug: string) {
 }
 
 export async function fetchProjects() {
-  return requestPublic<{ projects: ProjectItem[] }>("/public/projects");
+  return requestPublic<ProjectsPageData>("/public/projects");
 }
 
 export async function fetchProject(slug: string) {
@@ -199,7 +235,7 @@ export async function fetchStaff() {
 }
 
 export async function fetchPartners() {
-  return requestPublic<{ partners: Partner[] }>("/public/partners");
+  return requestPublic<PartnersPageData>("/public/partners");
 }
 
 export async function fetchMedia() {
@@ -210,9 +246,54 @@ export async function fetchSiteSettings() {
   return requestPublic<{ siteSettings: SiteSetting[] }>("/public/site-settings");
 }
 
+export async function submitContactMessage(input: ContactMessageInput) {
+  return mutatePublic<{ messageId: string }>("/public/contact-messages", input);
+}
+
+export async function submitDonationMessage(input: DonationMessageInput) {
+  return mutatePublic<{ messageId: string }>("/public/donation-messages", input);
+}
+
+export function resolvePublicUrl(value: string | null | undefined) {
+  if (!value) {
+    return "";
+  }
+
+  if (/^https?:\/\//i.test(value) || value.startsWith("data:")) {
+    return value;
+  }
+
+  if (value.startsWith("/")) {
+    return `${API_BASE_URL}${value}`;
+  }
+
+  return value;
+}
+
 async function requestPublic<T>(path: string): Promise<T> {
   const response = await fetch(`${API_BASE_URL}${path}`, {
     cache: "no-store"
+  });
+  const envelope = (await response.json()) as ApiEnvelope<T>;
+
+  if (!response.ok || !envelope.ok) {
+    const message =
+      envelope && !envelope.ok
+        ? envelope.error?.message
+        : "Public API request failed";
+    throw new Error(message || "Public API request failed");
+  }
+
+  return envelope.data;
+}
+
+async function mutatePublic<T>(path: string, body: unknown): Promise<T> {
+  const response = await fetch(`${API_BASE_URL}${path}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(body)
   });
   const envelope = (await response.json()) as ApiEnvelope<T>;
 

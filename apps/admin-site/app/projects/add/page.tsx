@@ -5,7 +5,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AdminShell } from "@/components/admin-shell";
 import { ProjectForm } from "@/components/project-form";
-import { createProjectItem, type ProjectInput } from "@/lib/admin-api";
+import {
+  createProjectItem,
+  replaceEntityImage,
+  type ProjectInput
+} from "@/lib/admin-api";
 
 export default function AddProjectPage() {
   const router = useRouter();
@@ -16,7 +20,11 @@ export default function AddProjectPage() {
     setError("");
     setIsSubmitting(true);
     try {
-      await createProjectItem(input);
+      const { imageFile, removeImage: _removeImage, ...payload } = input;
+      const { project } = await createProjectItem(payload);
+      if (imageFile) {
+        await replaceEntityImage("project", project.id, imageFile);
+      }
       router.replace("/projects");
     } catch (createError) {
       setError(

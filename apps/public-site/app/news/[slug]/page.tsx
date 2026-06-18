@@ -22,7 +22,30 @@ export default async function NewsDetailPage({
 
   return (
     <>
-      <PageHero title={item.title} />
+      <PageHero
+        block={
+          item.image_url
+            ? {
+                id: `${item.id}-hero`,
+                page_key: "news",
+                block_key: "news-hero",
+                block_type: "hero",
+                eyebrow: item.category,
+                title: item.title,
+                subtitle: null,
+                summary: item.excerpt,
+                body: null,
+                cta_label: null,
+                cta_href: null,
+                secondary_cta_label: null,
+                secondary_cta_href: null,
+                image_url: item.image_url,
+                display_order: 0
+              }
+            : undefined
+        }
+        title={item.title}
+      />
       <section className="section">
         <div className="container detail-layout">
           <SectionHeading

@@ -21,7 +21,7 @@ export default async function ImpactPage() {
         <div className="container">
           <SectionHeading title="Impact Stats" />
           {data.impactStats.length > 0 ? (
-            <CardGrid>
+            <CardGrid variant="stats">
               {data.impactStats.map((stat) => (
                 <ImpactStatCard key={stat.id} stat={stat} />
               ))}

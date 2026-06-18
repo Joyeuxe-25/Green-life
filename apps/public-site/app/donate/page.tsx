@@ -4,6 +4,7 @@ import {
   PageHero,
   pickHero
 } from "@/components/public-components";
+import { DonationForm } from "@/components/donation-form";
 import { fetchPage } from "@/lib/public-api";
 
 export default async function DonatePage() {
@@ -22,6 +23,7 @@ export default async function DonatePage() {
           </div>
         </section>
       )}
+      <DonationForm />
     </>
   );
 }

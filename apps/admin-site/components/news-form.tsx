@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { EntityImageField } from "@/components/entity-image-field";
 import type { NewsInput, NewsItem, NewsStatus } from "@/lib/admin-api";
 
 type NewsFormProps = {
@@ -31,7 +32,10 @@ export function NewsForm({
   const [seoDescription, setSeoDescription] = useState(
     initialNews?.seo_description ?? ""
   );
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [removeImage, setRemoveImage] = useState(false);
   const [error, setError] = useState("");
+  const hasImageChange = Boolean(imageFile || removeImage);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -51,7 +55,9 @@ export function NewsForm({
       publishedAt: publishedAt ? new Date(publishedAt).toISOString() : "",
       status,
       seoTitle: seoTitle.trim(),
-      seoDescription: seoDescription.trim()
+      seoDescription: seoDescription.trim(),
+      imageFile,
+      removeImage
     });
   }
 
@@ -155,6 +161,15 @@ export function NewsForm({
         </Field>
       </div>
 
+      <EntityImageField
+        currentImageUrl={initialNews?.image_url}
+        disabled={isSubmitting}
+        onChange={setImageFile}
+        onRemoveChange={setRemoveImage}
+        removeImage={removeImage}
+        selectedFile={imageFile}
+      />
+
       {error ? (
         <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
           {error}
@@ -167,7 +182,11 @@ export function NewsForm({
           disabled={isSubmitting}
           type="submit"
         >
-          {isSubmitting ? "Saving..." : submitLabel}
+          {isSubmitting
+            ? hasImageChange
+              ? "Saving and syncing image..."
+              : "Saving..."
+            : submitLabel}
         </button>
       </div>
     </form>

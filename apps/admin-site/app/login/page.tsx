@@ -2,6 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { ADMIN_LOGO_URL } from "@/lib/admin-brand-assets";
 import { loginAdmin } from "@/lib/admin-api";
 
 export default function LoginPage() {
@@ -41,10 +42,21 @@ export default function LoginPage() {
   return (
     <main className="grid min-h-screen place-items-center bg-background p-4 text-foreground sm:p-6">
       <section className="w-full max-w-md rounded-xl border border-border bg-card p-5 shadow-lg shadow-slate-200/60 sm:p-6">
-        <p className="text-sm font-semibold uppercase tracking-wide text-primary">
-          Admin access
-        </p>
-        <h1 className="mt-2 text-2xl font-semibold">Green Life Rwanda Admin</h1>
+        <div className="mb-5 flex items-center gap-3">
+          <div className="grid size-14 place-items-center rounded-2xl border border-border bg-white p-2 shadow-sm">
+            <img
+              alt="Green Life Rwanda"
+              className="max-h-10 w-auto object-contain"
+              src={ADMIN_LOGO_URL}
+            />
+          </div>
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wide text-primary">
+              Admin access
+            </p>
+            <h1 className="mt-1 text-2xl font-semibold">Green Life Rwanda Admin</h1>
+          </div>
+        </div>
         <p className="mt-3 text-sm leading-6 text-foreground/65">
           Sign in with your admin account. Authentication uses a secure
           HTTP-only cookie set by the API.

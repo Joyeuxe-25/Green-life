@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { getSetting } from "@/components/public-components";
+import { fetchSiteSettings, resolvePublicUrl } from "@/lib/public-api";
 
 const navigationItems = [
   { label: "Home", href: "/" },
@@ -6,21 +8,30 @@ const navigationItems = [
   { label: "Programs", href: "/programs" },
   { label: "Projects", href: "/projects" },
   { label: "Impact", href: "/impact" },
-  { label: "News", href: "/news" },
-  { label: "Events", href: "/events" },
-  { label: "Staff", href: "/staff" },
   { label: "Partners", href: "/partners" },
+  { label: "Contact", href: "/contact" }
+];
+
+const actionItems = [
   { label: "Donate", href: "/donate" },
-  { label: "Contact", href: "/contact" },
   { label: "Get Involved", href: "/get-involved" }
 ];
 
-export function SiteHeader() {
+export async function SiteHeader() {
+  const { siteSettings } = await fetchSiteSettings().catch(() => ({
+    siteSettings: []
+  }));
+  const siteName = getSetting(siteSettings, "site.name") || "Green Life Rwanda";
+  const logoUrl = resolvePublicUrl(getSetting(siteSettings, "site.logo_url"));
+
   return (
     <header className="site-header">
       <div className="container header-inner">
         <Link className="brand" href="/">
-          Green Life Rwanda
+          {logoUrl ? (
+            <img alt={`${siteName} logo`} className="brand-logo" src={logoUrl} />
+          ) : null}
+          <span>{siteName}</span>
         </Link>
         <nav aria-label="Public navigation">
           <ul className="nav-list">
@@ -31,6 +42,13 @@ export function SiteHeader() {
             ))}
           </ul>
         </nav>
+        <div className="nav-actions" aria-label="Public actions">
+          {actionItems.map((item) => (
+            <Link className={item.href === "/donate" ? "nav-donate" : "nav-action"} href={item.href} key={item.href}>
+              {item.label}
+            </Link>
+          ))}
+        </div>
       </div>
     </header>
   );

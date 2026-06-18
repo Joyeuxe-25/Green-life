@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { EntityImageField } from "@/components/entity-image-field";
 import type { ProjectInput, ProjectItem, ProjectStatus } from "@/lib/admin-api";
 
 type ProjectFormProps = {
@@ -33,7 +34,10 @@ export function ProjectForm({
   const [impactSummary, setImpactSummary] = useState(
     initialProject?.impact_summary ?? ""
   );
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [removeImage, setRemoveImage] = useState(false);
   const [error, setError] = useState("");
+  const hasImageChange = Boolean(imageFile || removeImage);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -60,7 +64,9 @@ export function ProjectForm({
       endDate,
       status,
       category: category.trim(),
-      impactSummary: impactSummary.trim()
+      impactSummary: impactSummary.trim(),
+      imageFile,
+      removeImage
     });
   }
 
@@ -183,6 +189,15 @@ export function ProjectForm({
         />
       </Field>
 
+      <EntityImageField
+        currentImageUrl={initialProject?.image_url}
+        disabled={isSubmitting}
+        onChange={setImageFile}
+        onRemoveChange={setRemoveImage}
+        removeImage={removeImage}
+        selectedFile={imageFile}
+      />
+
       {error ? (
         <div className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
           {error}
@@ -195,7 +210,11 @@ export function ProjectForm({
           disabled={isSubmitting}
           type="submit"
         >
-          {isSubmitting ? "Saving..." : submitLabel}
+          {isSubmitting
+            ? hasImageChange
+              ? "Saving and syncing image..."
+              : "Saving..."
+            : submitLabel}
         </button>
       </div>
     </form>

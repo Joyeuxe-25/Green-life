@@ -7,6 +7,8 @@ import { AdminShell } from "@/components/admin-shell";
 import { NewsForm } from "@/components/news-form";
 import {
   getNewsItem,
+  removeEntityImages,
+  replaceEntityImage,
   updateNewsItem,
   type NewsInput,
   type NewsItem
@@ -50,7 +52,13 @@ export default function UpdateNewsItemPage() {
     setError("");
     setIsSubmitting(true);
     try {
-      await updateNewsItem(params.id, input);
+      const { imageFile, removeImage, ...payload } = input;
+      const { news } = await updateNewsItem(params.id, payload);
+      if (imageFile) {
+        await replaceEntityImage("news", news.id, imageFile);
+      } else if (removeImage) {
+        await removeEntityImages("news", news.id);
+      }
       router.replace("/news");
     } catch (updateError) {
       setError(

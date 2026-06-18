@@ -18,6 +18,9 @@ export type EventRow = {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type EventInput = {
@@ -32,8 +35,10 @@ export type EventInput = {
   status: EventStatus;
 };
 
-const EVENT_COLUMNS =
-  "id, title, slug, description, event_date, start_time, end_time, location, category, status, created_at, updated_at, deleted_at";
+const EVENT_COLUMNS = `id, title, slug, description, event_date, start_time, end_time, location, category, status, created_at, updated_at, deleted_at,
+  (SELECT public_url FROM media_files WHERE entity_type = 'event' AND entity_id = events.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS image_url,
+  (SELECT alt_text FROM media_files WHERE entity_type = 'event' AND entity_id = events.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS image_alt_text,
+  (SELECT caption FROM media_files WHERE entity_type = 'event' AND entity_id = events.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS image_caption`;
 
 export async function listEvents(c: Context<AppBindings>) {
   const result = await getDb(c)

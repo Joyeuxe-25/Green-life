@@ -5,7 +5,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AdminShell } from "@/components/admin-shell";
 import { NewsForm } from "@/components/news-form";
-import { createNewsItem, type NewsInput } from "@/lib/admin-api";
+import {
+  createNewsItem,
+  replaceEntityImage,
+  type NewsInput
+} from "@/lib/admin-api";
 
 export default function AddNewsPage() {
   const router = useRouter();
@@ -16,7 +20,11 @@ export default function AddNewsPage() {
     setError("");
     setIsSubmitting(true);
     try {
-      await createNewsItem(input);
+      const { imageFile, removeImage: _removeImage, ...payload } = input;
+      const { news } = await createNewsItem(payload);
+      if (imageFile) {
+        await replaceEntityImage("news", news.id, imageFile);
+      }
       router.replace("/news");
     } catch (createError) {
       setError(

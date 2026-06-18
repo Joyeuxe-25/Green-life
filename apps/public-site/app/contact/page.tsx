@@ -4,6 +4,7 @@ import {
   PageHero,
   pickHero
 } from "@/components/public-components";
+import { ContactForm } from "@/components/contact-form";
 import { fetchPage } from "@/lib/public-api";
 
 export default async function ContactPage() {
@@ -22,6 +23,7 @@ export default async function ContactPage() {
           </div>
         </section>
       )}
+      <ContactForm siteSettings={data.siteSettings ?? []} />
     </>
   );
 }

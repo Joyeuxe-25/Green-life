@@ -22,7 +22,30 @@ export default async function ProjectDetailPage({
 
   return (
     <>
-      <PageHero title={project.title} />
+      <PageHero
+        block={
+          project.image_url
+            ? {
+                id: `${project.id}-hero`,
+                page_key: "projects",
+                block_key: "project-hero",
+                block_type: "hero",
+                eyebrow: project.category,
+                title: project.title,
+                subtitle: null,
+                summary: project.summary,
+                body: null,
+                cta_label: null,
+                cta_href: null,
+                secondary_cta_label: null,
+                secondary_cta_href: null,
+                image_url: project.image_url,
+                display_order: 0
+              }
+            : undefined
+        }
+        title={project.title}
+      />
       <section className="section">
         <div className="container detail-layout">
           <SectionHeading

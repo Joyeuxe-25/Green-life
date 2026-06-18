@@ -1,7 +1,10 @@
 import { Hono } from "hono";
 import type { Context } from "hono";
 import {
+  createPublicContactMessage,
+  createPublicDonationMessage,
   findActiveMediaById,
+  findActiveMediaFileById,
   findPublicEventBySlug,
   findPublicProjectBySlug,
   findPublishedNewsBySlug,
@@ -18,16 +21,18 @@ import {
   type PublicPageKey
 } from "../db/public";
 import type { AppBindings } from "../types";
-import { notFound, success } from "../utils/http";
+import { notFound, success, validationError } from "../utils/http";
 
 const pageKeys = [
   "home",
   "about",
   "programs",
+  "projects",
   "impact",
   "contact",
   "donate",
-  "get-involved"
+  "get-involved",
+  "partners"
 ] as const;
 
 export const publicRoutes = new Hono<AppBindings>();
@@ -113,6 +118,63 @@ publicRoutes.get("/get-involved", (c) =>
   pageResponse(c, "get-involved", true)
 );
 
+publicRoutes.post("/contact-messages", async (c) => {
+  const body = await readJsonBody(c);
+  const senderName = cleanText(body.name ?? body.sender_name, 120);
+  const email = cleanText(body.email, 180);
+  const phone = cleanOptionalText(body.phone, 80);
+  const subject = cleanOptionalText(body.subject, 180);
+  const message = cleanText(body.message, 4000);
+
+  if (!senderName || !email || !message) {
+    return validationError(c, "Name, email, and message are required");
+  }
+
+  if (!looksLikeEmail(email)) {
+    return validationError(c, "A valid email address is required");
+  }
+
+  const result = await createPublicContactMessage(c, {
+    sender_name: senderName,
+    email,
+    phone,
+    subject,
+    message
+  });
+
+  return success(c, { messageId: result.id }, 201);
+});
+
+publicRoutes.post("/donation-messages", async (c) => {
+  const body = await readJsonBody(c);
+  const donorName = cleanText(body.name ?? body.donor_name, 120);
+  const email = cleanText(body.email, 180);
+  const phone = cleanOptionalText(body.phone, 80);
+  const intendedAmount = cleanOptionalText(
+    body.donation_interest ?? body.intended_amount,
+    180
+  );
+  const message = cleanOptionalText(body.message, 4000);
+
+  if (!donorName || !email || !message) {
+    return validationError(c, "Name, email, and message are required");
+  }
+
+  if (!looksLikeEmail(email)) {
+    return validationError(c, "A valid email address is required");
+  }
+
+  const result = await createPublicDonationMessage(c, {
+    donor_name: donorName,
+    email,
+    phone,
+    intended_amount: intendedAmount,
+    message
+  });
+
+  return success(c, { messageId: result.id }, 201);
+});
+
 publicRoutes.get("/site-settings", async (c) => {
   const siteSettings = await listPublicSiteSettings(c);
   return success(c, { siteSettings });
@@ -147,8 +209,12 @@ publicRoutes.get("/events/:slug", async (c) => {
 });
 
 publicRoutes.get("/projects", async (c) => {
-  const projects = await listPublicProjects(c);
-  return success(c, { projects });
+  const [blocks, projects] = await Promise.all([
+    listPublishedContentBlocks(c, "projects"),
+    listPublicProjects(c)
+  ]);
+
+  return success(c, { page: "projects", blocks, projects });
 });
 
 publicRoutes.get("/projects/:slug", async (c) => {
@@ -166,13 +232,36 @@ publicRoutes.get("/staff", async (c) => {
 });
 
 publicRoutes.get("/partners", async (c) => {
-  const partners = await listActivePartners(c);
-  return success(c, { partners });
+  const [blocks, partners] = await Promise.all([
+    listPublishedContentBlocks(c, "partners"),
+    listActivePartners(c)
+  ]);
+
+  return success(c, { page: "partners", blocks, partners });
 });
 
 publicRoutes.get("/media", async (c) => {
   const media = await listActiveMedia(c);
   return success(c, { media });
+});
+
+publicRoutes.get("/media/file/:id", async (c) => {
+  const media = await findActiveMediaFileById(c, c.req.param("id"));
+  if (!media) {
+    return notFound(c, "Media file not found");
+  }
+
+  const object = await c.env.MEDIA_BUCKET.get(media.storage_key);
+  if (!object) {
+    return notFound(c, "Media file not found");
+  }
+
+  return new Response(object.body, {
+    headers: {
+      "Cache-Control": "public, max-age=31536000, immutable",
+      "Content-Type": object.httpMetadata?.contentType || media.mime_type
+    }
+  });
 });
 
 publicRoutes.get("/media/:id", async (c) => {
@@ -203,4 +292,29 @@ async function pageResponse(
     blocks,
     ...(includeSettings ? { siteSettings } : {})
   });
+}
+
+async function readJsonBody(c: Context<AppBindings>) {
+  try {
+    return (await c.req.json()) as Record<string, unknown>;
+  } catch {
+    return {};
+  }
+}
+
+function cleanText(value: unknown, maxLength: number) {
+  if (typeof value !== "string") {
+    return "";
+  }
+
+  return value.trim().slice(0, maxLength);
+}
+
+function cleanOptionalText(value: unknown, maxLength: number) {
+  const cleaned = cleanText(value, maxLength);
+  return cleaned || null;
+}
+
+function looksLikeEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }

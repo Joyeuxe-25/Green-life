@@ -1,13 +1,16 @@
 import {
   ContentSections,
   EmptyState,
+  CardGrid,
   PageHero,
+  SectionHeading,
+  StaffCard,
   pickHero
 } from "@/components/public-components";
-import { fetchPage } from "@/lib/public-api";
+import { fetchPage, fetchStaff } from "@/lib/public-api";
 
 export default async function AboutPage() {
-  const data = await fetchPage("about");
+  const [data, staffData] = await Promise.all([fetchPage("about"), fetchStaff()]);
   const hero = pickHero(data.blocks, "About");
 
   return (
@@ -22,6 +25,23 @@ export default async function AboutPage() {
           </div>
         </section>
       )}
+      <section className="section alt">
+        <div className="container">
+          <SectionHeading
+            eyebrow="Our Team"
+            title="Staff"
+          />
+          {staffData.staff.length > 0 ? (
+            <CardGrid>
+              {staffData.staff.map((member) => (
+                <StaffCard key={member.id} member={member} />
+              ))}
+            </CardGrid>
+          ) : (
+            <EmptyState label="Staff profiles will be updated soon." />
+          )}
+        </div>
+      </section>
     </>
   );
 }

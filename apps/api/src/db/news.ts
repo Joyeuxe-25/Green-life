@@ -18,6 +18,9 @@ export type NewsRow = {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type NewsInput = {
@@ -32,8 +35,10 @@ export type NewsInput = {
   seoDescription: string | null;
 };
 
-const NEWS_COLUMNS =
-  "id, title, slug, excerpt, content, category, published_at, status, seo_title, seo_description, created_at, updated_at, deleted_at";
+const NEWS_COLUMNS = `id, title, slug, excerpt, content, category, published_at, status, seo_title, seo_description, created_at, updated_at, deleted_at,
+  (SELECT public_url FROM media_files WHERE entity_type = 'news' AND entity_id = news.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS image_url,
+  (SELECT alt_text FROM media_files WHERE entity_type = 'news' AND entity_id = news.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS image_alt_text,
+  (SELECT caption FROM media_files WHERE entity_type = 'news' AND entity_id = news.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS image_caption`;
 
 export async function listNews(c: Context<AppBindings>) {
   const result = await getDb(c)
