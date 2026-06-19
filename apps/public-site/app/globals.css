@@ -1281,7 +1281,7 @@
     height: 2.8rem;
   }
 
-  .site-header nav,
+  .header-inner > nav,
   .nav-actions {
     display: none;
   }
