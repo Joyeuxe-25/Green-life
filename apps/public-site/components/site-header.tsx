@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileNavMenu } from "@/components/mobile-nav-menu";
 import { getSetting } from "@/components/public-components";
 import { fetchSiteSettings, resolvePublicUrl } from "@/lib/public-api";
 
@@ -9,6 +10,18 @@ const navigationItems = [
   { label: "Projects", href: "/projects" },
   { label: "Impact", href: "/impact" },
   { label: "Partners", href: "/partners" },
+  { label: "Contact", href: "/contact" }
+];
+
+const mobileNavigationItems = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Programs", href: "/programs" },
+  { label: "Projects", href: "/projects" },
+  { label: "Impact", href: "/impact" },
+  { label: "Partners", href: "/partners" },
+  { label: "News", href: "/news" },
+  { label: "Events", href: "/events" },
   { label: "Contact", href: "/contact" }
 ];
 
@@ -49,6 +62,12 @@ export async function SiteHeader() {
             </Link>
           ))}
         </div>
+        <MobileNavMenu
+          actionItems={actionItems}
+          logoUrl={logoUrl}
+          navigationItems={mobileNavigationItems}
+          siteName={siteName}
+        />
       </div>
     </header>
   );
