@@ -54,6 +54,29 @@ export async function countActiveAdmins(c: Context<AppBindings>) {
   return Number(row?.count ?? 0);
 }
 
+export async function countAdmins(c: Context<AppBindings>) {
+  const row = await getDb(c)
+    .prepare("SELECT COUNT(*) AS count FROM admin")
+    .first<{ count: number }>();
+
+  return Number(row?.count ?? 0);
+}
+
+export async function findActiveAdminByEmailExcludingId(
+  c: Context<AppBindings>,
+  email: string,
+  excludedId: string
+) {
+  const row = await getDb(c)
+    .prepare(
+      "SELECT id, name, email, password_hash, is_active FROM admin WHERE lower(email) = lower(?) AND id <> ? AND is_active = 1 LIMIT 1"
+    )
+    .bind(email, excludedId)
+    .first<AdminRow>();
+
+  return row ?? null;
+}
+
 export async function createAdmin(
   c: Context<AppBindings>,
   input: CreateAdminInput
@@ -103,6 +126,34 @@ export async function updateAdminPasswordHash(
     )
     .bind(passwordHash, now, now, id)
     .run();
+}
+
+export async function updateAdminProfile(
+  c: Context<AppBindings>,
+  id: string,
+  input: {
+    name: string;
+    email: string;
+    passwordHash?: string;
+  }
+) {
+  const now = nowIso();
+
+  if (input.passwordHash) {
+    await getDb(c)
+      .prepare(
+        "UPDATE admin SET name = ?, email = ?, password_hash = ?, password_updated_at = ?, updated_at = ? WHERE id = ?"
+      )
+      .bind(input.name, input.email, input.passwordHash, now, now, id)
+      .run();
+  } else {
+    await getDb(c)
+      .prepare("UPDATE admin SET name = ?, email = ?, updated_at = ? WHERE id = ?")
+      .bind(input.name, input.email, now, id)
+      .run();
+  }
+
+  return findActiveAdminById(c, id);
 }
 
 export function safeAdmin(row: AdminRow) {

@@ -2,11 +2,13 @@ import { Hono } from "hono";
 import type { Context } from "hono";
 import { getAdminSessionExpiresDays } from "../config/cookies";
 import {
+  findActiveAdminByEmailExcludingId,
   findActiveAdminByEmail,
   findActiveAdminById,
   safeAdmin,
   updateAdminLastLogin,
-  updateAdminPasswordHash
+  updateAdminPasswordHash,
+  updateAdminProfile
 } from "../db/admin";
 import { requireAdmin } from "../middleware/require-admin";
 import type { AppBindings } from "../types";
@@ -85,6 +87,94 @@ adminAuthRoutes.get("/me", async (c) => {
   });
 });
 
+adminAuthRoutes.patch("/me", requireAdmin(), async (c) => {
+  const admin = c.get("admin");
+  if (!admin) {
+    return unauthorized(c);
+  }
+
+  const body = await readJsonBody(c);
+  const name = getString(body, "name").trim();
+  const email = getString(body, "email").trim().toLowerCase();
+  const currentPassword = getString(body, "currentPassword");
+  const newPassword = getString(body, "newPassword");
+  const confirmPassword = getString(body, "confirmPassword");
+
+  if (!name || !email || !currentPassword) {
+    return validationError(c, "Name, email, and current password are required");
+  }
+
+  if (!isValidEmail(email)) {
+    return validationError(c, "A valid email address is required");
+  }
+
+  const adminRow = await findActiveAdminById(c, admin.id);
+  if (!adminRow) {
+    return unauthorized(c);
+  }
+
+  const currentPasswordIsValid = await verifyPassword(
+    currentPassword,
+    adminRow.password_hash
+  );
+
+  if (!currentPasswordIsValid) {
+    return unauthorized(c, "Current password is incorrect");
+  }
+
+  const duplicateEmailAdmin = await findActiveAdminByEmailExcludingId(
+    c,
+    email,
+    admin.id
+  );
+  if (duplicateEmailAdmin) {
+    return validationError(c, "Another active admin already uses this email address");
+  }
+
+  const emailChanged = email !== adminRow.email.toLowerCase();
+  const passwordChangeRequested = Boolean(newPassword || confirmPassword);
+  let passwordHash: string | undefined;
+
+  if (passwordChangeRequested) {
+    if (!newPassword || !confirmPassword) {
+      return validationError(c, "New password and confirmation are required");
+    }
+
+    if (newPassword !== confirmPassword) {
+      return validationError(c, "New password and confirmation do not match");
+    }
+
+    if (!isStrongEnoughPassword(newPassword)) {
+      return validationError(
+        c,
+        "New password must be at least 12 characters and include letters and numbers"
+      );
+    }
+
+    passwordHash = await hashPassword(newPassword);
+  }
+
+  const updatedAdmin = await updateAdminProfile(c, admin.id, {
+    name,
+    email,
+    passwordHash
+  });
+
+  if (!updatedAdmin) {
+    return unauthorized(c);
+  }
+
+  const requiresLogin = emailChanged || passwordChangeRequested;
+  if (requiresLogin) {
+    clearAdminSessionCookie(c);
+  }
+
+  return success(c, {
+    admin: safeAdmin(updatedAdmin),
+    requiresLogin
+  });
+});
+
 adminAuthRoutes.post("/logout", (c) => {
   clearAdminSessionCookie(c);
   return success(c, {
@@ -157,4 +247,8 @@ function getString(body: Record<string, unknown>, key: string) {
 
 function isStrongEnoughPassword(password: string) {
   return password.length >= 12 && /[A-Za-z]/.test(password) && /\d/.test(password);
+}
+
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }

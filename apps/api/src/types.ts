@@ -6,6 +6,7 @@ export type Env = {
   ADMIN_SESSION_COOKIE_NAME?: string;
   ADMIN_SESSION_EXPIRES_DAYS?: string;
   ENABLE_ADMIN_SETUP?: string;
+  ADMIN_SETUP_KEY?: string;
   ADMIN_SETUP_SECRET?: string;
   COOKIE_DOMAIN?: string;
   PUBLIC_SITE_URL?: string;

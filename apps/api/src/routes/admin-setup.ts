@@ -1,6 +1,6 @@
 import { Hono } from "hono";
 import type { Context } from "hono";
-import { countActiveAdmins, createAdmin } from "../db/admin";
+import { countAdmins, createAdmin } from "../db/admin";
 import type { AppBindings } from "../types";
 import {
   errorResponse,
@@ -16,47 +16,54 @@ const SETUP_SECRET_HEADER = "x-admin-setup-secret";
 
 export const adminSetupRoutes = new Hono<AppBindings>();
 
+adminSetupRoutes.post("/", async (c) => {
+  return createFirstAdmin(c, "body");
+});
+
 adminSetupRoutes.post("/first-admin", async (c) => {
+  return createFirstAdmin(c, "header");
+});
+
+async function createFirstAdmin(c: Context<AppBindings>, setupKeySource: "body" | "header") {
   // First-admin setup must stay disabled except during a controlled setup window.
   // Disable ENABLE_ADMIN_SETUP immediately after the first admin account is created.
   if (c.env.ENABLE_ADMIN_SETUP !== "true") {
     return notFound(c);
   }
 
-  const expectedSecret = c.env.ADMIN_SETUP_SECRET;
-  if (!expectedSecret) {
-    return errorResponse(c, "Admin setup secret is not configured", 500);
+  const body = await readJsonBody(c);
+  const expectedSetupKey = c.env.ADMIN_SETUP_KEY || c.env.ADMIN_SETUP_SECRET;
+  if (!expectedSetupKey) {
+    return errorResponse(c, "Admin setup key is not configured", 500);
   }
 
-  const providedSecret = c.req.header(SETUP_SECRET_HEADER) ?? "";
-  if (!timingSafeStringEqual(providedSecret, expectedSecret)) {
-    return unauthorized(c, "Invalid setup secret");
+  const providedSetupKey =
+    setupKeySource === "body"
+      ? getString(body, "setupKey")
+      : c.req.header(SETUP_SECRET_HEADER) ?? getString(body, "setupKey");
+
+  if (!timingSafeStringEqual(providedSetupKey, expectedSetupKey)) {
+    return unauthorized(c, "Invalid setup key");
   }
 
-  const existingActiveAdmins = await countActiveAdmins(c);
-  if (existingActiveAdmins > 0) {
+  const existingAdmins = await countAdmins(c);
+  if (existingAdmins > 0) {
     return forbidden(c, "First admin setup is already complete");
   }
 
-  const body = await readJsonBody(c);
   const name = getString(body, "name").trim();
   const email = getString(body, "email").trim().toLowerCase();
   const password = getString(body, "password");
-  const confirmPassword = getString(body, "confirmPassword");
 
-  if (!name || !email || !password || !confirmPassword) {
+  if (!name || !email || !password) {
     return validationError(
       c,
-      "Name, email, password, and password confirmation are required"
+      "Name, email, and password are required"
     );
   }
 
   if (!isValidEmail(email)) {
     return validationError(c, "A valid email address is required");
-  }
-
-  if (password !== confirmPassword) {
-    return validationError(c, "Password and confirmation do not match");
   }
 
   if (!isStrongEnoughPassword(password)) {
@@ -67,7 +74,7 @@ adminSetupRoutes.post("/first-admin", async (c) => {
   }
 
   const passwordHash = await hashPassword(password);
-  const admin = await createAdmin(c, {
+  await createAdmin(c, {
     name,
     email,
     passwordHash
@@ -76,11 +83,11 @@ adminSetupRoutes.post("/first-admin", async (c) => {
   return success(
     c,
     {
-      admin
+      message: "First admin account created successfully"
     },
     201
   );
-});
+}
 
 async function readJsonBody(c: Context<AppBindings>) {
   try {

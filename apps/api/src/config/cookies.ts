@@ -6,7 +6,7 @@ export const DEFAULT_ADMIN_SESSION_EXPIRES_DAYS = 7;
 export const PLANNED_ADMIN_COOKIE_SETTINGS = {
   httpOnly: true,
   secure: true,
-  sameSite: "Lax",
+  sameSite: "None",
   path: "/"
 } as const;
 

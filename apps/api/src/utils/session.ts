@@ -86,13 +86,14 @@ function serializeCookie(
     maxAge?: number;
     domain?: string;
     secure?: boolean;
+    sameSite?: "Lax" | "None";
   } = {}
 ) {
   const parts = [
     `${name}=${encodeURIComponent(value)}`,
     "Path=/",
     "HttpOnly",
-    "SameSite=Lax"
+    `SameSite=${options.sameSite ?? "Lax"}`
   ];
 
   if (options.secure) {
@@ -116,6 +117,10 @@ function serializeCookie(
 
 function shouldUseSecureCookie(c: Context<AppBindings>) {
   return new URL(c.req.url).protocol === "https:";
+}
+
+function getAdminCookieSameSite(c: Context<AppBindings>) {
+  return shouldUseSecureCookie(c) ? "None" : "Lax";
 }
 
 export function createAdminSessionCookiePayload(
@@ -192,7 +197,8 @@ export function setAdminSessionCookie(c: Context<AppBindings>, sessionValue: str
     serializeCookie(cookieName, sessionValue, {
       maxAge,
       domain: c.env.COOKIE_DOMAIN,
-      secure: shouldUseSecureCookie(c)
+      secure: shouldUseSecureCookie(c),
+      sameSite: getAdminCookieSameSite(c)
     }),
     { append: true }
   );
@@ -205,7 +211,8 @@ export function clearAdminSessionCookie(c: Context<AppBindings>) {
       expires: new Date(0),
       maxAge: 0,
       domain: c.env.COOKIE_DOMAIN,
-      secure: shouldUseSecureCookie(c)
+      secure: shouldUseSecureCookie(c),
+      sameSite: getAdminCookieSameSite(c)
     }),
     { append: true }
   );

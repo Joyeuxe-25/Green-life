@@ -93,7 +93,7 @@ export function AdminProfileMenu({
           <div className="mt-2 grid gap-1">
             <Link
               className="inline-flex items-center gap-2 rounded-lg px-3 py-2 font-semibold text-foreground transition hover:bg-background hover:text-primary"
-              href="/change-password"
+              href="/account"
               onClick={() => {
                 setIsOpen(false);
                 onNavigate?.();
@@ -101,7 +101,7 @@ export function AdminProfileMenu({
               role="menuitem"
             >
               <KeyRound aria-hidden="true" size={17} />
-              Change Password
+              Account Settings
             </Link>
             <button
               className="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-left font-semibold text-foreground transition hover:bg-background hover:text-primary"

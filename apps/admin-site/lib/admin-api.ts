@@ -29,6 +29,21 @@ type ChangePasswordInput = {
   confirmPassword: string;
 };
 
+type SetupFirstAdminInput = {
+  setupKey: string;
+  name: string;
+  email: string;
+  password: string;
+};
+
+export type AccountSettingsInput = {
+  name: string;
+  email: string;
+  currentPassword: string;
+  newPassword?: string;
+  confirmPassword?: string;
+};
+
 export type NewsStatus = "draft" | "published" | "archived";
 
 export type NewsItem = {
@@ -410,6 +425,13 @@ export async function loginAdmin(input: LoginInput) {
   });
 }
 
+export async function setupFirstAdmin(input: SetupFirstAdminInput) {
+  return requestApi<{ message: string }>("/admin/setup", {
+    method: "POST",
+    body: JSON.stringify(input)
+  });
+}
+
 export async function getCurrentAdmin() {
   return requestApi<{ admin: AdminUser }>("/admin/auth/me");
 }
@@ -428,6 +450,13 @@ export async function changeAdminPassword(input: ChangePasswordInput) {
       body: JSON.stringify(input)
     }
   );
+}
+
+export async function updateAccountSettings(input: AccountSettingsInput) {
+  return requestApi<{ admin: AdminUser; requiresLogin: boolean }>("/admin/auth/me", {
+    method: "PATCH",
+    body: JSON.stringify(input)
+  });
 }
 
 export async function listNews() {
