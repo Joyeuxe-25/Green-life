@@ -382,6 +382,7 @@ export type MediaUpdateInput = {
 
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_BASE_URL?.replace(/\/+$/, "") ?? "";
+const bucket_url = process.env.BUCKET_URL;
 
 async function requestApi<T>(
   path: string,
@@ -880,7 +881,7 @@ export function resolveAdminMediaUrl(value: string | null | undefined) {
   }
 
   if (value.startsWith("/")) {
-    return `${API_BASE_URL}${value}`;
+    return `${bucket_url}${value}`;
   }
 
   return value;
