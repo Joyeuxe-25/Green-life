@@ -1,5 +1,6 @@
 const PASSWORD_ALGORITHM = "pbkdf2-sha256";
-const PASSWORD_ITERATIONS = 310000;
+const PBKDF2_ITERATIONS = 100000;
+const MAX_WORKER_PBKDF2_ITERATIONS = 100000;
 const SALT_BYTES = 16;
 const HASH_BITS = 256;
 
@@ -67,11 +68,11 @@ async function derivePasswordHash(password: string, salt: Uint8Array, iterations
 
 export async function hashPassword(password: string): Promise<string> {
   const salt = crypto.getRandomValues(new Uint8Array(SALT_BYTES));
-  const hash = await derivePasswordHash(password, salt, PASSWORD_ITERATIONS);
+  const hash = await derivePasswordHash(password, salt, PBKDF2_ITERATIONS);
 
   return [
     PASSWORD_ALGORITHM,
-    PASSWORD_ITERATIONS.toString(),
+    PBKDF2_ITERATIONS.toString(),
     toBase64Url(salt),
     toBase64Url(hash)
   ].join("$");
@@ -88,7 +89,11 @@ export async function verifyPassword(
   }
 
   const iterations = Number.parseInt(iterationsText, 10);
-  if (!Number.isFinite(iterations) || iterations < 100000) {
+  if (
+    !Number.isFinite(iterations) ||
+    iterations < 100000 ||
+    iterations > MAX_WORKER_PBKDF2_ITERATIONS
+  ) {
     return false;
   }
 

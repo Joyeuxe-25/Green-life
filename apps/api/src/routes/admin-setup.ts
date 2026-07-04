@@ -16,9 +16,11 @@ const SETUP_SECRET_HEADER = "x-admin-setup-secret";
 
 export const adminSetupRoutes = new Hono<AppBindings>();
 
-adminSetupRoutes.post("/", async (c) => {
+export async function handleFirstAdminSetup(c: Context<AppBindings>) {
   return createFirstAdmin(c, "body");
-});
+}
+
+adminSetupRoutes.post("/", handleFirstAdminSetup);
 
 adminSetupRoutes.post("/first-admin", async (c) => {
   return createFirstAdmin(c, "header");
@@ -73,12 +75,17 @@ async function createFirstAdmin(c: Context<AppBindings>, setupKeySource: "body" 
     );
   }
 
-  const passwordHash = await hashPassword(password);
-  await createAdmin(c, {
-    name,
-    email,
-    passwordHash
-  });
+  try {
+    const passwordHash = await hashPassword(password);
+    await createAdmin(c, {
+      name,
+      email,
+      passwordHash
+    });
+  } catch (error) {
+    console.error("Failed to create first admin", error);
+    return errorResponse(c, "Failed to create first admin", 500);
+  }
 
   return success(
     c,

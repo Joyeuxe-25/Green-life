@@ -57,12 +57,8 @@ export default function LoginPage() {
             <h1 className="mt-1 text-2xl font-semibold">Green Life Rwanda Admin</h1>
           </div>
         </div>
-        <p className="mt-3 text-sm leading-6 text-foreground/65">
-          Sign in with your admin account. Authentication uses a secure
-          HTTP-only cookie set by the API.
-        </p>
 
-        <form className="mt-6 flex flex-col gap-4" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
           <label className="flex flex-col gap-2 text-sm font-medium">
             Email
             <input

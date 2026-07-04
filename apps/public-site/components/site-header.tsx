@@ -1,16 +1,23 @@
 import Link from "next/link";
+import { DesktopNavMenu } from "@/components/desktop-nav-menu";
 import { MobileNavMenu } from "@/components/mobile-nav-menu";
 import { getSetting } from "@/components/public-components";
 import { fetchSiteSettings, resolvePublicUrl } from "@/lib/public-api";
 
-const navigationItems = [
+const primaryNavigationItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Programs", href: "/programs" },
   { label: "Projects", href: "/projects" },
   { label: "Impact", href: "/impact" },
-  { label: "Partners", href: "/partners" },
   { label: "Contact", href: "/contact" }
+];
+
+const moreNavigationItems = [
+  { label: "Programs", href: "/programs" },
+  { label: "Partners", href: "/partners" },
+  { label: "Staff", href: "/staff" },
+  { label: "News", href: "/news" },
+  { label: "Events", href: "/events" }
 ];
 
 const mobileNavigationItems = [
@@ -20,6 +27,7 @@ const mobileNavigationItems = [
   { label: "Projects", href: "/projects" },
   { label: "Impact", href: "/impact" },
   { label: "Partners", href: "/partners" },
+  { label: "Staff", href: "/staff" },
   { label: "News", href: "/news" },
   { label: "Events", href: "/events" },
   { label: "Contact", href: "/contact" }
@@ -46,15 +54,7 @@ export async function SiteHeader() {
           ) : null}
           <span>{siteName}</span>
         </Link>
-        <nav aria-label="Public navigation">
-          <ul className="nav-list">
-            {navigationItems.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href}>{item.label}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <DesktopNavMenu moreItems={moreNavigationItems} primaryItems={primaryNavigationItems} />
         <div className="nav-actions" aria-label="Public actions">
           {actionItems.map((item) => (
             <Link className={item.href === "/donate" ? "nav-donate" : "nav-action"} href={item.href} key={item.href}>

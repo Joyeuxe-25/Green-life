@@ -11,7 +11,7 @@ import { adminNewsRoutes } from "./routes/admin-news";
 import { adminPartnersRoutes } from "./routes/admin-partners";
 import { adminProgramsRoutes } from "./routes/admin-programs";
 import { adminProjectsRoutes } from "./routes/admin-projects";
-import { adminSetupRoutes } from "./routes/admin-setup";
+import { adminSetupRoutes, handleFirstAdminSetup } from "./routes/admin-setup";
 import { adminSiteSettingsRoutes } from "./routes/admin-site-settings";
 import { adminStaffRoutes } from "./routes/admin-staff";
 import { contactRoutes } from "./routes/contact";
@@ -34,6 +34,7 @@ app.get("/", (c) => {
 
 app.route("/", healthRoutes);
 app.route("/public", publicRoutes);
+app.post("/admin/setup", handleFirstAdminSetup);
 app.route("/admin/setup", adminSetupRoutes);
 app.route("/admin/auth", adminAuthRoutes);
 app.route("/admin/news", adminNewsRoutes);

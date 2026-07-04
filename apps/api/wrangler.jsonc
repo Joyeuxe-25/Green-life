@@ -17,7 +17,7 @@
 		}
 	],
 	"vars": {
-		"R2_PUBLIC_BASE_URL": "https://media.greenliferwanda.org",
+		"R2_PUBLIC_BASE_URL": "https://pub-d93cf62891714866a5c8a0e9d4e9fac0.r2.dev",
 		"CORS_ALLOWED_ORIGINS": "https://green-life-admin-site.vercel.app,https://green-life-public-site.vercel.app,http://localhost:3000,http://localhost:3001"
 	}
 }
