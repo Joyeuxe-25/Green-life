@@ -16,7 +16,8 @@ export function DonationForm() {
     setStatus("loading");
     setError("");
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     try {
       await submitDonationMessage({
         name: String(formData.get("name") || ""),
@@ -25,7 +26,7 @@ export function DonationForm() {
         donation_interest: String(formData.get("donation_interest") || ""),
         message: String(formData.get("message") || "")
       });
-      event.currentTarget.reset();
+      form.reset();
       setStatus("success");
     } catch (err) {
       setStatus("error");

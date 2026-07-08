@@ -22,7 +22,8 @@ export function ContactForm({ siteSettings }: { siteSettings: SiteSetting[] }) {
     setStatus("loading");
     setError("");
 
-    const formData = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     try {
       await submitContactMessage({
         name: String(formData.get("name") || ""),
@@ -31,7 +32,7 @@ export function ContactForm({ siteSettings }: { siteSettings: SiteSetting[] }) {
         subject: String(formData.get("subject") || ""),
         message: String(formData.get("message") || "")
       });
-      event.currentTarget.reset();
+      form.reset();
       setStatus("success");
     } catch (err) {
       setStatus("error");
