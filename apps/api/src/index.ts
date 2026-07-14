@@ -27,7 +27,7 @@ app.use("*", corsPlanningMiddleware());
 
 app.get("/", (c) => {
   return c.json({
-    name: "Green Life Rwanda API",
+    name: "Green for Life Rwanda API",
     status: "placeholder"
   });
 });

@@ -37,63 +37,63 @@ const files = [
     "media-green-life-logo-transparent-webp",
     "green-life-logo-transparent.webp",
     "logo",
-    "Processed transparent Green Life Rwanda logo",
+    "Processed transparent Green for Life Rwanda logo",
     0
   ),
   siteAsset(
     "media-green-life-logo-transparent-png",
     "green-life-logo-transparent.png",
     "logo-png",
-    "Processed transparent Green Life Rwanda PNG logo",
+    "Processed transparent Green for Life Rwanda PNG logo",
     1
   ),
   siteAsset(
     "media-green-life-logo-footer-transparent-png",
     "green-life-logo-footer-transparent.png",
     "footer-logo",
-    "Processed transparent Green Life Rwanda footer logo",
+    "Processed transparent Green for Life Rwanda footer logo",
     2
   ),
   siteAsset(
     "media-green-life-favicon-ico",
     "green-life-favicon.ico",
     "favicon",
-    "Processed Green Life Rwanda favicon",
+    "Processed Green for Life Rwanda favicon",
     3
   ),
   siteAsset(
     "media-green-life-favicon-32-png",
     "green-life-favicon-32.png",
     "favicon-32",
-    "Processed Green Life Rwanda 32px favicon",
+    "Processed Green for Life Rwanda 32px favicon",
     4
   ),
   siteAsset(
     "media-green-life-favicon-48-png",
     "green-life-favicon-48.png",
     "favicon-48",
-    "Processed Green Life Rwanda 48px favicon",
+    "Processed Green for Life Rwanda 48px favicon",
     5
   ),
   siteAsset(
     "media-green-life-apple-touch-icon-png",
     "green-life-apple-touch-icon.png",
     "apple-touch-icon",
-    "Processed Green Life Rwanda Apple touch icon",
+    "Processed Green for Life Rwanda Apple touch icon",
     6
   ),
   siteAsset(
     "media-green-life-favicon-192-png",
     "green-life-favicon-192.png",
     "icon-192",
-    "Processed Green Life Rwanda 192px icon",
+    "Processed Green for Life Rwanda 192px icon",
     7
   ),
   siteAsset(
     "media-green-life-favicon-512-png",
     "green-life-favicon-512.png",
     "icon-512",
-    "Processed Green Life Rwanda 512px icon",
+    "Processed Green for Life Rwanda 512px icon",
     8
   ),
   partnerLogo("partner-world-connect-logo", "world connect.JPG", "World Connect", "partner-world-connect", 1),

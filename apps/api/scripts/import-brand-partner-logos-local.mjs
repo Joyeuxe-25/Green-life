@@ -34,7 +34,7 @@ const files = [
     filePath: path.join(logoDir, "green-life-logo-transparent.webp"),
     storageKey: "logos/green-life-rwanda/green-life-logo-transparent.webp",
     altText: "Green for Life Rwanda logo",
-    caption: "Processed transparent Green Life Rwanda logo",
+    caption: "Processed transparent Green for Life Rwanda logo",
     entityType: "site",
     entityId: "logo",
     displayOrder: 0
@@ -43,49 +43,49 @@ const files = [
     "media-green-life-logo-footer-transparent-png",
     "green-life-logo-footer-transparent.png",
     "footer-logo",
-    "Processed transparent Green Life Rwanda footer logo",
+    "Processed transparent Green for Life Rwanda footer logo",
     1
   ),
   siteAsset(
     "media-green-life-favicon-ico",
     "green-life-favicon.ico",
     "favicon",
-    "Processed Green Life Rwanda favicon",
+    "Processed Green for Life Rwanda favicon",
     2
   ),
   siteAsset(
     "media-green-life-favicon-32-png",
     "green-life-favicon-32.png",
     "favicon-32",
-    "Processed Green Life Rwanda 32px favicon",
+    "Processed Green for Life Rwanda 32px favicon",
     3
   ),
   siteAsset(
     "media-green-life-favicon-48-png",
     "green-life-favicon-48.png",
     "favicon-48",
-    "Processed Green Life Rwanda 48px favicon",
+    "Processed Green for Life Rwanda 48px favicon",
     4
   ),
   siteAsset(
     "media-green-life-apple-touch-icon-png",
     "green-life-apple-touch-icon.png",
     "apple-touch-icon",
-    "Processed Green Life Rwanda Apple touch icon",
+    "Processed Green for Life Rwanda Apple touch icon",
     5
   ),
   siteAsset(
     "media-green-life-favicon-192-png",
     "green-life-favicon-192.png",
     "icon-192",
-    "Processed Green Life Rwanda 192px icon",
+    "Processed Green for Life Rwanda 192px icon",
     6
   ),
   siteAsset(
     "media-green-life-favicon-512-png",
     "green-life-favicon-512.png",
     "icon-512",
-    "Processed Green Life Rwanda 512px icon",
+    "Processed Green for Life Rwanda 512px icon",
     7
   ),
   partnerLogo("partner-world-connect-logo", "world connect.JPG", "World Connect", "partner-world-connect", 1),
@@ -311,7 +311,7 @@ VALUES
   ('site.icon_192_url', 'media', 'PWA icon 192 URL', ${sqlString(urlFor("media-green-life-favicon-192-png"))}, 'url', datetime('now')),
   ('site.icon_512_url', 'media', 'PWA icon 512 URL', ${sqlString(urlFor("media-green-life-favicon-512-png"))}, 'url', datetime('now')),
   ('footer.summary', 'footer', 'Footer summary', 'Empowering communities to conserve the environment and improve livelihoods across Rwanda.', 'textarea', datetime('now')),
-  ('footer.copyright', 'footer', 'Footer copyright', '© 2026 Green Life Rwanda. All rights reserved.', 'text', datetime('now')),
+  ('footer.copyright', 'footer', 'Footer copyright', '© 2026 Green for Life Rwanda. All rights reserved.', 'text', datetime('now')),
   ('contact.email', 'contact', 'Email', 'greenforliferwanda@gmail.com', 'email', datetime('now')),
   ('contact.phone', 'contact', 'Phone', '+250-788-487-932', 'text', datetime('now')),
   ('contact.address', 'contact', 'Address', 'Huye, South Province, Rwanda', 'text', datetime('now')),

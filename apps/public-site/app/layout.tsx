@@ -5,8 +5,8 @@ import { fetchSiteSettings, resolvePublicUrl } from "@/lib/public-api";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Green Life Rwanda",
-  description: "Green Life Rwanda public website."
+  title: "Green for Life Rwanda",
+  description: "Green for Life Rwanda public website."
 };
 
 export default async function RootLayout({

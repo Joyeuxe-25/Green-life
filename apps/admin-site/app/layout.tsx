@@ -7,8 +7,8 @@ import {
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Green Life Rwanda Admin",
-  description: "Green Life Rwanda admin dashboard.",
+  title: "Green for Life Rwanda Admin",
+  description: "Green for Life Rwanda admin dashboard.",
   icons: {
     icon: [
       { url: ADMIN_FAVICON_URL },

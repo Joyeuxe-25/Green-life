@@ -122,7 +122,7 @@ export default async function HomePage() {
           <div className="container home-preview-grid">
             {data.news.length > 0 ? (
               <div>
-                <SectionHeading eyebrow="Latest Updates" title="News from Green Life Rwanda" />
+                <SectionHeading eyebrow="Latest Updates" title="News from Green for Life Rwanda" />
                 <CardGrid>
                   {data.news.map((item) => (
                     <NewsCard item={item} key={item.id} />

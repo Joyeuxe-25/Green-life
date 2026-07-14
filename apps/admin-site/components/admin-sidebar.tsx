@@ -140,11 +140,11 @@ export function AdminSidebar({
           }`}
           href="/dashboard"
           onClick={onNavigate}
-          title="Green Life Rwanda Admin"
+          title="Green for Life Rwanda Admin"
         >
           <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-white p-1.5">
             <img
-              alt="Green Life Rwanda"
+              alt="Green for Life Rwanda"
               className="max-h-8 w-auto object-contain"
               src={ADMIN_LOGO_URL}
             />
@@ -152,7 +152,7 @@ export function AdminSidebar({
           {!isCollapsed ? (
             <span className="min-w-0">
               <span className="block truncate text-xs font-semibold uppercase tracking-wide">
-                Green Life Rwanda
+                Green for Life Rwanda
               </span>
               <span className="mt-0.5 block truncate text-base font-bold">
                 GLR Admin

@@ -42,7 +42,7 @@ export default function DashboardPage() {
         </p>
         <div className="mt-3 max-w-3xl">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-            Welcome to the Green Life Rwanda admin workspace
+            Welcome to the Green for Life Rwanda admin workspace
           </h2>
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
             This dashboard is ready for authenticated admin work. CRUD modules,

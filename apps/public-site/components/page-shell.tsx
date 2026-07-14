@@ -7,7 +7,7 @@ type PageShellProps = {
 export function PageShell({
   title,
   description,
-  note = "Real Green Life Rwanda content will be added in a later phase."
+  note = "Real Green for Life Rwanda content will be added in a later phase."
 }: PageShellProps) {
   return (
     <section className="container section">

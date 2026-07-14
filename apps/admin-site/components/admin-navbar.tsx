@@ -30,7 +30,7 @@ export function AdminNavbar({
             Admin workspace
           </p>
           <h1 className="mt-1 truncate text-lg font-semibold tracking-tight text-foreground sm:text-xl">
-            Green Life Rwanda Admin
+            Green for Life Rwanda Admin
           </h1>
         </div>
       </div>

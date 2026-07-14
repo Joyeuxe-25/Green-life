@@ -65,7 +65,7 @@ export default function SetupPage() {
         <div className="mb-5 flex items-center gap-3">
           <div className="grid size-14 place-items-center rounded-2xl border border-border bg-white p-2 shadow-sm">
             <img
-              alt="Green Life Rwanda"
+              alt="Green for Life Rwanda"
               className="max-h-10 w-auto object-contain"
               src={ADMIN_LOGO_URL}
             />

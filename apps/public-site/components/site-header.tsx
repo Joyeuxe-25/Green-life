@@ -42,7 +42,7 @@ export async function SiteHeader() {
   const { siteSettings } = await fetchSiteSettings().catch(() => ({
     siteSettings: []
   }));
-  const siteName = getSetting(siteSettings, "site.name") || "Green Life Rwanda";
+  const siteName = getSetting(siteSettings, "site.name") || "Green for Life Rwanda";
   const logoUrl = resolvePublicUrl(getSetting(siteSettings, "site.logo_url"));
 
   return (

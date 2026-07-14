@@ -45,7 +45,7 @@ export default function LoginPage() {
         <div className="mb-5 flex items-center gap-3">
           <div className="grid size-14 place-items-center rounded-2xl border border-border bg-white p-2 shadow-sm">
             <img
-              alt="Green Life Rwanda"
+              alt="Green for Life Rwanda"
               className="max-h-10 w-auto object-contain"
               src={ADMIN_LOGO_URL}
             />
@@ -54,7 +54,7 @@ export default function LoginPage() {
             <p className="text-sm font-semibold uppercase tracking-wide text-primary">
               Admin access
             </p>
-            <h1 className="mt-1 text-2xl font-semibold">Green Life Rwanda Admin</h1>
+            <h1 className="mt-1 text-2xl font-semibold">Green for Life Rwanda Admin</h1>
           </div>
         </div>
 

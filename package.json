@@ -2,7 +2,7 @@
   "name": "green-life-rwanda",
   "private": true,
   "version": "0.0.0",
-  "description": "Monorepo foundation for the Green Life Rwanda public site, admin site, API, and shared package.",
+  "description": "Monorepo foundation for the Green for Life Rwanda public site, admin site, API, and shared package.",
   "scripts": {
     "dev:public": "pnpm --filter public-site dev",
     "dev:admin": "pnpm --filter admin-site dev",

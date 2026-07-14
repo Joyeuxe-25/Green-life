@@ -6,7 +6,7 @@ This document lists planned environment variables and Cloudflare bindings for la
 
 ### Bindings
 
-- `DATABASE`: Cloudflare D1 binding for the Green Life Rwanda database.
+- `DATABASE`: Cloudflare D1 binding for the Green for Life Rwanda database.
 - `MEDIA_BUCKET`: Cloudflare R2 bucket binding for uploaded images, videos, and partner logos.
 
 ### Secrets / Variables

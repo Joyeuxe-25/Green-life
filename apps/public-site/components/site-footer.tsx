@@ -20,7 +20,7 @@ export async function SiteFooter() {
   const { siteSettings } = await fetchSiteSettings().catch(() => ({
     siteSettings: []
   }));
-  const siteName = getSetting(siteSettings, "site.name") || "Green Life Rwanda";
+  const siteName = getSetting(siteSettings, "site.name") || "Green for Life Rwanda";
   const logoUrl = resolvePublicUrl(
     getSetting(siteSettings, "site.footer_logo_url") ||
     getSetting(siteSettings, "site.logo_url")
