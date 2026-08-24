@@ -115,6 +115,9 @@ export type PublicStaffMember = {
   email: string | null;
   phone: string | null;
   display_order: number;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type PublicPartner = {
@@ -194,8 +197,11 @@ const PROJECT_DETAIL_COLUMNS = withAttachedMediaColumns(
   "projects",
   "id, title, slug, summary, description, district, sector, start_date, end_date, status, category, impact_summary"
 );
-const STAFF_COLUMNS =
-  "id, full_name, role_title, short_bio, email, phone, display_order";
+const STAFF_COLUMNS = withAttachedMediaColumns(
+  "staff",
+  "staff",
+  "id, full_name, role_title, short_bio, email, phone, display_order"
+);
 const PARTNER_COLUMNS = withAttachedMediaColumns(
   "partner",
   "partners",

@@ -334,9 +334,18 @@ export function EventCard({ event }: { event: EventItem }) {
 export function StaffCard({ member }: { member: StaffMember }) {
   return (
     <article className="info-card staff-card reveal-card">
-      <span className="card-icon" aria-hidden="true">
-        <UsersRound size={21} />
-      </span>
+      {member.image_url ? (
+        <div className="card-media">
+          <MediaImage
+            alt={member.image_alt_text || member.image_caption || `${member.full_name} profile image`}
+            src={member.image_url}
+          />
+        </div>
+      ) : (
+        <span className="card-icon" aria-hidden="true">
+          <UsersRound size={21} />
+        </span>
+      )}
       <p className="card-kicker">{member.role_title}</p>
       <h3>{member.full_name}</h3>
       {member.short_bio ? <p>{member.short_bio}</p> : null}
@@ -346,7 +355,6 @@ export function StaffCard({ member }: { member: StaffMember }) {
     </article>
   );
 }
-
 export function PartnerCard({ partner }: { partner: Partner }) {
   const cardTitle = `${partner.name}${partner.website_url ? " website" : ""}`;
   const content = (

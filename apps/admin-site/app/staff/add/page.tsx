@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AdminShell } from "@/components/admin-shell";
 import { StaffForm } from "@/components/staff-form";
-import { createStaffItem, type StaffInput } from "@/lib/admin-api";
+import { createStaffItem, replaceEntityImage, type StaffInput } from "@/lib/admin-api";
 
 export default function AddStaffPage() {
   const router = useRouter();
@@ -16,7 +16,11 @@ export default function AddStaffPage() {
     setError("");
     setIsSubmitting(true);
     try {
-      await createStaffItem(input);
+      const { imageFile, removeImage: _removeImage, ...payload } = input;
+      const { staff } = await createStaffItem(payload);
+      if (imageFile) {
+        await replaceEntityImage("staff", staff.id, imageFile);
+      }
       router.replace("/staff");
     } catch (createError) {
       setError(

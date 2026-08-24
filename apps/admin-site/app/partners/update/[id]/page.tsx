@@ -7,6 +7,8 @@ import { AdminShell } from "@/components/admin-shell";
 import { PartnerForm } from "@/components/partner-form";
 import {
   getPartnerItem,
+  removeEntityImages,
+  replaceEntityImage,
   updatePartnerItem,
   type PartnerInput,
   type PartnerItem
@@ -50,7 +52,13 @@ export default function UpdatePartnerItemPage() {
     setError("");
     setIsSubmitting(true);
     try {
-      await updatePartnerItem(params.id, input);
+      const { imageFile, removeImage, ...payload } = input;
+      const { partner } = await updatePartnerItem(params.id, payload);
+      if (imageFile) {
+        await replaceEntityImage("partner", partner.id, imageFile);
+      } else if (removeImage) {
+        await removeEntityImages("partner", partner.id);
+      }
       router.replace("/partners");
     } catch (updateError) {
       setError(

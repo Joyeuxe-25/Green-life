@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { EntityImageField } from "@/components/entity-image-field";
 import type { StaffInput, StaffItem, StaffStatus } from "@/lib/admin-api";
 
 type StaffFormProps = {
@@ -29,6 +30,8 @@ export function StaffForm({
   const [status, setStatus] = useState<StaffStatus>(
     initialStaff?.status ?? "active"
   );
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [removeImage, setRemoveImage] = useState(false);
   const [error, setError] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -47,7 +50,9 @@ export function StaffForm({
       email: email.trim(),
       phone: phone.trim(),
       displayOrder: Number.parseInt(displayOrder, 10) || 0,
-      status
+      status,
+      imageFile,
+      removeImage
     });
   }
 
@@ -56,6 +61,18 @@ export function StaffForm({
       className="grid gap-5 rounded-xl border border-border bg-card p-5 shadow-sm sm:p-6"
       onSubmit={handleSubmit}
     >
+      <EntityImageField
+        currentImageUrl={initialStaff?.image_url}
+        description="Upload a Staff profile image through the existing media library."
+        disabled={isSubmitting}
+        label="Profile image"
+        onChange={setImageFile}
+        onRemoveChange={setRemoveImage}
+        previewAlt={initialStaff?.full_name ? `${initialStaff.full_name} profile preview` : "Staff profile preview"}
+        removeImage={removeImage}
+        selectedFile={imageFile}
+      />
+
       <div className="grid gap-4 lg:grid-cols-2">
         <Field label="Full name" required>
           <input

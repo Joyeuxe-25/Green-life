@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { AdminShell } from "@/components/admin-shell";
 import { PartnerForm } from "@/components/partner-form";
-import { createPartnerItem, type PartnerInput } from "@/lib/admin-api";
+import { createPartnerItem, replaceEntityImage, type PartnerInput } from "@/lib/admin-api";
 
 export default function AddPartnerPage() {
   const router = useRouter();
@@ -16,7 +16,11 @@ export default function AddPartnerPage() {
     setError("");
     setIsSubmitting(true);
     try {
-      await createPartnerItem(input);
+      const { imageFile, removeImage: _removeImage, ...payload } = input;
+      const { partner } = await createPartnerItem(payload);
+      if (imageFile) {
+        await replaceEntityImage("partner", partner.id, imageFile);
+      }
       router.replace("/partners");
     } catch (createError) {
       setError(

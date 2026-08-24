@@ -6,6 +6,7 @@ import { AdminShell } from "@/components/admin-shell";
 import {
   deletePartnerItem,
   listPartners,
+  resolveAdminMediaUrl,
   type PartnerItem
 } from "@/lib/admin-api";
 
@@ -64,8 +65,7 @@ export default function PartnersPage() {
               Partners
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-              Manage partner listings for the future public website. Logo
-              upload is not part of this phase.
+              Manage partner listings and logos used by the public website.
             </p>
           </div>
           <Link
@@ -104,28 +104,41 @@ export default function PartnersPage() {
                 key={item.id}
               >
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="truncate text-lg font-semibold text-foreground">
-                        {item.name}
-                      </h3>
-                      <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold capitalize text-primary">
-                        {item.status}
-                      </span>
-                      {item.is_text_only ? (
-                        <span className="rounded-full bg-muted px-2.5 py-1 text-xs font-semibold text-muted-foreground">
-                          text only
+                  <div className="flex min-w-0 flex-1 items-start gap-3">
+                    {item.logo_url && !item.is_text_only ? (
+                      <img
+                        alt={item.logo_alt_text || `${item.name} logo`}
+                        className="h-14 w-14 flex-none rounded-lg border border-border bg-white object-contain p-1"
+                        src={resolveAdminMediaUrl(item.logo_url)}
+                      />
+                    ) : (
+                      <div className="grid h-14 w-14 flex-none place-items-center rounded-lg border border-border bg-muted px-2 text-center text-xs font-semibold text-muted-foreground">
+                        {item.name.slice(0, 2).toUpperCase()}
+                      </div>
+                    )}
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="truncate text-lg font-semibold text-foreground">
+                          {item.name}
+                        </h3>
+                        <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold capitalize text-primary">
+                          {item.status}
                         </span>
+                        {item.is_text_only ? (
+                          <span className="rounded-full bg-muted px-2.5 py-1 text-xs font-semibold text-muted-foreground">
+                            text only
+                          </span>
+                        ) : null}
+                      </div>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {item.website_url || "No website URL"}
+                      </p>
+                      {item.description ? (
+                        <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">
+                          {item.description}
+                        </p>
                       ) : null}
                     </div>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {item.website_url || "No website URL"}
-                    </p>
-                    {item.description ? (
-                      <p className="mt-2 line-clamp-2 text-sm leading-6 text-muted-foreground">
-                        {item.description}
-                      </p>
-                    ) : null}
                   </div>
 
                   <div className="flex flex-wrap gap-2">

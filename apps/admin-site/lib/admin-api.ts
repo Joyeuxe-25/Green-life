@@ -167,6 +167,9 @@ export type StaffItem = {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type StaffInput = {
@@ -177,6 +180,8 @@ export type StaffInput = {
   phone?: string;
   displayOrder?: number;
   status: StaffStatus;
+  imageFile?: File | null;
+  removeImage?: boolean;
 };
 
 export type PartnerStatus = "active" | "hidden";
@@ -193,6 +198,9 @@ export type PartnerItem = {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  logo_url: string | null;
+  logo_alt_text: string | null;
+  logo_caption: string | null;
 };
 
 export type PartnerInput = {
@@ -203,6 +211,8 @@ export type PartnerInput = {
   displayOrder?: number;
   status: PartnerStatus;
   isTextOnly?: boolean;
+  imageFile?: File | null;
+  removeImage?: boolean;
 };
 
 export type MessageStatus = "new" | "read" | "replied" | "archived";
@@ -832,7 +842,7 @@ export async function uploadMedia(input: MediaUploadInput) {
 }
 
 export async function replaceEntityImage(
-  entityType: "news" | "event" | "project",
+  entityType: "news" | "event" | "project" | "staff" | "partner",
   entityId: string,
   file: File
 ) {
@@ -843,7 +853,14 @@ export async function replaceEntityImage(
   });
 
   for (const media of existing.media) {
-    await deleteMedia(media.id);
+    await updateMedia(media.id, {
+      altText: media.alt_text ?? "",
+      caption: media.caption ?? "",
+      entityType: media.entity_type ?? undefined,
+      entityId: media.entity_id ?? undefined,
+      displayOrder: media.display_order,
+      status: "hidden"
+    });
   }
 
   return uploadMedia({
@@ -857,7 +874,7 @@ export async function replaceEntityImage(
 }
 
 export async function removeEntityImages(
-  entityType: "news" | "event" | "project",
+  entityType: "news" | "event" | "project" | "staff" | "partner",
   entityId: string
 ) {
   const existing = await listMedia({
@@ -867,7 +884,14 @@ export async function removeEntityImages(
   });
 
   for (const media of existing.media) {
-    await deleteMedia(media.id);
+    await updateMedia(media.id, {
+      altText: media.alt_text ?? "",
+      caption: media.caption ?? "",
+      entityType: media.entity_type ?? undefined,
+      entityId: media.entity_id ?? undefined,
+      displayOrder: media.display_order,
+      status: "hidden"
+    });
   }
 }
 

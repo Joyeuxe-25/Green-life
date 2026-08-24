@@ -10,17 +10,23 @@ const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
 type EntityImageFieldProps = {
   currentImageUrl?: string | null;
   disabled?: boolean;
+  description?: string;
+  label?: string;
   onChange: (file: File | null) => void;
   onRemoveChange: (remove: boolean) => void;
+  previewAlt?: string;
   selectedFile: File | null;
   removeImage: boolean;
 };
 
 export function EntityImageField({
   currentImageUrl,
+  description = "Upload an AVIF, JPEG, PNG, or WebP image. Images are stored through the media library.",
   disabled,
+  label = "Feature image",
   onChange,
   onRemoveChange,
+  previewAlt = "Current image preview",
   removeImage,
   selectedFile
 }: EntityImageFieldProps) {
@@ -72,9 +78,9 @@ export function EntityImageField({
     <div className="grid gap-3 rounded-xl border border-dashed border-border bg-muted/45 p-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-sm font-semibold text-foreground">Feature image</p>
+          <p className="text-sm font-semibold text-foreground">{label}</p>
           <p className="mt-1 text-xs leading-5 text-muted-foreground">
-            Upload an AVIF, JPEG, PNG, or WebP image. Images are stored through the media library.
+            {description}
           </p>
         </div>
         {visiblePreview ? (
@@ -96,7 +102,7 @@ export function EntityImageField({
       {visiblePreview ? (
         <div className="overflow-hidden rounded-lg border border-border bg-white">
           <img
-            alt="Current feature preview"
+            alt={previewAlt}
             className="h-48 w-full object-cover"
             src={visiblePreview}
           />

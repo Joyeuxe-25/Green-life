@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { EntityImageField } from "@/components/entity-image-field";
 import type { PartnerInput, PartnerItem, PartnerStatus } from "@/lib/admin-api";
 
 type PartnerFormProps = {
@@ -33,6 +34,8 @@ export function PartnerForm({
   const [isTextOnly, setIsTextOnly] = useState(
     Boolean(initialPartner?.is_text_only ?? 0)
   );
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [removeImage, setRemoveImage] = useState(false);
   const [error, setError] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -51,7 +54,9 @@ export function PartnerForm({
       description: description.trim(),
       displayOrder: Number.parseInt(displayOrder, 10) || 0,
       status,
-      isTextOnly
+      isTextOnly,
+      imageFile,
+      removeImage
     });
   }
 
@@ -60,6 +65,18 @@ export function PartnerForm({
       className="grid gap-5 rounded-xl border border-border bg-card p-5 shadow-sm sm:p-6"
       onSubmit={handleSubmit}
     >
+      <EntityImageField
+        currentImageUrl={initialPartner?.logo_url}
+        description="Upload a Partner logo or image through the existing media library."
+        disabled={isSubmitting}
+        label="Partner logo/image"
+        onChange={setImageFile}
+        onRemoveChange={setRemoveImage}
+        previewAlt={initialPartner?.name ? `${initialPartner.name} logo preview` : "Partner logo preview"}
+        removeImage={removeImage}
+        selectedFile={imageFile}
+      />
+
       <div className="grid gap-4 lg:grid-cols-2">
         <Field label="Name" required>
           <input

@@ -3,7 +3,12 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { AdminShell } from "@/components/admin-shell";
-import { deleteStaffItem, listStaff, type StaffItem } from "@/lib/admin-api";
+import {
+  deleteStaffItem,
+  listStaff,
+  resolveAdminMediaUrl,
+  type StaffItem
+} from "@/lib/admin-api";
 
 export default function StaffPage() {
   const [staff, setStaff] = useState<StaffItem[]>([]);
@@ -60,8 +65,7 @@ export default function StaffPage() {
               Staff
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-muted-foreground">
-              Manage staff profiles used by the future public website. Photo
-              upload is not part of this phase.
+              Manage staff profiles and profile images used by the public website.
             </p>
           </div>
           <Link
@@ -100,22 +104,35 @@ export default function StaffPage() {
                 key={item.id}
               >
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-                  <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <h3 className="truncate text-lg font-semibold text-foreground">
-                        {item.full_name}
-                      </h3>
-                      <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold capitalize text-primary">
-                        {item.status}
-                      </span>
+                  <div className="flex min-w-0 flex-1 items-start gap-3">
+                    {item.image_url ? (
+                      <img
+                        alt={item.image_alt_text || `${item.full_name} profile image`}
+                        className="h-14 w-14 flex-none rounded-full border border-border object-cover"
+                        src={resolveAdminMediaUrl(item.image_url)}
+                      />
+                    ) : (
+                      <div className="grid h-14 w-14 flex-none place-items-center rounded-full border border-border bg-muted text-sm font-semibold text-muted-foreground">
+                        {item.full_name.slice(0, 1).toUpperCase()}
+                      </div>
+                    )}
+                    <div className="min-w-0">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="truncate text-lg font-semibold text-foreground">
+                          {item.full_name}
+                        </h3>
+                        <span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs font-semibold capitalize text-primary">
+                          {item.status}
+                        </span>
+                      </div>
+                      <p className="mt-1 text-sm font-medium text-muted-foreground">
+                        {item.role_title}
+                      </p>
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        {[item.email, item.phone].filter(Boolean).join(" | ") ||
+                          "No contact details"}
+                      </p>
                     </div>
-                    <p className="mt-1 text-sm font-medium text-muted-foreground">
-                      {item.role_title}
-                    </p>
-                    <p className="mt-2 text-sm text-muted-foreground">
-                      {[item.email, item.phone].filter(Boolean).join(" | ") ||
-                        "No contact details"}
-                    </p>
                   </div>
 
                   <div className="flex flex-wrap gap-2">

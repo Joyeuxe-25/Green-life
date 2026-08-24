@@ -7,6 +7,8 @@ import { AdminShell } from "@/components/admin-shell";
 import { StaffForm } from "@/components/staff-form";
 import {
   getStaffItem,
+  removeEntityImages,
+  replaceEntityImage,
   updateStaffItem,
   type StaffInput,
   type StaffItem
@@ -50,7 +52,13 @@ export default function UpdateStaffItemPage() {
     setError("");
     setIsSubmitting(true);
     try {
-      await updateStaffItem(params.id, input);
+      const { imageFile, removeImage, ...payload } = input;
+      const { staff } = await updateStaffItem(params.id, payload);
+      if (imageFile) {
+        await replaceEntityImage("staff", staff.id, imageFile);
+      } else if (removeImage) {
+        await removeEntityImages("staff", staff.id);
+      }
       router.replace("/staff");
     } catch (updateError) {
       setError(

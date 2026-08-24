@@ -115,6 +115,9 @@ export type StaffMember = {
   email: string | null;
   phone: string | null;
   display_order: number;
+  image_url: string | null;
+  image_alt_text: string | null;
+  image_caption: string | null;
 };
 
 export type Partner = {

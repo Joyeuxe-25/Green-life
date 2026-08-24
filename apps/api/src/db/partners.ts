@@ -16,6 +16,9 @@ export type PartnerRow = {
   created_at: string;
   updated_at: string;
   deleted_at: string | null;
+  logo_url: string | null;
+  logo_alt_text: string | null;
+  logo_caption: string | null;
 };
 
 export type PartnerInput = {
@@ -28,8 +31,10 @@ export type PartnerInput = {
   isTextOnly: boolean;
 };
 
-const PARTNER_COLUMNS =
-  "id, name, slug, website_url, description, display_order, status, is_text_only, created_at, updated_at, deleted_at";
+const PARTNER_COLUMNS = `id, name, slug, website_url, description, display_order, status, is_text_only, created_at, updated_at, deleted_at,
+  (SELECT public_url FROM media_files WHERE entity_type = 'partner' AND entity_id = partners.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS logo_url,
+  (SELECT alt_text FROM media_files WHERE entity_type = 'partner' AND entity_id = partners.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS logo_alt_text,
+  (SELECT caption FROM media_files WHERE entity_type = 'partner' AND entity_id = partners.id AND status = 'active' ORDER BY display_order ASC, created_at ASC LIMIT 1) AS logo_caption`;
 
 export async function listPartners(c: Context<AppBindings>) {
   const result = await getDb(c)
