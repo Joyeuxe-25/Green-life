@@ -805,6 +805,22 @@
   background: var(--soft-green);
 }
 
+.staff-card .card-media {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  background: #f5f5f5;
+}
+
+.staff-card .card-media .media-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center top;
+}
+
 .card-media .media-image,
 .info-card > .media-image {
   height: 100%;
